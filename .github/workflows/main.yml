@@ -24,6 +24,6 @@ jobs: # Job 설정
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ${{secrets.AWS_REGION}}
-          S3_BUCKET_NAMEL: ${{secrets.S3_BUCKET_NAME}}
+          S3_BUCKET_NAME: ${{secrets.S3_BUCKET_NAME}}
         run: |
           aws s3 sync ./build s3://$S3_BUCKET_NAME --region $AWS_DEFAULT_REGION
