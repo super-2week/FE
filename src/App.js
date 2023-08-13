@@ -17,7 +17,7 @@ function App() {
         >
           Learn React
         </a>
-        <h2>CI/CD 성공적이냐??</h2>
+        <h2>CI/CD 성공적이냐?dfs?</h2>
       </header>
     </div>
   );
