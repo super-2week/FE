@@ -82,5 +82,3 @@
 - 선택
   - styled-component, tailwindcss
   - ts, next.js
-
-dd

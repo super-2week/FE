@@ -25,4 +25,4 @@ jobs: # Job 설정
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ${{secrets.AWS_REGION}}
         run: |
-          aws s3 sync ./build s3://super-2week-fe --profile=SimChaeWoon
+          # aws s3 cp --recursive --region ap-northeast-2 build s3://${{super-2week-fe}}
