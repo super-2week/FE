@@ -1,5 +1,9 @@
 # 슈퍼코딩 2주차 프로젝트
 
+## 배포 사이트
+
+[배포 사이트] (https://itproject.shop/)
+
 ## 요구사항
 
 ### 로그인 페이지/로그아웃 기능
@@ -82,3 +86,14 @@
 - 선택
   - styled-component, tailwindcss
   - ts, next.js
+
+### 컨벤션
+
+### 기술 챌린지
+
+- Github Actions CI/CD
+  - 테스트를 위한 불필요한 반복적 작업을 줄이기 위함과 동시에 개발 속도 향상을 위해 사용.
+  - Github Actions는 github에서 제공하고, 쉽게 CI/CD를 구축할 수 있는 장점이 있으며 YAML이란 포맷을 사용해 가독성이 높고, 정보가 많아 사용.
+- CloudFront 배포
+  - CloudFront는 엣지 로케이션을 통해 콘텐츠를 제공하므로 사용자에게 빠른 속도의 네트워크를 전송하기 위해 CDN 서비스인 CloudFront 사용.
+  - 보안을 위한 http 배포가 아닌 https 배포를 위해 사용.
