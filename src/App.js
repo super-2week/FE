@@ -17,7 +17,7 @@ function App() {
         >
           Learn React
         </a>
-        <h2>채운 AWS CLI TEST</h2>
+        <h2>CI/CD 성공적이냐??</h2>
       </header>
     </div>
   );
