@@ -1,25 +1,28 @@
-import logo from "./logo.svg";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
+import LoginPage from "./pages/LoginPage";
+import MyPage from "./pages/MyPage";
+import {
+  DetailPage,
+  MainPage,
+  NotFoundPage,
+  PostItemPage,
+  SignupPage,
+} from "./pages";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <h2>CI/CD 성공적이냐?dfs?</h2>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/my" element={<MyPage />} />
+        <Route path="/form" element={<PostItemPage />} />
+        <Route path="product/:productId" element={<DetailPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </Router>
   );
 }
 
