@@ -2,7 +2,7 @@
 
 ## 배포 사이트
 
-[배포 사이트] (https://itproject.shop/)
+[배포 사이트](https://itproject.shop/)
 
 ## 요구사항
 
