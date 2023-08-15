@@ -9,10 +9,12 @@ import {
   PostItemPage,
   SignupPage,
 } from "./pages";
+import GlobalStyle from "./components/global/GlobalStyle";
 
 function App() {
   return (
     <Router>
+      <GlobalStyle />
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<LoginPage />} />
