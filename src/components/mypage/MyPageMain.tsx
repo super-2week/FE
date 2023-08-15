@@ -19,6 +19,35 @@ const MyPageMain = () => {
               </S.EditBtn>
             </div>
           </S.TopTextBox>
+
+          <S.TopWalletBox>
+            <div>
+              <span>
+                <em>PAY</em>
+                <Link to='/'>
+                  <strong>0</strong>
+                </Link>
+              </span>
+            </div>
+    
+            <div>
+              <span>
+                <em>관심 상품</em>
+                <Link to='/'>
+                  <strong>1</strong>
+                </Link>
+              </span>
+            </div>
+    
+            <div>
+              <span>
+                <em>최근 본 상품</em>
+                <Link to='/'>
+                  <strong>2</strong>
+                </Link>
+              </span>
+            </div>
+          </S.TopWalletBox>
         </S.TopInfoBox>
       </S.MainBox>
     </S.ContentsBox>
