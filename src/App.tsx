@@ -9,17 +9,19 @@ import {
   PostItemPage,
   SignupPage,
 } from "./pages";
+import GlobalStyle from "./components/global/GlobalStyle";
 
 function App() {
   return (
     <Router>
+      <GlobalStyle />
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/my" element={<MyPage />} />
         <Route path="/form" element={<PostItemPage />} />
-        <Route path="product/:productId" element={<DetailPage />} />
+        <Route path="/product/:productId" element={<DetailPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
