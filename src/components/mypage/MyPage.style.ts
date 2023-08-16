@@ -65,14 +65,13 @@ export const SideMenuBox = styled.div`
 `;
 
 export const ContentsBox = styled.div`
-  min-height: 500px;
   float: left;
   width: 100%;
   padding: 0 0 0 0;
 `;
 
 export const MainBox = styled.div`
-  padding: 0 0 50px 0;
+  padding: 0;
 `;
 
 export const TopInfoBox = styled.div`
