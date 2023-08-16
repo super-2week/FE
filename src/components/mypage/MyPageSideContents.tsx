@@ -2,30 +2,34 @@ import { Link } from 'react-router-dom';
 
 import * as S from './MyPage.style';
 
-const MyPageSideContents = () => {
+interface Props {
+  handleClick: (tabName: string) => void;
+}
+
+const MyPageSideContents = ({ handleClick }: Props) => {
   return (
     <S.SideContentsBox>
       <S.SideMenuBox>
         <h2>마이페이지</h2>
         <ul>
-          <li>
-            <Link to='/'>유저 정보</Link>
+          <li onClick={() => handleClick('userInfo')}>
+            <p>유저 정보</p>
           </li>
 
-          <li>
-            <Link to='/'>관심 상품</Link>
+          <li onClick={() => handleClick('Like')}>
+            <p>관심 상품</p>
           </li>
 
-          <li>
-            <Link to='/'>최근 본 상품</Link>
+          <li onClick={() => handleClick('LastSee')}>
+            <p>최근 본 상품</p>
           </li>
 
-          <li>
-            <Link to='/'>거래 목록</Link>
+          <li onClick={() => handleClick('Order')}>
+            <p>거래 목록</p>
           </li>
 
-          <li>
-            <Link to='/'>Pay</Link>
+          <li onClick={() => handleClick('Pay')}>
+            <p>Pay</p>
           </li>
         </ul>
       </S.SideMenuBox>

@@ -48,7 +48,7 @@ export const SideMenuBox = styled.div`
       font-weight: normal;
     }
 
-    a {
+    p {
       font-size: 1rem;
       color: #999;
       font-weight: 600;
@@ -57,7 +57,7 @@ export const SideMenuBox = styled.div`
 
       &:hover {
         color: #555;
-        border-bottom: 1px solid #999;
+        cursor: pointer;
         transition: color .3s;
       }
     }

@@ -1,18 +1,36 @@
+import { useState } from 'react';
+import { useAppDispatch } from '../../store/hook';
+import { setActiveTab } from '../../store/slice/myPageSlice';
+
 import * as S from './MyPage.style';
 
 import MyPageMain from './MyPageMain';
-import MyPageOrder from './MyPageOrder';
+import MyPageLastSee from './MyPageLastSee';
+import MyPageLastSeeDetail from './MyPageLastSeeDetail';
 import MyPageSideContents from './MyPageSideContents';
 
 const MyPageBody = () => {
+  const [isActiveTab, isSetActiveTab] = useState('userInfo');
+
+  const dispatch = useAppDispatch();
+
+  const handleTabClick = (tabName: string) => {
+    isSetActiveTab(tabName);
+    dispatch(setActiveTab(tabName));
+  };
+
   return (
     <S.MyPageBody>
-      <MyPageSideContents />
+      <MyPageSideContents handleClick={handleTabClick} />
       
       <S.MyPageContents>
-        <MyPageMain />
-
-        <MyPageOrder />
+        {isActiveTab === 'userInfo' && (
+          <>
+            <MyPageMain />
+            <MyPageLastSee />
+          </>
+        )}
+        {isActiveTab === 'LastSee' && <MyPageLastSeeDetail />}
       </S.MyPageContents>
     </S.MyPageBody>
   );
