@@ -10,10 +10,17 @@ const GlobalStyle = createGlobalStyle`
     --white-color : #ffffff;
     input{
       outline: none;
+      border: none;
     }
     button{
       outline:none;
     }
+  }
+
+  ul,
+  li {
+    margin: 0;
+    list-style: none;
   }
 
   // reset CSS
