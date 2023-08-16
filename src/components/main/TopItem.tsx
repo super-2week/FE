@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./main.style";
 
-import itemImg from "../../asset/item1.jpg";
+import Item from "./Item";
 
 const TopItem = () => {
   return (
@@ -12,56 +12,12 @@ const TopItem = () => {
       </div>
 
       <ul className="item-list">
-        <li>
-          <img src={itemImg} alt="" />
-          <div className="item-meta">
-            <div className="title">
-              쁘띠 댕댕이 반려동물 매트 고양이 개매트 반려동물
-            </div>
-            <div className="division"></div>
-            <span>32,400원</span>
-          </div>
-        </li>
-        <li>
-          <img src={itemImg} alt="" />
-          <div className="item-meta">
-            <div className="title">
-              쁘띠 댕댕이 반려동물 매트 고양이 개매트 반려동물
-            </div>
-            <div className="division"></div>
-            <span>32,400원</span>
-          </div>
-        </li>
-        <li>
-          <img src={itemImg} alt="" />
-          <div className="item-meta">
-            <div className="title">
-              쁘띠 댕댕이 반려동물 매트 고양이 개매트 반려동물
-            </div>
-            <div className="division"></div>
-            <span>32,400원</span>
-          </div>
-        </li>
-        <li>
-          <img src={itemImg} alt="" />
-          <div className="item-meta">
-            <div className="title">
-              쁘띠 댕댕이 반려동물 매트 고양이 개매트 반려동물
-            </div>
-            <div className="division"></div>
-            <span>32,400원</span>
-          </div>
-        </li>
-        <li>
-          <img src={itemImg} alt="" />
-          <div className="item-meta">
-            <div className="title">
-              쁘띠 댕댕이 반려동물 매트 고양이 개매트 반려동물
-            </div>
-            <div className="division"></div>
-            <span>32,400원</span>
-          </div>
-        </li>
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
+        <Item />
       </ul>
     </S.TopItem>
   );
