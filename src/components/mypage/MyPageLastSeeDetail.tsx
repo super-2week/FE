@@ -1,23 +1,24 @@
 import { Link } from 'react-router-dom';
+
 import * as S from './MyPage.style';
 
 const MyPageLastSeeDetail = () => {
   return (
     <S.OrderBox>
       <S.TitleBox>
-        <h3>최근 본 상품</h3>
-        <Link to='/'>더보기</Link>
+        <h3>관심 상품</h3>
       </S.TitleBox>
 
       <S.LastSeeList>
         {/* 최근 본 상품이 없을 때 */}
-        {/* <div>
+        <div>
           <S.LastSeeNoData>
             <strong>최근 본 상품이 존재하지 않습니다.</strong>
           </S.LastSeeNoData>
-        </div> */}
+        </div>
 
-        <ul>
+        {/* 최근 본 상품이 있을 때 */}
+        {/* <ul>
           <li>
             <S.LastSeeListItem>
               <S.LastSeePhotoBox>
@@ -50,7 +51,7 @@ const MyPageLastSeeDetail = () => {
               </S.LastSeeContentBox>
             </S.LastSeeListItem>
           </li>
-        </ul>
+        </ul> */}
       </S.LastSeeList>
     </S.OrderBox>
   );

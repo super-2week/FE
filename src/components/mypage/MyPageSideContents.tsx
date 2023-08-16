@@ -2,11 +2,7 @@ import { Link } from 'react-router-dom';
 
 import * as S from './MyPage.style';
 
-interface Props {
-  handleClick: (tabName: string) => void;
-}
-
-const MyPageSideContents = ({ handleClick }: Props) => {
+const MyPageSideContents = ({ handleClick }: HandleViewProps) => {
   return (
     <S.SideContentsBox>
       <S.SideMenuBox>

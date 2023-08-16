@@ -173,6 +173,7 @@ export const TopWalletBox = styled.div`
 
 export const OrderBox = styled.div`
   position: relative;
+  padding-bottom: 5rem;
 `;
 
 export const TitleBox = styled.div`
@@ -192,14 +193,16 @@ export const TitleBox = styled.div`
     color: #212121;
   }
 
-  a {
+  p {
     font-size: 1rem;
     font-weight: 500;
     color: #222;
     text-decoration: none;
 
     &:hover {
-      border-bottom: 1px solid;
+      color: #555;
+      transition: color .3s;
+      cursor: pointer;
     }
   }
 `;

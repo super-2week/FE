@@ -8,6 +8,8 @@ import MyPageMain from './MyPageMain';
 import MyPageLastSee from './MyPageLastSee';
 import MyPageLastSeeDetail from './MyPageLastSeeDetail';
 import MyPageSideContents from './MyPageSideContents';
+import MyPageLike from './MyPageLike';
+import MyPageLikeDetail from './MyPageLikeDetail';
 
 const MyPageBody = () => {
   const [isActiveTab, isSetActiveTab] = useState('userInfo');
@@ -27,10 +29,12 @@ const MyPageBody = () => {
         {isActiveTab === 'userInfo' && (
           <>
             <MyPageMain />
-            <MyPageLastSee />
+            <MyPageLastSee handleClick={handleTabClick} />
+            <MyPageLike handleClick={handleTabClick} />
           </>
         )}
         {isActiveTab === 'LastSee' && <MyPageLastSeeDetail />}
+        {isActiveTab === 'Like' && <MyPageLikeDetail />}
       </S.MyPageContents>
     </S.MyPageBody>
   );

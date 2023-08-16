@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import * as S from './MyPage.style';
 
-const MyPageOrder = ({ handleClick }: HandleViewProps) => {
+const MyPageLike = ({ handleClick }: HandleViewProps) => {
   return (
     <S.OrderBox>
       <S.TitleBox>
-        <h3>최근 본 상품</h3>
-        <p onClick={() => handleClick('LastSee')}>더보기</p>
+        <h3>관심 상품</h3>
+        <p onClick={() => handleClick('Like')}>더보기</p>
       </S.TitleBox>
 
       <S.LastSeeList>
@@ -22,7 +22,7 @@ const MyPageOrder = ({ handleClick }: HandleViewProps) => {
             <S.LastSeeListItem>
               <S.LastSeePhotoBox>
                 <Link to='/'>
-                  <img src='/' alt='최근 본 상품' />
+                  <img src='/' alt='관심 상품' />
                 </Link>
               </S.LastSeePhotoBox>
 
@@ -56,4 +56,4 @@ const MyPageOrder = ({ handleClick }: HandleViewProps) => {
   );
 }
  
-export default MyPageOrder;
+export default MyPageLike;

@@ -1,12 +1,11 @@
 import { Link } from 'react-router-dom';
 import * as S from './MyPage.style';
 
-const MyPageOrder = ({ handleClick }: HandleViewProps) => {
+const MyPageLikeDetail = () => {
   return (
     <S.OrderBox>
       <S.TitleBox>
         <h3>최근 본 상품</h3>
-        <p onClick={() => handleClick('LastSee')}>더보기</p>
       </S.TitleBox>
 
       <S.LastSeeList>
@@ -56,4 +55,4 @@ const MyPageOrder = ({ handleClick }: HandleViewProps) => {
   );
 }
  
-export default MyPageOrder;
+export default MyPageLikeDetail;
