@@ -28,7 +28,7 @@ const MyPageBody = () => {
       <S.MyPageContents>
         {isActiveTab === 'userInfo' && (
           <>
-            <MyPageMain />
+            <MyPageMain handleClick={handleTabClick} />
             <MyPageLastSee handleClick={handleTabClick} />
             <MyPageLike handleClick={handleTabClick} />
           </>

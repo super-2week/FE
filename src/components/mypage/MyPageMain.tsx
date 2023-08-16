@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import * as S from './MyPage.style';
 
-const MyPageMain = () => {
+const MyPageMain = ({ handleClick }: HandleViewProps) => {
   return (
     <S.ContentsBox>
       <S.MainBox>
@@ -24,27 +24,27 @@ const MyPageMain = () => {
             <div>
               <span>
                 <em>PAY</em>
-                <Link to='/'>
+                <p onClick={() => handleClick('Pay')}>
                   <strong>0</strong>
-                </Link>
+                </p>
               </span>
             </div>
     
             <div>
               <span>
                 <em>관심 상품</em>
-                <Link to='/'>
+                <p onClick={() => handleClick('Like')}>
                   <strong>1</strong>
-                </Link>
+                </p>
               </span>
             </div>
     
             <div>
               <span>
                 <em>최근 본 상품</em>
-                <Link to='/'>
+                <p onClick={() => handleClick('LastSee')}>
                   <strong>2</strong>
-                </Link>
+                </p>
               </span>
             </div>
           </S.TopWalletBox>

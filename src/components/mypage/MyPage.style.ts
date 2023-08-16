@@ -151,8 +151,7 @@ export const TopWalletBox = styled.div`
     margin-bottom: 30px;
   }
 
-  a {
-    text-decoration: none;
+  p {
     color: #333;
   }
 
@@ -164,9 +163,12 @@ export const TopWalletBox = styled.div`
     line-height: 1;
   }
 
-  a, strong {
+  p, strong {
     &:hover {
-      border-bottom: 1px solid;
+      color: #555;
+      transition: color .3s;
+      text-decoration: underline;
+      cursor: pointer;
     }
   }
 `;
