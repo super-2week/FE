@@ -1,11 +1,13 @@
 import React from "react";
+import Header from "../components/global/Header";
+import Navi from "../components/global/Navi";
 
 const MainPage = () => {
   return (
-    <div>
-      <input type="text" />
-      <button>dfd</button>
-    </div>
+    <>
+      <Header />
+      <Navi />
+    </>
   );
 };
 
