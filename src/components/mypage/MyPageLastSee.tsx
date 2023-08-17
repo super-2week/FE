@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import * as S from './MyPage.style';
+import { HandleViewProps } from './type';
 
 const MyPageLastSee = ({ handleClick }: HandleViewProps) => {
   return (

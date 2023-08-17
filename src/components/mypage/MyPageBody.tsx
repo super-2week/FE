@@ -12,6 +12,7 @@ import MyPageLike from './MyPageLike';
 import MyPageLikeDetail from './MyPageLikeDetail';
 import MyPageOrderDetail from './MyPageOrderDetail';
 import MyPagePayDetail from './MyPagePayDetail';
+import MyPageEditUser from './MyPageEditUser';
 
 const MyPageBody = () => {
   const [isActiveTab, isSetActiveTab] = useState('userInfo');
@@ -28,17 +29,38 @@ const MyPageBody = () => {
       <MyPageSideContents handleClick={handleTabClick} />
       
       <S.MyPageContents>
-        <MyPageMain handleClick={handleTabClick} />
         {isActiveTab === 'userInfo' && (
           <>
+            <MyPageMain handleClick={handleTabClick} />
             <MyPageLastSee handleClick={handleTabClick} />
             <MyPageLike handleClick={handleTabClick} />
           </>
         )}
-        {isActiveTab === 'LastSee' && <MyPageLastSeeDetail />}
-        {isActiveTab === 'Like' && <MyPageLikeDetail />}
-        {isActiveTab === 'Order' && <MyPageOrderDetail />}
-        {isActiveTab === 'Pay' && <MyPagePayDetail />}
+        {isActiveTab === 'EditUser' && <MyPageEditUser handleClick={handleTabClick} />}
+        {isActiveTab === 'LastSee' && (
+          <>
+            <MyPageMain handleClick={handleTabClick} />
+            <MyPageLastSeeDetail />
+          </>
+        )}
+        {isActiveTab === 'Like' && (
+          <>
+            <MyPageMain handleClick={handleTabClick} />
+            <MyPageLikeDetail />
+          </>
+        )}
+        {isActiveTab === 'Order' && (
+          <>
+            <MyPageMain handleClick={handleTabClick} />
+            <MyPageOrderDetail />
+          </>
+        )}
+        {isActiveTab === 'Pay' && (
+          <>
+            <MyPageMain handleClick={handleTabClick} />
+            <MyPagePayDetail />
+          </>
+        )}
       </S.MyPageContents>
     </S.MyPageBody>
   );

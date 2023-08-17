@@ -10,7 +10,6 @@ const GlobalStyle = createGlobalStyle`
     --white-color : #ffffff;
     input{
       outline: none;
-      border: none;
     }
     button{
       outline:none;
