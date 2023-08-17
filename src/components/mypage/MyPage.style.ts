@@ -176,6 +176,14 @@ export const TopWalletBox = styled.div`
 export const OrderBox = styled.div`
   position: relative;
   padding-bottom: 5rem;
+
+  .empty {
+    text-align: center;
+    padding: 50px 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #212121;
+  }
 `;
 
 export const TitleBox = styled.div`
@@ -408,5 +416,80 @@ export const OrderTable = styled.div`
     line-height: 1;
     padding: 50px 30px 50px 30px;
     text-align: center;
+  }
+`;
+
+export const PayMoneyNow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 21px 48px 22px 31px;
+  border-radius: 5px;
+  background: #f5f5f5;
+  font-weight: 500;
+
+  div {
+    display: flex;
+
+    strong {
+      font-size: 24px;
+      color: #b60217;
+      font-weight: 900;
+
+      span {
+        padding-right: 3px;
+      }
+    }
+
+    button {
+      border: none;
+      background-color: #999;
+      border-radius: 16px;
+      margin-left: 10px;
+
+      &:hover {
+        cursor: pointer;
+        background-color: #99999950;
+        transition: background-color .3s;
+      }
+    }
+  }
+`;
+
+export const PayMoneyTable = styled.div`
+  margin-top: 1rem;
+  border: 0;
+  border-top: 2px solid #222;
+  border-bottom: 2px solid #222;
+
+  table {
+    width: 100%;
+    border: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+    text-align: center;
+    border-top: none;
+    padding: 15px;
+  }
+
+  thead > tr > th {
+    padding: 15px;
+    border-top: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  tbody > tr {
+    &:last-child {
+      border-bottom: 1px solid #dbdbdb;
+    }
+  }
+
+  tbody > tr > th {
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 500;
   }
 `;

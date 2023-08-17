@@ -11,6 +11,7 @@ import MyPageSideContents from './MyPageSideContents';
 import MyPageLike from './MyPageLike';
 import MyPageLikeDetail from './MyPageLikeDetail';
 import MyPageOrderDetail from './MyPageOrderDetail';
+import MyPagePayDetail from './MyPagePayDetail';
 
 const MyPageBody = () => {
   const [isActiveTab, isSetActiveTab] = useState('userInfo');
@@ -37,6 +38,7 @@ const MyPageBody = () => {
         {isActiveTab === 'LastSee' && <MyPageLastSeeDetail />}
         {isActiveTab === 'Like' && <MyPageLikeDetail />}
         {isActiveTab === 'Order' && <MyPageOrderDetail />}
+        {isActiveTab === 'Pay' && <MyPagePayDetail />}
       </S.MyPageContents>
     </S.MyPageBody>
   );
