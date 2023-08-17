@@ -34,6 +34,10 @@ export const TopFilter = styled.div`
       cursor: pointer;
       color: var(--sub-font-color);
       font-size: 20px;
+      transition: all 0.3s;
+      &:hover {
+        transform: scale(1.05);
+      }
     }
   }
 `;
@@ -43,17 +47,34 @@ export const TopItem = styled.div`
   margin-bottom: 100px;
   .label-box {
     display: flex;
-    align-items: end;
+    justify-content: space-between;
+    align-items: center;
     gap: 15px;
     margin-bottom: 40px;
-    h2 {
-      font-size: 30px;
-      color: var(--main-font-color);
-      font-weight: 600;
+    &-left {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      h2 {
+        font-size: 30px;
+        color: var(--main-font-color);
+        font-weight: 600;
+      }
+      span {
+        font-size: 20px;
+        color: #c6bcbc;
+      }
     }
-    span {
-      font-size: 20px;
-      color: #c6bcbc;
+    &-right {
+      span {
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s;
+        &:hover {
+          font-size: 15px;
+          text-decoration: underline;
+        }
+      }
     }
   }
 
@@ -244,15 +265,12 @@ export const GridItemImg = styled.div<{ isRight?: boolean }>`
     align-items: center;
     color: #fff;
     .title {
-      /* width: 300px; */
       margin-bottom: 60px;
       font-size: 23px;
       font-weight: 600;
     }
     .desc {
-      /* background-color: pink; */
       font-size: 18px;
-      /* width: 300px; */
       width: 80%;
       line-height: 25px;
       margin-bottom: 100px;
@@ -291,4 +309,10 @@ export const GridItemImg = styled.div<{ isRight?: boolean }>`
       }
     }
   }
+`;
+
+export const Section = styled.div`
+  width: 100%;
+  height: 500px;
+  background-color: pink;
 `;

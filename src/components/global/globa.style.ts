@@ -25,7 +25,6 @@ export const HeaderWrap = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* background-color: skyblue; */
     .logo {
       width: 130px;
       height: 35px;

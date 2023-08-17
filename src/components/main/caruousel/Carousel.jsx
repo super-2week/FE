@@ -1,17 +1,21 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const Carousel: React.FC = () => {
-  const [index, setIndex] = useState<number>(0);
-  const [back, setBack] = useState<boolean>(false);
+const Carousel = () => {
+  const [index, setIndex] = useState(0);
+  const [back, setBack] = useState(false);
 
-  const changeBack = (index: boolean) => {
+  const changeBack = (index) => {
     setBack(index);
   };
 
-  const changeIndex = (value: number) => {
+  const changeIndex = (value) => {
     setIndex(value);
   };
+
+  // const dogdata = [
+  //   {id:1, imgUrl: , title:, desc:, price:}
+  // ]
   return (
     <div>
       <AnimatePresence>
