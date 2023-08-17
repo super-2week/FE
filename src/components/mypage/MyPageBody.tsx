@@ -10,6 +10,7 @@ import MyPageLastSeeDetail from './MyPageLastSeeDetail';
 import MyPageSideContents from './MyPageSideContents';
 import MyPageLike from './MyPageLike';
 import MyPageLikeDetail from './MyPageLikeDetail';
+import MyPageOrderDetail from './MyPageOrderDetail';
 
 const MyPageBody = () => {
   const [isActiveTab, isSetActiveTab] = useState('userInfo');
@@ -26,15 +27,16 @@ const MyPageBody = () => {
       <MyPageSideContents handleClick={handleTabClick} />
       
       <S.MyPageContents>
+        <MyPageMain handleClick={handleTabClick} />
         {isActiveTab === 'userInfo' && (
           <>
-            <MyPageMain handleClick={handleTabClick} />
             <MyPageLastSee handleClick={handleTabClick} />
             <MyPageLike handleClick={handleTabClick} />
           </>
         )}
         {isActiveTab === 'LastSee' && <MyPageLastSeeDetail />}
         {isActiveTab === 'Like' && <MyPageLikeDetail />}
+        {isActiveTab === 'Order' && <MyPageOrderDetail />}
       </S.MyPageContents>
     </S.MyPageBody>
   );

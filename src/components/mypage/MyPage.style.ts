@@ -346,3 +346,55 @@ export const LastSeeNoData = styled.div`
     line-height: 150px;
   }
 `;
+
+export const OrderListNum = styled.span`
+  display: block;
+  padding: 0 0 10px 0;
+  font-size: 1rem;
+  color: #222;
+  font-weight: 600;
+
+  strong {
+    color: #b60217;
+    padding: 0 0 0 5px;
+  }
+`;
+
+export const OrderTable = styled.div`
+  border: 0;
+
+  table {
+    width: 100%;
+    border: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+    text-align: center;
+    border-top: none;
+    padding: 15px;
+  }
+
+  th {
+    padding: 15px;
+    border-top: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  td {
+    height: 31px;
+    font-size: 14px;
+    padding: 15px 0;
+    color: #777777;
+    border-bottom: 1px solid #dbdbdb;
+  }
+
+  .no_data {
+    font-size: 20px;
+    font-weight: 700;
+    color: #212121;
+    line-height: 1;
+    padding: 50px 30px 50px 30px;
+    text-align: center;
+  }
+`;

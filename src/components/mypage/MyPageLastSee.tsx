@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import * as S from './MyPage.style';
 
-const MyPageOrder = ({ handleClick }: HandleViewProps) => {
+const MyPageLastSee = ({ handleClick }: HandleViewProps) => {
   return (
     <S.OrderBox>
       <S.TitleBox>
@@ -56,4 +56,4 @@ const MyPageOrder = ({ handleClick }: HandleViewProps) => {
   );
 }
  
-export default MyPageOrder;
+export default MyPageLastSee;
