@@ -4,19 +4,21 @@ import Navi from "../components/global/Navi";
 import * as S from "../components/main/main.style";
 import TopItem from "../components/main/TopItem";
 import TopFilter from "../components/main/TopFilter";
-import TodayItem from "../components/main/TodayItem";
-import Section from "../components/main/Section";
+import TodayItem from "../components/main/swiper/TodayItem";
+import BannerSwiper from "../components/main/swiper/BannerSwiper";
+import TodaySwiper from "../components/main/swiper/TodaySwiper";
 
 const MainPage = () => {
   return (
     <>
       <Header />
       <Navi />
-      <Section />
+      <BannerSwiper />
       <S.MainLayout>
         <TopFilter />
         <TopItem />
-        <TodayItem />
+        <TodaySwiper />
+        {/* <TodayItem /> */}
       </S.MainLayout>
     </>
   );

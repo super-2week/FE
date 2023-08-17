@@ -63,6 +63,7 @@ export const TopItem = styled.div`
       span {
         font-size: 20px;
         color: #c6bcbc;
+        margin-left: 10px;
       }
     }
     &-right {
@@ -90,11 +91,13 @@ export const TopItem = styled.div`
       box-shadow: var(--item-boxshadow);
       border-radius: 8px;
       transition: all 0.3s;
+
       img {
         display: flex;
         width: 300px;
         height: 300px;
         margin: 0 auto;
+        border-radius: 8px;
       }
       .item-meta {
         color: #555;
@@ -126,14 +129,6 @@ export const TopItem = styled.div`
 `;
 
 export const TodayItem = styled.div`
-  padding-bottom: 150px;
-
-  h2 {
-    font-size: 30px;
-    color: var(--main-font-color);
-    font-weight: 600;
-    margin-bottom: 40px;
-  }
   .item-grid {
     display: flex;
     width: 100%;
@@ -309,10 +304,4 @@ export const GridItemImg = styled.div<{ isRight?: boolean }>`
       }
     }
   }
-`;
-
-export const Section = styled.div`
-  width: 100%;
-  height: 500px;
-  background-color: pink;
 `;
