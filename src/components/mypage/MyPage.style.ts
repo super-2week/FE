@@ -373,10 +373,22 @@ export const OrderTable = styled.div`
     padding: 15px;
   }
 
-  th {
+  thead > tr > th {
     padding: 15px;
     border-top: 1px solid #dbdbdb;
     border-bottom: 1px solid #dbdbdb;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  tbody > tr {
+    &:last-child {
+      border-bottom: 1px solid #dbdbdb;
+    }
+  }
+
+  tbody > tr > th {
+    padding: 15px;
     font-size: 16px;
     font-weight: 500;
   }

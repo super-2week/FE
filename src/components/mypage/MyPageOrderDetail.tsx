@@ -49,6 +49,14 @@ const MyPageOrderDetail = () => {
                   <th>2</th>
                   <th>결제 확인</th>
                 </tr>
+
+                <tr>
+                <th>2023.08.17/20011111</th>
+                  <th>상품입니다.</th>
+                  <th>20,000,000원</th>
+                  <th>2</th>
+                  <th>결제 확인</th>
+                </tr>
               </tbody>
             </table>
           </S.OrderTable>
