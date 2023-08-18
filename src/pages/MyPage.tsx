@@ -1,10 +1,15 @@
-import React from "react";
+import * as S from '../components/mypage/MyPage.style';
+
+import MyPageBody from '../components/mypage/MyPageBody';
 
 const MyPage = () => {
   return(
-    <div>mypage</div>
-  )
-  
+    <S.MyPageLayout>
+      <S.MyPageContents>
+        <MyPageBody />
+      </S.MyPageContents>
+    </S.MyPageLayout>
+  );
 };
 
 export default MyPage;

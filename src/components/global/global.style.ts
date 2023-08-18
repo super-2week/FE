@@ -125,6 +125,35 @@ export const Icon = styled.div<IconProps>`
   }}
 `;
 
-export const CategoryBar = styled.div`
-  background-color: pink;
+export const CategoryBar = styled.ul`
+  max-width: 1440px;
+  display: flex;
+  justify-content: center;
+  margin: 8px auto 20px;
+  gap: 20px;
+
+  li {
+    /* border-bottom: 2px solid #ddd; */ // 밑줄
+    padding: 5px 10px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    .icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 1px solid #ddd;
+      box-sizing: border-box;
+    }
+    span {
+      font-size: 17px;
+      color: #666666;
+      font-weight: bold;
+    }
+    &:hover {
+      /* border-bottom: 2px solid; */
+    }
+  }
 `;

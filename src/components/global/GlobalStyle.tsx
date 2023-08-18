@@ -21,6 +21,12 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  ul,
+  li {
+    margin: 0;
+    list-style: none;
+  }
+
   // reset CSS
   ${reset}
 
