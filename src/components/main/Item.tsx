@@ -1,16 +1,16 @@
 import React from "react";
 import itemImg from "../../asset/item5.jpg";
+import { Product } from "./type";
 
-const Item = () => {
+const Item: React.FC<Product> = (item) => {
+  // console.log(item);
   return (
     <li>
-      <img src={itemImg} alt="" />
+      <img src={item.imageUrl} alt="" />
       <div className="item-meta">
-        <div className="title">
-          쁘띠 댕댕이 반려동물 매트 고양이 개매트 반려동물
-        </div>
+        <div className="title">{item.productName}</div>
         <div className="division"></div>
-        <span>32,400원</span>
+        <span>{item.price}원</span>
       </div>
     </li>
   );

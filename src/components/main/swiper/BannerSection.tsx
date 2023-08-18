@@ -13,6 +13,18 @@ interface SectionProps {
     categori: string;
     desc: string;
     item: Item[];
+
+    // animalCatrgory:number;
+    // createdAt:string;
+    // description:string;
+    // id:number;
+    // imageUrl:string;
+    // price:number;
+    // productCategory:number;
+    // productName:string;
+    // purchaseCount:number;
+    // sotck:number;
+    // wishCount:number;
   };
 }
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -11,6 +11,8 @@ import { data } from "./swiper.data";
 
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
+import { GetBannerData } from "../../../apis/main/banner.api";
+import { Product } from "../type";
 
 const BannerSwiper: React.FC = () => {
   // const [BannerData, setBannerData] = useState([])
@@ -18,11 +20,28 @@ const BannerSwiper: React.FC = () => {
   const animalCategory = useSelector(
     (state: RootState) => state.animalCategory.category
   );
-  console.log(animalCategory);
+  // console.log(animalCategory);
+
+  const [bannerData, setBannerData] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await GetBannerData(animalCategory);
+        // console.log(res);
+        setBannerData(res);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const getBannerData = () => {
-    return data.map((item) => (
-      <SwiperSlide key={item.categori}>
+    // bannerData로 바꾸기
+    return data.map((item, index) => (
+      <SwiperSlide key={index}>
         <BannerSection item={item} />
       </SwiperSlide>
     ));

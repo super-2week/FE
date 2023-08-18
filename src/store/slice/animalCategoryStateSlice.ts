@@ -4,8 +4,13 @@ interface AnimalCategoryState {
   category: string;
 }
 
+interface AnimalCategoryLabel {
+  label: string;
+}
+
 const initialState: AnimalCategoryState = {
   category: "dog",
+  // label:'강아지'
 };
 
 const animalCategoryStateSlice = createSlice({
@@ -18,6 +23,10 @@ const animalCategoryStateSlice = createSlice({
     ) => {
       console.log(action.payload);
       state.category = action.payload;
+    },
+    setAnimalLabel: (state, action) => {
+      console.log(action.payload);
+      // state
     },
   },
 });

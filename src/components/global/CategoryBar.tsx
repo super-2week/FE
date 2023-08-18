@@ -5,23 +5,18 @@ import { RootState } from "../../store/store";
 import CategoryItem from "./CategoryItem";
 
 const CategoryBar: React.FC = () => {
-  const nowAnimalCategory = useSelector(
+  const animalCategory = useSelector(
     (state: RootState) => state.animalCategory.category
   );
 
-  const productCategory = useSelector(
+  const productCategories = useSelector(
     (state: RootState) => state.animalCategories.productes
   );
-
-  const nowCategory = useSelector(
-    (state: RootState) => state.productCategory.category
-  );
-
-  console.log(nowCategory);
+  // console.log("product :", productCategories);
 
   const mapFilterNaviData = () => {
-    const filteredArray = productCategory.filter(
-      (el) => nowAnimalCategory === el.id
+    const filteredArray = productCategories.filter(
+      (el) => animalCategory === el.id
     );
     return filteredArray.map((productCategory, index) => (
       <CategoryItem key={index} productCategory={productCategory} />

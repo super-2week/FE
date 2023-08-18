@@ -1,11 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import * as S from "./main.style";
 
 import Item from "./Item";
+import { GetTopData } from "../../apis/main/topItem.api";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import { Product } from "./type";
+import TopFilter from "./TopFilter";
 
 const TopItem = () => {
+  /** 동물 카테고리 */
+  const animalCategory = useSelector(
+    (state: RootState) => state.animalCategory.category
+  );
+  // console.log(animalCategory);
+
+  /** 상품 카테고리 */
+  const productCategory = useSelector(
+    (state: RootState) => state.productCategory.category
+  );
+
+  // console.log(productCategory);
+
+  const [topItem, setTopItem] = useState<Product[]>();
+  // console.log("topItem :", topItem);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await GetTopData(animalCategory, productCategory);
+        setTopItem(res);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, [animalCategory, productCategory]);
+
+  const getTopItem = () => {
+    return topItem?.map((item) => <Item key={item.id} {...item} />);
+  };
+  // getTopItem();
+
   return (
     <S.TopItem>
+      <TopFilter />
       <div className="label-box">
         <div className="label-box-left">
           <h2>주목받는 아이템</h2>
@@ -17,14 +57,7 @@ const TopItem = () => {
         </div>
       </div>
 
-      <ul className="item-list">
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-        <Item />
-      </ul>
+      <ul className="item-list">{getTopItem()}</ul>
     </S.TopItem>
   );
 };
