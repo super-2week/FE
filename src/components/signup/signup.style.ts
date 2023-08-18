@@ -7,7 +7,7 @@ import { styled } from 'styled-components';
   min-height: 100vh;
 `;
 
- export const Form = styled.div`
+ export const Form = styled.form`
   box-shadow: 1px 2px 30px 5px #e8f3ffde;
   padding: 20px 80px;
   border-radius: 20px;
@@ -61,14 +61,22 @@ export const StyledInput = styled.input`
     color: #9EC8FF;
   }
 
-
+  &.error,
+  .touched{
+    border: 1px solid #ff1064 ;
+    box-shadow: 0px 0px 2px #ff1064;
+  }
+  
 `;
 
 export const StyledInputWithCustomStyle = styled(StyledButton)`
-  background-color: #fff;
-  border:1px solid #4593FC;
-  color:#4593FC;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
+    width: 50%;
+    margin: 0 auto;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #4593FC;
+    color: #4593FC;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
 `;
 
 export const SocialButtons = styled.div`
@@ -86,4 +94,24 @@ export const StyledLabel = styled.label`
   font-weight: bold;
   padding-bottom: 10px;
   color: rgba(0,0,0,0.7);
+`;
+
+export const StyledSpan = styled.span`
+  padding-top: 10px;
+`;
+
+export const DuplicateCheckButton = styled.button`
+    width: 20%;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+
+  &:hover {
+    background-color: #0056b3;
+  }
 `;
