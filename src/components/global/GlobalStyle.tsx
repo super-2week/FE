@@ -7,7 +7,12 @@ const GlobalStyle = createGlobalStyle`
     --main-color: #4593FC;
     --sub-color:#E8F3FF;
 
-    --white-color : #ffffff;
+    --sub-font-color : #ffffff;
+    --main-font-color : rgba(0,0,0,.8);
+
+    --item-boxshadow : 0px 4px 24px 0px rgba(123,123,123,0.15);
+    --button-boxshadow : 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
     input{
       outline: none;
     }
