@@ -1,40 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as S from "../global.style";
-import { setAnimalCategory } from "../../../store/slice/animalCategorySlice";
-import { useAppDispatch } from "../../../store/hook";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
-
-interface NaviItem {
-  id: string;
-  value: string;
-}
+import { GetAnimalCategory } from "../../../apis/header/animalCategory.api";
+import {
+  setAnimalCategories,
+  setProductes,
+} from "../../../store/slice/animalCategoriesSlice";
+import { setAnimalCategory } from "../../../store/slice/animalCategoryStateSlice";
 
 const Navi: React.FC = () => {
-  // const animalCategory = useSelector(
-  //   (state: RootState) => state.animalCategory.category
-  // );
+  const dispatch = useDispatch();
+  const animalCategories = useSelector(
+    (state: RootState) => state.animalCategories.categories
+  );
+  // console.log(animalCategories);
 
-  // console.log(animalCategory);
+  const nowAnimalState = useSelector(
+    (state: RootState) => state.animalCategory.category
+  );
+  // console.log(nowAnimalState);
 
-  const naviList: NaviItem[] = [
-    { id: "전체보기", value: "전체" },
-    { id: "강아지", value: "강아지" },
-    { id: "고양이", value: "고양이" },
-    { id: "소동물", value: "소동물" },
-  ];
-
-  const [activeState, setActiveState] = useState<string>("강아지");
-
-  const dispatch = useAppDispatch();
+  const [activeState, setActiveState] = useState<string>("");
 
   const onClickNavi = (id: string) => {
     setActiveState(id);
-    // dispatch(setAnimalCategory(id));
+    dispatch(setAnimalCategory(id));
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await GetAnimalCategory();
+        dispatch(setAnimalCategories(res));
+        setActiveState(res[0]?.id); // 첫 번째 카테고리를 활성화 상태로 초기화
+        dispatch(setProductes(res));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, [dispatch]);
+
   const getNaviItem = () => {
-    return naviList.map((naviItem) => (
+    return animalCategories.map((naviItem) => (
       <li
         key={naviItem.id}
         id={naviItem.id}
@@ -42,7 +52,7 @@ const Navi: React.FC = () => {
         onClick={() => onClickNavi(naviItem.id)}
       >
         <S.Icon categori={activeState} />
-        {naviItem.value}
+        {naviItem.label}
       </li>
     ));
   };

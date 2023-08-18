@@ -102,23 +102,21 @@ export const Icon = styled.div<IconProps>`
   width: 20px;
   height: 20px;
   ${({ categori }) => {
+    // console.log(categori);
     switch (categori) {
-      case "강아지":
+      case "dog":
         return css`
           background: url(${bluedog}) no-repeat center / cover;
         `;
-      case "고양이":
+      case "cat":
         return css`
           background: url(${bluecat}) no-repeat center / cover;
         `;
-      case "소동물":
+      case "small":
         return css`
           background: url(${bluesmall}) no-repeat center / cover;
         `;
-      case "기타":
-        return css`
-          background: url(${blueother}) no-repeat center / cover;
-        `;
+
       default:
         return css``;
     }

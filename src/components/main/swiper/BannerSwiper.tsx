@@ -1,5 +1,5 @@
 import React from "react";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -9,7 +9,17 @@ import BannerSection from "./BannerSection";
 import * as S from "./swiper.style";
 import { data } from "./swiper.data";
 
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store/store";
+
 const BannerSwiper: React.FC = () => {
+  // const [BannerData, setBannerData] = useState([])
+
+  const animalCategory = useSelector(
+    (state: RootState) => state.animalCategory.category
+  );
+  console.log(animalCategory);
+
   const getBannerData = () => {
     return data.map((item) => (
       <SwiperSlide key={item.categori}>
@@ -22,10 +32,8 @@ const BannerSwiper: React.FC = () => {
     <S.BannerSwiper>
       <Swiper
         loop={true}
-        modules={[Navigation, Pagination, Autoplay]}
-        // modules={[Autoplay]}
+        modules={[Pagination, Autoplay]}
         slidesPerView={1}
-        // navigation
         pagination={{ clickable: true }}
         autoplay={{
           delay: 5000,

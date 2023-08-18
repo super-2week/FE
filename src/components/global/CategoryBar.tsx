@@ -1,22 +1,30 @@
 import React from "react";
 import * as S from "./global.style";
-import { naviData } from "./category.data";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import CategoryItem from "./CategoryItem";
 
 const CategoryBar: React.FC = () => {
-  const animalCategory = useSelector(
+  const nowAnimalCategory = useSelector(
     (state: RootState) => state.animalCategory.category
-    // (state: RootState) => state.animalCategory.category
   );
 
-  console.log(animalCategory);
+  const productCategory = useSelector(
+    (state: RootState) => state.animalCategories.productes
+  );
 
-  const mapFilterNaviData = (): JSX.Element[] => {
-    const filteredData = naviData.filter((data) => data.id === animalCategory);
-    return filteredData[0].productCategory.map((productCategory, el) => (
-      <CategoryItem key={el} productCategory={productCategory} />
+  const nowCategory = useSelector(
+    (state: RootState) => state.productCategory.category
+  );
+
+  console.log(nowCategory);
+
+  const mapFilterNaviData = () => {
+    const filteredArray = productCategory.filter(
+      (el) => nowAnimalCategory === el.id
+    );
+    return filteredArray.map((productCategory, index) => (
+      <CategoryItem key={index} productCategory={productCategory} />
     ));
   };
 

@@ -1,23 +1,29 @@
 import React from "react";
 import { useAppDispatch } from "../../store/hook";
-import { setAnimalCategory } from "../../store/slice/animalCategorySlice";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import { setProductCategory } from "../../store/slice/productCategoryStateSlice";
 
 interface CategoryItemProps {
   productCategory: {
+    id: string;
     label: string;
     value: string;
   };
 }
 
 const CategoryItem: React.FC<CategoryItemProps> = ({ productCategory }) => {
-  // console.log(productCategory);
+  const nowAnimalCategory = useSelector(
+    (state: RootState) => state.animalCategory.category
+  );
+  // console.log(nowAnimalCategory);
 
   const dispatch = useAppDispatch();
 
   const choseProductClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     const label = e.currentTarget.id;
-    console.log(label);
-    // dispatch(setAnimalCategory(label));
+    // console.log(label);
+    dispatch(setProductCategory(label));
   };
 
   return (
