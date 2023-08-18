@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import * as S from "./globa.style";
+import * as S from "../global.style";
 
 interface NaviItem {
   id: string;

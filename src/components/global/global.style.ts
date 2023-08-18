@@ -124,3 +124,7 @@ export const Icon = styled.div<IconProps>`
     }
   }}
 `;
+
+export const CategoryBar = styled.div`
+  background-color: pink;
+`;

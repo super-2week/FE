@@ -1,5 +1,5 @@
 import React from "react";
-import * as S from "./globa.style";
+import * as S from "../global.style";
 import { BiUser, BiCart } from "react-icons/bi";
 
 const Header = () => {

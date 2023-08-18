@@ -1,24 +1,20 @@
 import React from "react";
-import Header from "../components/global/Header";
-import Navi from "../components/global/Navi";
 import * as S from "../components/main/main.style";
 import TopItem from "../components/main/TopItem";
 import TopFilter from "../components/main/TopFilter";
-import TodayItem from "../components/main/swiper/TodayItem";
 import BannerSwiper from "../components/main/swiper/BannerSwiper";
 import TodaySwiper from "../components/main/swiper/TodaySwiper";
+// import { HeaderWrap } from "../components/global/global.style";
 
 const MainPage = () => {
   return (
     <>
-      <Header />
-      <Navi />
+      {/* <HeaderWrap /> */}
       <BannerSwiper />
       <S.MainLayout>
         <TopFilter />
         <TopItem />
         <TodaySwiper />
-        {/* <TodayItem /> */}
       </S.MainLayout>
     </>
   );

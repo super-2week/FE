@@ -4,16 +4,19 @@ import LoginPage from "./pages/LoginPage";
 import MyPage from "./pages/MyPage";
 import {
   DetailPage,
+  ListPage,
   MainPage,
   NotFoundPage,
   PostItemPage,
   SignupPage,
 } from "./pages";
 import GlobalStyle from "./components/global/GlobalStyle";
+import HeaderWrap from "./components/global/header/HeaderWrap";
 
 function App() {
   return (
     <Router>
+      <HeaderWrap />
       <GlobalStyle />
       <Routes>
         <Route path="/" element={<MainPage />} />
@@ -21,7 +24,8 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/my" element={<MyPage />} />
         <Route path="/form" element={<PostItemPage />} />
-        <Route path="product/:productId" element={<DetailPage />} />
+        <Route path="/product/:productId" element={<DetailPage />} />
+        <Route path="/list" element={<ListPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
