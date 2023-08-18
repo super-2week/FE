@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import myPageReducer from './slice/myPageSlice';
+import totalPriceReucer from './slice/totalPriceSlice';
 
 const store = configureStore({
   reducer: {
     myPage: myPageReducer,
+    totalPrice: totalPriceReucer,
   },
 });
 
