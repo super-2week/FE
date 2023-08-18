@@ -114,7 +114,7 @@ export const NameLayer = styled.div`
 export const EditBtn = styled.div`
   margin-top: 1rem;
 
-  a {
+  p {
     background: none;
     border: none;
     font-size: 1rem;
@@ -123,7 +123,8 @@ export const EditBtn = styled.div`
     text-decoration: none;
 
     &:hover {
-      border-bottom: 1px solid #999;
+      text-decoration: underline;
+      cursor: pointer;
     }
   }
 `;
@@ -176,6 +177,14 @@ export const TopWalletBox = styled.div`
 export const OrderBox = styled.div`
   position: relative;
   padding-bottom: 5rem;
+
+  .empty {
+    text-align: center;
+    padding: 50px 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #212121;
+  }
 `;
 
 export const TitleBox = styled.div`
@@ -344,5 +353,354 @@ export const LastSeeNoData = styled.div`
     font-weight: 700;
     color: #212121;
     line-height: 150px;
+  }
+`;
+
+export const OrderListNum = styled.span`
+  display: block;
+  padding: 0 0 10px 0;
+  font-size: 1rem;
+  color: #222;
+  font-weight: 600;
+
+  strong {
+    color: #b60217;
+    padding: 0 0 0 5px;
+  }
+`;
+
+export const OrderTable = styled.div`
+  border: 0;
+
+  table {
+    width: 100%;
+    border: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+    text-align: center;
+    border-top: none;
+    padding: 15px;
+  }
+
+  thead > tr > th {
+    padding: 15px;
+    border-top: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  tbody > tr {
+    &:last-child {
+      border-bottom: 1px solid #dbdbdb;
+    }
+  }
+
+  tbody > tr > th {
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  td {
+    height: 31px;
+    font-size: 14px;
+    padding: 15px 0;
+    color: #777777;
+    border-bottom: 1px solid #dbdbdb;
+  }
+
+  .no_data {
+    font-size: 20px;
+    font-weight: 700;
+    color: #212121;
+    line-height: 1;
+    padding: 50px 30px 50px 30px;
+    text-align: center;
+  }
+`;
+
+export const PayMoneyNow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 21px 48px 22px 31px;
+  border-radius: 5px;
+  background: #f5f5f5;
+  font-weight: 500;
+
+  div {
+    display: flex;
+
+    strong {
+      font-size: 24px;
+      color: #b60217;
+      font-weight: 900;
+
+      span {
+        padding-right: 3px;
+      }
+    }
+
+    button {
+      border: none;
+      background-color: #999;
+      border-radius: 16px;
+      margin-left: 10px;
+
+      &:hover {
+        cursor: pointer;
+        background-color: #99999950;
+        transition: background-color .3s;
+      }
+    }
+  }
+`;
+
+export const PayMoneyTable = styled.div`
+  margin-top: 1rem;
+  border: 0;
+  border-top: 2px solid #222;
+  border-bottom: 2px solid #222;
+
+  table {
+    width: 100%;
+    border: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+    text-align: center;
+    border-top: none;
+    padding: 15px;
+  }
+
+  thead > tr > th {
+    padding: 15px;
+    border-top: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  tbody > tr {
+    &:last-child {
+      border-bottom: 1px solid #dbdbdb;
+    }
+  }
+
+  tbody > tr > th {
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+`;
+
+export const EditUserContainer = styled.div`
+  width: 100%;
+  margin: 0 auto 100px auto;
+`;
+
+export const UserContents = styled.div`
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 588px;
+  margin: 0;
+  padding: 0;
+`;
+
+export const BaseUserInfo = styled.div`
+  table {
+    width: 100%;
+
+    td {
+      padding: 10px;
+      width: 100%;
+
+      .labeling {
+        margin-bottom: 23px;
+        display: block;
+        line-height: 1;
+        font-size: 20px;
+        font-weight: 600;
+      }
+    }
+
+    td:first-child {
+      border-left: none;
+    }
+    
+    span {
+      margin: 0 5px 0 0;
+      display: inline-block;
+
+      .pw_btn {
+        display: inline-block;
+        border: 1px solid #dbdbdb;
+        vertical-align: middle;
+        background-position: 0 -70px;
+        width: 180px;
+        height: 54px;
+        line-height: 54px;
+        border-radius: 5px;
+        text-align: center;
+        padding: 0;
+        background-color: #fff;
+
+        em {
+          display: inline-block;
+          background-position: right -69px;
+          line-height: 26px;
+          font-size: inherit;
+          padding: 0;
+        }
+
+        &:hover {
+          background-color: #f2f2f2;
+          transition: background-color .3s;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  input {
+    display: block;
+    width: 100%;
+    height: 54px;
+    margin-bottom: 10px;
+    padding: 0 0 0 20px;
+    border: 2px solid #e1e1e1;
+    border-radius: 8px;
+    color: #979d9d;
+    font-size: 18px;
+  }
+
+  .pw_change {
+    margin: 15px 0 0 0;
+
+    dl {
+      padding: 5px 0;
+      font-size: 0;
+    }
+
+    dt {
+      display: inline-block;
+      width: 120px;
+      padding: 5px 0 0 0;
+      font-size: 16px;
+      font-weight: bold;
+      vertical-align: baseline;
+    }
+
+    dd {
+      display: inline-block;
+      font-size: 12px;
+    }
+
+    &_input {
+      display: inline-block;
+      position: relative;
+      width: 100%;
+    }
+
+    .pw_input {
+      width: 350px;
+      color: #222;
+
+      &::placeholder {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .user_adress {
+    float: left;
+    width: 100%;
+
+    input {
+      margin-bottom: 10px;
+    }
+
+    button {
+      width: calc(100% - 60%);
+      height: 56px;
+      font-size: 16px;
+      margin: auto;
+      padding: 5px 10px;
+      border: 2px solid #b60217;
+      border-radius: 8px;
+      color: #b60217;
+      background: none;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .adress_input {
+    float: left;
+    width: 100%;
+
+    .adress_main, .adress_sub {
+      display: inline-block;
+      position: relative;
+      width: 100%;
+
+      input {
+        margin: 10px 0 0 0;
+      }
+    }
+  }
+`;
+
+export const UserInfoBtn = styled.div`
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+
+  .user_info_cancle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 288px;
+    height: 56px;
+    margin: 35px 0 0 0;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+    background: #fff;
+    color: #b60217;
+    border: 2px solid #b60217;
+    cursor: pointer;
+
+    &:hover {
+      color: #fff;
+      background: #b60217;
+      transition: all .4s;
+    }
+  }
+
+  .user_info_submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 288px;
+    height: 56px;
+    margin: 35px 0 0 0;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 5px;
+    background: #b60217;
+    color: #fff;
+    border: 2px solid #b60217;
+    cursor: pointer;
+
+    &:hover {
+      color: #b60217;
+      background: #fff;
+      transition: all .4s;
+    }
   }
 `;

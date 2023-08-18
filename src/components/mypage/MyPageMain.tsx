@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import * as S from './MyPage.style';
+import { HandleViewProps } from './type';
 
 const MyPageMain = ({ handleClick }: HandleViewProps) => {
   return (
@@ -15,7 +16,7 @@ const MyPageMain = ({ handleClick }: HandleViewProps) => {
                 </p>
               </S.NameLayer>
               <S.EditBtn>
-                <Link to='/'>회원정보 수정</Link>
+                <p onClick={() => handleClick('EditUser')}>회원정보 수정</p>
               </S.EditBtn>
             </div>
           </S.TopTextBox>

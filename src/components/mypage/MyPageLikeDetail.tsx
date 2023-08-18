@@ -5,7 +5,7 @@ const MyPageLikeDetail = () => {
   return (
     <S.OrderBox>
       <S.TitleBox>
-        <h3>최근 본 상품</h3>
+        <h3>관심 상품</h3>
       </S.TitleBox>
 
       <S.LastSeeList>

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import * as S from './MyPage.style';
+import { HandleViewProps } from './type';
 
 const MyPageSideContents = ({ handleClick }: HandleViewProps) => {
   return (
