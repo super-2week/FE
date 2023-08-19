@@ -15,8 +15,6 @@ import { GetBannerData } from "../../../apis/main/banner.api";
 import { Product } from "../type";
 
 const BannerSwiper: React.FC = () => {
-  // const [BannerData, setBannerData] = useState([])
-
   const animalCategory = useSelector(
     (state: RootState) => state.animalCategory.category
   );

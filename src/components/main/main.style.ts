@@ -39,6 +39,11 @@ export const TopFilter = styled.div`
         transform: scale(1.05);
       }
     }
+    .active {
+      background-color: #fff;
+      border: 1px solid var(--main-color);
+      color: var(--main-color);
+    }
   }
 `;
 

@@ -7,25 +7,23 @@ import {
   setAnimalCategories,
   setProductes,
 } from "../../../store/slice/animalCategoriesSlice";
-import { setAnimalCategory } from "../../../store/slice/animalCategoryStateSlice";
+import {
+  setAnimalCategory,
+  setAnimalLabel,
+} from "../../../store/slice/animalCategoryStateSlice";
 
 const Navi: React.FC = () => {
   const dispatch = useDispatch();
   const animalCategories = useSelector(
     (state: RootState) => state.animalCategories.categories
   );
-  // console.log(animalCategories);
-
-  const nowAnimalState = useSelector(
-    (state: RootState) => state.animalCategory.category
-  );
-  // console.log(nowAnimalState);
 
   const [activeState, setActiveState] = useState<string>("");
 
-  const onClickNavi = (id: string) => {
+  const onClickNavi = (id: string, e: React.MouseEvent<HTMLElement>) => {
     setActiveState(id);
     dispatch(setAnimalCategory(id));
+    dispatch(setAnimalLabel(e.currentTarget.innerText));
   };
 
   useEffect(() => {
@@ -49,7 +47,9 @@ const Navi: React.FC = () => {
         key={naviItem.id}
         id={naviItem.id}
         className={activeState === naviItem.id ? "active" : ""}
-        onClick={() => onClickNavi(naviItem.id)}
+        onClick={(e) => {
+          onClickNavi(naviItem.id, e);
+        }}
       >
         <S.Icon categori={activeState} />
         {naviItem.label}

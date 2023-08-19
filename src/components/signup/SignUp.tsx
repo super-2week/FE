@@ -11,6 +11,17 @@ const SignUp: React.FC = () => {
     checkPassword: string;
     address: string;
   }
+
+  const [address, setAddress] = useState({
+    postcode: "",
+    roadAddress: "",
+    numberAddress: "",
+    detailAddress: "",
+    showModal: false,
+  });
+
+  // console.log(address);
+
   const [formData, setFormData] = useState<FormData>({
     userName: "",
     phoneNumber: "",
@@ -40,13 +51,6 @@ const SignUp: React.FC = () => {
     validateField(name as keyof FormData, value);
   };
 
-  const handleAddressChange = (newAddress: string) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      address: newAddress,
-    }));
-  };
-
   const handleBlur = (fieldName: keyof FormData) => {
     const value = formData[fieldName];
 
@@ -59,9 +63,18 @@ const SignUp: React.FC = () => {
       validateField(fieldName, value);
     }
   };
+  console.log(formData);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+
+    const newAddress = `${address.roadAddress} ${address.detailAddress}`;
+    // console.log(newAddress);
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      address: newAddress,
+    }));
 
     const newValidationErrors: Record<keyof FormData, string> = {
       userName: "",
@@ -268,7 +281,7 @@ const SignUp: React.FC = () => {
           )}
         </S.InputContainer>
         <S.InputContainer>
-          <AddressInput onAddressChange={handleAddressChange} />
+          <AddressInput address={address} setAddress={setAddress} />
         </S.InputContainer>
 
         <S.ButtonContainer>

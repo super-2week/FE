@@ -3,19 +3,25 @@ import * as S from "./AddressInput.style";
 import DaumPostcode from "react-daum-postcode";
 
 interface AddressFormProps {
-  onAddressChange: (address: string) => void;
+  address: {
+    postcode: string;
+    roadAddress: string;
+    numberAddress: string;
+    detailAddress: string;
+    showModal: boolean;
+  };
+  setAddress: React.Dispatch<
+    React.SetStateAction<{
+      postcode: string;
+      roadAddress: string;
+      numberAddress: string;
+      detailAddress: string;
+      showModal: boolean;
+    }>
+  >;
 }
 
-const AddressForm: React.FC<AddressFormProps> = ({ onAddressChange }) => {
-  const [address, setAddress] = useState({
-    postcode: "",
-    roadAddress: "",
-    numberAddress: "",
-    detailAddress: "",
-    showModal: false,
-  });
-  // console.log("Updated address:", address);
-
+const AddressForm: React.FC<AddressFormProps> = ({ address, setAddress }) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
@@ -29,6 +35,7 @@ const AddressForm: React.FC<AddressFormProps> = ({ onAddressChange }) => {
 
   const handleComplete = (data: any) => {
     const roadAddr = data.roadAddress;
+    console.log(roadAddr);
     let extraRoadAddr = "";
 
     if (data.bname !== "" && /[동|로|가]$/g.test(data.bname)) {
@@ -52,6 +59,9 @@ const AddressForm: React.FC<AddressFormProps> = ({ onAddressChange }) => {
       detailAddress: data.detailAddress,
       showModal: false,
     });
+
+    console.log("data :", data.roadAddress);
+    console.log("address :", data.detailAddress);
   };
 
   const handleButtonClick = () => {

@@ -5,8 +5,8 @@ export const GetTopData = async (
 ) => {
   try {
     const res = await axios.get(
-      // `https://pet-commerce.shop/v1/api/popular/${animalCategory}/${productCategory}`
-      "https://run.mocky.io/v3/bea1aca4-2907-4aee-9075-a5e931c2628b"
+      `https://pet-commerce.shop/v1/api/popular/${animalCategory}/${productCategory}`
+      // "https://run.mocky.io/v3/bea1aca4-2907-4aee-9075-a5e931c2628b"
     );
     // console.log(res.data);
     return res.data;

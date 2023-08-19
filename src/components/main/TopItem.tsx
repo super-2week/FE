@@ -13,17 +13,13 @@ const TopItem = () => {
   const animalCategory = useSelector(
     (state: RootState) => state.animalCategory.category
   );
-  // console.log(animalCategory);
 
   /** 상품 카테고리 */
   const productCategory = useSelector(
     (state: RootState) => state.productCategory.category
   );
 
-  // console.log(productCategory);
-
   const [topItem, setTopItem] = useState<Product[]>();
-  // console.log("topItem :", topItem);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,7 +37,6 @@ const TopItem = () => {
   const getTopItem = () => {
     return topItem?.map((item) => <Item key={item.id} {...item} />);
   };
-  // getTopItem();
 
   return (
     <S.TopItem>
