@@ -7,7 +7,6 @@ import {
   ListPage,
   MainPage,
   NotFoundPage,
-  PostItemPage,
   SignupPage,
 } from "./pages";
 import GlobalStyle from "./components/global/GlobalStyle";
@@ -23,7 +22,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/my" element={<MyPage />} />
-        <Route path="/form" element={<PostItemPage />} />
+        {/* <Route path="/form" element={<PostItemPage />} /> */}
         <Route path="/product/:productId" element={<DetailPage />} />
         <Route path="/list" element={<ListPage />} />
         <Route path="*" element={<NotFoundPage />} />

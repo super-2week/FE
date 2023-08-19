@@ -30,10 +30,10 @@ const TopFilter: React.FC = () => {
   const productCategory = useSelector(
     (state: RootState) => state.productCategory.category
   );
-  console.log(productCategory);
+  // console.log(productCategory);
 
   const clickTopCategory = (e: React.MouseEvent<HTMLElement>) => {
-    console.log(e.currentTarget.id);
+    // console.log(e.currentTarget.id);
 
     dispatch(setProductCategory(e.currentTarget.id));
   };

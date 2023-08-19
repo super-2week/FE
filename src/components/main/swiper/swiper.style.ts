@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 
 export const BannerSwiper = styled.div`
-  background-color: pink;
+  /* background-color: pink; */
   border-bottom: 2px solid #eee;
   position: relative;
   .swiper-pagination {

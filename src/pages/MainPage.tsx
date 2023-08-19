@@ -10,7 +10,6 @@ const MainPage = () => {
     <>
       <BannerSwiper />
       <S.MainLayout>
-        {/* <TopFilter /> */}
         <TopItem />
         <TodaySwiper />
       </S.MainLayout>

@@ -1,13 +1,14 @@
 import React, { useState, useCallback } from "react";
-import { ImageInfo } from "./type";
+import { ProductImage, TodayProductItem } from "./type";
 import * as S from "./main.style";
 
-interface ImageProps {
-  imgInfo: ImageInfo;
+interface ItemImgProps {
+  product: TodayProductItem;
   isRight?: boolean;
+  state: string;
 }
 
-const ItemImg: React.FC<ImageProps> = ({ imgInfo }) => {
+const ItemImg: React.FC<ItemImgProps> = ({ product, state }) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
   const mouseHover = useCallback(() => {
@@ -23,13 +24,13 @@ const ItemImg: React.FC<ImageProps> = ({ imgInfo }) => {
       onMouseEnter={mouseHover}
       onMouseLeave={mouseHoverLeave}
     >
-      <img src={imgInfo.imgSrc} alt="item-img" />
+      <img src={product.imageUrl} alt="item-img" />
       {isHovered && (
         <div className="hover-box">
           <div className="hover-content">
-            <div className="title">{imgInfo.title}</div>
-            {imgInfo.state === "main" && (
-              <div className="desc">{imgInfo.desc}</div>
+            <div className="title">{product.productName}</div>
+            {state === "main" && (
+              <div className="desc">{product.description}</div>
             )}
             <button>More View</button>
           </div>

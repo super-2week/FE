@@ -1,7 +1,8 @@
 import React from "react";
+import ListWrap from "../components/list/ListWrap";
 
 const ListPage = () => {
-  return <div>listPage</div>;
+  return <ListWrap />;
 };
 
 export default ListPage;

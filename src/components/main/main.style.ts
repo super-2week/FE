@@ -274,6 +274,7 @@ export const GridItemImg = styled.div<{ isRight?: boolean }>`
       width: 80%;
       line-height: 25px;
       margin-bottom: 100px;
+      text-align: center;
     }
     button {
       color: #fff;
