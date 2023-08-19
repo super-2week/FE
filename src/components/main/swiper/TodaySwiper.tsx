@@ -29,7 +29,7 @@ const TodaySwiper: React.FC = () => {
         const res = await GetTodayData(animalCategory);
         settTodayData(res);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
     fetchData();

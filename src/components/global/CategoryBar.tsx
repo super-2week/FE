@@ -12,7 +12,6 @@ const CategoryBar: React.FC = () => {
   const productCategories = useSelector(
     (state: RootState) => state.animalCategories.productes
   );
-  // console.log("product :", productCategories);
 
   const mapFilterNaviData = () => {
     const filteredArray = productCategories.filter(

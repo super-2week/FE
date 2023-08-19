@@ -5,6 +5,7 @@ import animalCategorySlice from "./slice/animalCategoriesSlice";
 
 import animalCategoryStateSlice from "./slice/animalCategoryStateSlice";
 import productCategoryStateSlice from "./slice/productCategoryStateSlice";
+import modalSlice from "./slice/modalSlice";
 
 const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ const store = configureStore({
     animalCategories: animalCategorySlice,
     animalCategory: animalCategoryStateSlice,
     productCategory: productCategoryStateSlice,
+    modalState: modalSlice,
   },
 });
 

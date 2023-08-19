@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import * as S from "../global.style";
 import wdog from "../../../asset/dog.png";
 import wcat from "../../../asset/cat.png";
 import wsmall from "../../../asset/smallAnimal.png";
@@ -21,17 +20,15 @@ const NaviItem: React.FC<NaviItemProps> = ({
   activeState,
   onClickNavi,
 }) => {
-  console.log(naviItem);
-  console.log(activeState);
+  // console.log(naviItem);
+  // console.log(activeState);
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
   const handleMouseEnter = () => {
-    console.log("들어감");
     setIsHovered(true);
   };
 
   const handleMouseLeave = () => {
-    console.log("나옴");
     setIsHovered(false);
   };
 

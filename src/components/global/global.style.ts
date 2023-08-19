@@ -1,18 +1,4 @@
-import styled, { css } from "styled-components";
-
-import dog from "../../asset/dog.png";
-import cat from "../../asset/cat.png";
-import small from "../../asset/smallAnimal.png";
-import other from "../../asset/other.png";
-
-import bluedog from "../../asset/bluedog.png";
-import bluecat from "../../asset/bluecat.png";
-import bluesmall from "../../asset/bluesmallAnimal.png";
-import blueother from "../../asset/blueother.png";
-
-interface IconProps {
-  categori: string; // 카테고리에 맞는 타입으로 수정
-}
+import styled from "styled-components";
 
 export const HeaderWrap = styled.div`
   width: 100%;
@@ -37,14 +23,6 @@ export const HeaderWrap = styled.div`
       align-items: center;
       gap: 20px;
       &-search {
-        /* width: 350px;
-        height: 38px;
-        border-radius: 8px;
-        border: none;
-        margin-right: 5px;
-        background-color: beige;
-        padding: 0 10px;
-        box-sizing: border-box; */
       }
       svg {
         width: 34px;
@@ -61,7 +39,7 @@ export const NaviWrap = styled.ul`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 40px;
+  gap: 80px;
   background-color: var(--main-color);
   color: var(--sub-font-color);
   font-size: 17px;
@@ -93,38 +71,9 @@ export const NaviWrap = styled.ul`
     }
   }
   .active {
-    /* background-color: #fff; */
-    /* color: var(--main-color); */
-    /* background-color: #fff; */
-    /* color: var(--main-color); */
     border: 2px solid #fff;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
   }
-`;
-
-export const Icon = styled.div<IconProps>`
-  width: 20px;
-  height: 20px;
-  /* ${({ categori }) => {
-    // console.log(categori);
-    switch (categori) {
-      case "dog":
-        return css`
-          background: url(${bluedog}) no-repeat center / cover;
-        `;
-      case "cat":
-        return css`
-          background: url(${bluecat}) no-repeat center / cover;
-        `;
-      case "small":
-        return css`
-          background: url(${bluesmall}) no-repeat center / cover;
-        `;
-
-      default:
-        return css``;
-    }
-  }} */
 `;
 
 export const CategoryBar = styled.ul`
@@ -148,14 +97,110 @@ export const CategoryBar = styled.ul`
       border-radius: 50%;
       border: 1px solid #ddd;
       box-sizing: border-box;
+      transition: all 0.3s;
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
     span {
       font-size: 17px;
       color: #666666;
       font-weight: bold;
     }
-    &:hover {
-      /* border-bottom: 2px solid; */
+    &:hover .icon {
+      border-bottom: 2px solid #ddd;
+      transform: scale(1.1);
+    }
+  }
+`;
+
+export const Modal = styled.div`
+  width: 100%;
+  height: 100vh;
+  .modal-bg {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1;
+  }
+  .modal-container {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    width: 100%;
+    max-width: 900px;
+    overflow: hidden;
+    .input-box {
+      position: relative;
+      .search {
+        width: 0;
+        height: 100px;
+
+        color: #fff;
+        font-size: 34px;
+        border: none;
+        border-bottom: 3px solid #fff;
+        z-index: 2;
+        background: none;
+        box-sizing: border-box;
+        outline: none;
+        animation: expandInput 2s ease-in-out forwards;
+      }
+      .search-i {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 30px;
+        right: 20px;
+      }
+    }
+    ul {
+      margin-top: 15px;
+      padding-left: 10px;
+      box-sizing: border-box;
+      li {
+        height: 40px;
+        color: #fff;
+        font-size: 18px;
+      }
+    }
+  }
+  svg {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    z-index: 2;
+    top: 20px;
+    right: 20px;
+    fill: #fff;
+    cursor: pointer;
+  }
+  .close-i {
+    opacity: 0;
+    animation: dropIcon 3s ease-in-out forwards;
+  }
+  @keyframes expandInput {
+    from {
+      width: 0;
+    }
+    to {
+      width: 900px;
+      padding: 0 100px 0 10px;
+    }
+  }
+
+  @keyframes dropIcon {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
     }
   }
 `;
