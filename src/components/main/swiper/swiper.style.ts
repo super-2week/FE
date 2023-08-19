@@ -54,6 +54,14 @@ export const Section = styled.div`
       font-size: 16px;
       font-weight: 500;
       word-break: keep-all;
+      .desc-box {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        p {
+          line-height: 23px;
+        }
+      }
     }
   }
   .item-list {
@@ -64,18 +72,22 @@ export const Section = styled.div`
     .item {
       max-width: 300px;
       width: 100%;
-      .img {
+      img {
         width: 100%;
         height: 300px;
         background-color: #ddd;
         margin-bottom: 20px;
       }
       .title {
+        padding-left: 5px;
+        box-sizing: border-box;
         font-size: 17px;
         font-weight: bold;
         margin-bottom: 10px;
       }
       .list-bottom {
+        padding: 0px 5px;
+        box-sizing: border-box;
         .price {
           font-size: 18px;
           font-weight: 600;

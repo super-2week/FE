@@ -15,7 +15,7 @@ const TodaySwiper: React.FC = () => {
   );
 
   const [todayData, settTodayData] = useState<TodayProduct[]>([]);
-  console.log("todayData :", todayData);
+  // console.log("todayData :", todayData);
 
   const getTodayData = () => {
     return todayData.map((item, index) => (

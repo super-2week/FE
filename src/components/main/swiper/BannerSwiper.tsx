@@ -7,12 +7,11 @@ import "swiper/css/pagination";
 import BannerSection from "./BannerSection";
 
 import * as S from "./swiper.style";
-import { data } from "./swiper.data";
 
 import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import { GetBannerData } from "../../../apis/main/banner.api";
-import { Product } from "../type";
+import { TodayProduct } from "../type";
 
 const BannerSwiper: React.FC = () => {
   const animalCategory = useSelector(
@@ -20,7 +19,7 @@ const BannerSwiper: React.FC = () => {
   );
   // console.log(animalCategory);
 
-  const [bannerData, setBannerData] = useState<Product[]>([]);
+  const [bannerData, setBannerData] = useState<TodayProduct[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,13 +33,12 @@ const BannerSwiper: React.FC = () => {
     };
 
     fetchData();
-  }, []);
+  }, [animalCategory]);
 
   const getBannerData = () => {
-    // bannerData로 바꾸기
-    return data.map((item, index) => (
+    return bannerData.map((item, index) => (
       <SwiperSlide key={index}>
-        <BannerSection item={item} />
+        <BannerSection item={item.product} />
       </SwiperSlide>
     ));
   };
