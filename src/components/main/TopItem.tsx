@@ -44,7 +44,7 @@ const TopItem = () => {
       <div className="label-box">
         <div className="label-box-left">
           <h2>주목받는 아이템</h2>
-          <span>카테고리별 베스트 TOP</span>
+          <span>카테고리별 베스트</span>
         </div>
 
         <div className="label-box-right">

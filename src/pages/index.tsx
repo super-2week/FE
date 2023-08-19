@@ -5,6 +5,7 @@ import MyPage from "./MyPage";
 import NotFoundPage from "./NotFoundPage";
 import SignupPage from "./SignupPage";
 import ListPage from "./ListPage";
+import CartPage from "./CartPage";
 
 export {
   DetailPage,
@@ -14,4 +15,5 @@ export {
   NotFoundPage,
   SignupPage,
   ListPage,
+  CartPage,
 };

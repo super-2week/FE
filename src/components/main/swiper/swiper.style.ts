@@ -6,12 +6,10 @@ export const BannerSwiper = styled.div`
   position: relative;
   .swiper-pagination {
     position: absolute;
-    /* top: 20px; */
     right: 0;
     display: flex;
     justify-content: center;
     transition: all 0.4s;
-    /* margin-bottom: 20px; */
     padding-bottom: 20px;
     .swiper-pagination-bullet {
       width: 35px;

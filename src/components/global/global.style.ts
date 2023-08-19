@@ -37,14 +37,14 @@ export const HeaderWrap = styled.div`
       align-items: center;
       gap: 20px;
       &-search {
-        width: 350px;
+        /* width: 350px;
         height: 38px;
         border-radius: 8px;
         border: none;
         margin-right: 5px;
         background-color: beige;
         padding: 0 10px;
-        box-sizing: border-box;
+        box-sizing: border-box; */
       }
       svg {
         width: 34px;
@@ -70,9 +70,9 @@ export const NaviWrap = styled.ul`
     align-items: center;
     justify-content: center;
     gap: 10px;
-    padding: 0 20px;
+    padding: 5px 20px;
     border-radius: 20px;
-    height: 65%;
+    height: 70%;
     box-sizing: border-box;
     cursor: pointer;
     font-weight: bold;
@@ -80,20 +80,24 @@ export const NaviWrap = styled.ul`
     transition: transform 0.1s;
     &:hover {
       transform: scale(1.05);
+      background-color: #fff;
+      color: var(--main-color);
     }
-    /* img {
+    img {
       width: 20px;
       height: 20px;
     }
     .icon {
       width: 20px;
       height: 20px;
-    } */
+    }
   }
   .active {
-    background-color: #fff;
-    color: var(--main-color);
-    border: 1px solid #fff;
+    /* background-color: #fff; */
+    /* color: var(--main-color); */
+    /* background-color: #fff; */
+    /* color: var(--main-color); */
+    border: 2px solid #fff;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
   }
 `;
@@ -101,7 +105,7 @@ export const NaviWrap = styled.ul`
 export const Icon = styled.div<IconProps>`
   width: 20px;
   height: 20px;
-  ${({ categori }) => {
+  /* ${({ categori }) => {
     // console.log(categori);
     switch (categori) {
       case "dog":
@@ -120,7 +124,7 @@ export const Icon = styled.div<IconProps>`
       default:
         return css``;
     }
-  }}
+  }} */
 `;
 
 export const CategoryBar = styled.ul`

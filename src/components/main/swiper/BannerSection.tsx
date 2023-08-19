@@ -14,7 +14,7 @@ const BannerSection: React.FC<SectionProps> = ({ item }) => {
     return firstChar + restOfText;
   };
 
-  /** 카테고리별 설명 추가해주는 함수 */
+  // /** 카테고리별 설명 추가해주는 함수 */
   const createCategoryDesc = (category: string) => {
     switch (category) {
       case "food":
@@ -93,7 +93,6 @@ const BannerSection: React.FC<SectionProps> = ({ item }) => {
   const getItemData = () => {
     return item.map((el) => (
       <li className="item" key={el.id}>
-        {/* <div className="img"></div> */}
         <img src={el.imageUrl} alt="img" />
         <div className="title">{el.productName}</div>
         <div className="list-bottom">

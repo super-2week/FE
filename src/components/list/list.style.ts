@@ -7,11 +7,8 @@ export const ListLayout = styled.div`
 `;
 
 export const ListWrap = styled.div`
-  /* background-color: pink; */
-  /* border: 1px solid; */
   width: 100%;
   .list-category {
-    /* background-color: pink; */
     width: 100%;
     height: 150px;
     display: flex;
@@ -20,7 +17,6 @@ export const ListWrap = styled.div`
 
     span {
       font-size: 25px;
-      /* padding-bottom: 25px; */
       color: var(--main-color);
       border-bottom: 2px solid #ddd;
       font-weight: bold;
@@ -33,11 +29,10 @@ export const ListWrap = styled.div`
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 20px 0;
-        border-top: 1px solid;
-        border-bottom: 1px solid;
+        padding: 20px 5px;
+        border-top: 3px solid var(--sub-color);
+        border-bottom: 3px solid var(--sub-color);
         margin-bottom: 20px;
-        /* background-color: pink; */
         &_text {
           font-size: 15px;
           span {

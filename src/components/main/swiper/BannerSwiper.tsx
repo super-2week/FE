@@ -14,19 +14,22 @@ import { GetBannerData } from "../../../apis/main/banner.api";
 import { TodayProduct } from "../type";
 
 const BannerSwiper: React.FC = () => {
+  // 현재 동물 카테고리 상태
   const animalCategory = useSelector(
     (state: RootState) => state.animalCategory.category
   );
-  // console.log(animalCategory);
 
   const [bannerData, setBannerData] = useState<TodayProduct[]>([]);
+
+  // bannerData가 빈배열이라 autoplay가 안되서 상태관리
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await GetBannerData(animalCategory);
-        // console.log(res);
         setBannerData(res);
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -36,7 +39,7 @@ const BannerSwiper: React.FC = () => {
   }, [animalCategory]);
 
   const getBannerData = () => {
-    return bannerData.map((item, index) => (
+    return bannerData?.map((item, index) => (
       <SwiperSlide key={index}>
         <BannerSection item={item.product} />
       </SwiperSlide>
@@ -45,18 +48,23 @@ const BannerSwiper: React.FC = () => {
 
   return (
     <S.BannerSwiper>
-      <Swiper
-        loop={true}
-        modules={[Pagination, Autoplay]}
-        slidesPerView={1}
-        pagination={{ clickable: true }}
-        autoplay={{
-          delay: 5000,
-        }}
-        className="banner-swiper"
-      >
-        {getBannerData()}
-      </Swiper>
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <Swiper
+          loop={true}
+          modules={[Pagination, Autoplay]}
+          slidesPerView={1}
+          pagination={{ clickable: true }}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
+          className="banner-swiper"
+        >
+          {getBannerData()}
+        </Swiper>
+      )}
     </S.BannerSwiper>
   );
 };

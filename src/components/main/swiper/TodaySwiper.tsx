@@ -10,12 +10,12 @@ import { TodayProduct } from "../type";
 import TodayItem from "./TodayItem";
 
 const TodaySwiper: React.FC = () => {
+  // 현재 동물카테고리 상태
   const animalCategory = useSelector(
     (state: RootState) => state.animalCategory.category
   );
 
   const [todayData, settTodayData] = useState<TodayProduct[]>([]);
-  // console.log("todayData :", todayData);
 
   const getTodayData = () => {
     return todayData.map((item, index) => (

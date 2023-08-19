@@ -11,6 +11,8 @@ import {
   setAnimalCategory,
   setAnimalLabel,
 } from "../../../store/slice/animalCategoryStateSlice";
+import Icon from "./NaviItem";
+import NaviItem from "./NaviItem";
 
 const Navi: React.FC = () => {
   const dispatch = useDispatch();
@@ -31,7 +33,8 @@ const Navi: React.FC = () => {
       try {
         const res = await GetAnimalCategory();
         dispatch(setAnimalCategories(res));
-        setActiveState(res[0]?.id); // 첫 번째 카테고리를 활성화 상태로 초기화
+        // 첫 번째 카테고리를 활성화
+        setActiveState(res[0]?.id);
         dispatch(setProductes(res));
       } catch (error) {
         console.error(error);
@@ -43,17 +46,12 @@ const Navi: React.FC = () => {
 
   const getNaviItem = () => {
     return animalCategories.map((naviItem) => (
-      <li
+      <NaviItem
         key={naviItem.id}
-        id={naviItem.id}
-        className={activeState === naviItem.id ? "active" : ""}
-        onClick={(e) => {
-          onClickNavi(naviItem.id, e);
-        }}
-      >
-        <S.Icon categori={activeState} />
-        {naviItem.label}
-      </li>
+        naviItem={naviItem}
+        activeState={activeState}
+        onClickNavi={onClickNavi}
+      />
     ));
   };
 

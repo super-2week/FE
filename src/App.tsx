@@ -3,6 +3,7 @@ import "./App.css";
 import LoginPage from "./pages/LoginPage";
 import MyPage from "./pages/MyPage";
 import {
+  CartPage,
   DetailPage,
   ListPage,
   MainPage,
@@ -22,6 +23,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/my" element={<MyPage />} />
+        <Route path="/cart" element={<CartPage />} />
         {/* <Route path="/form" element={<PostItemPage />} /> */}
         <Route path="/product/:productId" element={<DetailPage />} />
         <Route path="/list" element={<ListPage />} />
