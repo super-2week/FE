@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { ProductImage, TodayProductItem } from "./type";
 import * as S from "./main.style";
+import { useNavigate } from "react-router-dom";
 
 interface ItemImgProps {
   product: TodayProductItem;
@@ -9,6 +10,7 @@ interface ItemImgProps {
 }
 
 const ItemImg: React.FC<ItemImgProps> = ({ product, state }) => {
+  const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
   const mouseHover = useCallback(() => {
@@ -32,7 +34,7 @@ const ItemImg: React.FC<ItemImgProps> = ({ product, state }) => {
             {state === "main" && (
               <div className="desc">{product.description}</div>
             )}
-            <button>More View</button>
+            <button onClick={() => navigate("/list")}>More View</button>
           </div>
         </div>
       )}

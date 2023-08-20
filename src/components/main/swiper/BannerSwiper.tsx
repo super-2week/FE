@@ -30,8 +30,10 @@ const BannerSwiper: React.FC = () => {
         const res = await GetBannerData(animalCategory);
         setBannerData(res);
         setIsLoading(false);
+        // console.log(res);
       } catch (error) {
         // console.log(error);
+        // return <div>400Error</div>; // suspense
       }
     };
 
@@ -45,6 +47,8 @@ const BannerSwiper: React.FC = () => {
       </SwiperSlide>
     ));
   };
+
+  // console.log(bannerData);
 
   return (
     <S.BannerSwiper>

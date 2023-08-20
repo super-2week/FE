@@ -70,12 +70,18 @@ export const Section = styled.div`
     .item {
       max-width: 300px;
       width: 100%;
-      img {
+      position: relative;
+      .img-box {
         width: 100%;
         height: 300px;
-        background-color: #ddd;
-        margin-bottom: 20px;
+        img {
+          width: 100%;
+          height: 100%;
+          background-color: #ddd;
+          margin-bottom: 20px;
+        }
       }
+
       .title {
         padding-left: 5px;
         box-sizing: border-box;
@@ -90,8 +96,17 @@ export const Section = styled.div`
           font-size: 18px;
           font-weight: 600;
         }
-        .heart {
-        }
+      }
+      svg {
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        cursor: pointer;
+      }
+      .full-heart {
+        fill: red;
       }
     }
   }

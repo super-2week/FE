@@ -1,6 +1,7 @@
 import React from "react";
 import * as S from "./swiper.style";
 import { TodayProductItem } from "../type";
+import { AiFillHeart } from "react-icons/ai";
 
 interface SectionProps {
   item: TodayProductItem[];
@@ -89,16 +90,26 @@ const BannerSection: React.FC<SectionProps> = ({ item }) => {
     }
   };
 
+  const checkIsLiked = (el: TodayProductItem) => {
+    return el.liked ? (
+      <AiFillHeart className="full-heart" />
+    ) : (
+      <AiFillHeart className="heart" />
+    );
+  };
+
   /** item list return하는 함수 */
   const getItemData = () => {
     return item.map((el) => (
       <li className="item" key={el.id}>
-        <img src={el.imageUrl} alt="img" />
+        <div className="img-box">
+          <img src={el.imageUrl} alt="img" />
+        </div>
         <div className="title">{el.productName}</div>
         <div className="list-bottom">
           <div className="price">{el.price}원</div>
-          <div className="heart"></div>
         </div>
+        {checkIsLiked(el)}
       </li>
     ));
   };

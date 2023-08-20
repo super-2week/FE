@@ -11,13 +11,21 @@ import {
   setAnimalCategory,
   setAnimalLabel,
 } from "../../../store/slice/animalCategoryStateSlice";
-import Icon from "./NaviItem";
 import NaviItem from "./NaviItem";
+import { useNavigate } from "react-router-dom";
 
 const Navi: React.FC = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const animalCategories = useSelector(
     (state: RootState) => state.animalCategories.categories
+  );
+
+  const animalCategory = useSelector(
+    (state: RootState) => state.animalCategory.category
+  );
+  const productCategory = useSelector(
+    (state: RootState) => state.productCategory.category
   );
 
   const [activeState, setActiveState] = useState<string>("");
@@ -33,7 +41,6 @@ const Navi: React.FC = () => {
       try {
         const res = await GetAnimalCategory();
         dispatch(setAnimalCategories(res));
-        // 첫 번째 카테고리를 활성화
         setActiveState(res[0]?.id);
         dispatch(setProductes(res));
       } catch (error) {
@@ -55,7 +62,20 @@ const Navi: React.FC = () => {
     ));
   };
 
-  return <S.NaviWrap>{getNaviItem()}</S.NaviWrap>;
+  const navigateList = () => {
+    console.log("눌림");
+    const newURL = `/list/product/${animalCategory}/${productCategory}/price`;
+    navigate(newURL);
+  };
+
+  return (
+    <S.NaviWrap>
+      {getNaviItem()}
+      <li className="navi-list" onClick={navigateList}>
+        상품보러가기
+      </li>
+    </S.NaviWrap>
+  );
 };
 
 export default Navi;

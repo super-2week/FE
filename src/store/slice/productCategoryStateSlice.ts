@@ -2,10 +2,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface ProductCategoryState {
   category: string;
+  label: string | null | undefined;
 }
 
 const initialState: ProductCategoryState = {
   category: "food",
+  label: "사료",
 };
 
 const productCategoryState = createSlice({
@@ -18,9 +20,17 @@ const productCategoryState = createSlice({
     ) => {
       state.category = action.payload;
     },
+    setProductlabel: (
+      state: ProductCategoryState,
+      action: PayloadAction<string | null | undefined>
+    ) => {
+      console.log(action.payload);
+      state.label = action.payload;
+    },
   },
 });
 
-export const { setProductCategory } = productCategoryState.actions;
+export const { setProductCategory, setProductlabel } =
+  productCategoryState.actions;
 
 export default productCategoryState.reducer;

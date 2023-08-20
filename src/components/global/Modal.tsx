@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useRef, useState } from "react";
 import * as S from "./global.style";
 import { AiOutlineClose } from "react-icons/ai";
 import { BiSearch } from "react-icons/bi";
@@ -24,6 +24,8 @@ const Modal: React.FC = () => {
   ];
 
   const [searchValue, setSearchValue] = useState<string>("");
+
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const dispatch = useDispatch();
 
@@ -70,8 +72,15 @@ const Modal: React.FC = () => {
 
   const onSubmitHandler = (e: FormEvent) => {
     e.preventDefault();
+    // console.log(inputRef.current!.value);
     fetchData();
   };
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [inputRef]);
 
   return (
     <S.Modal>
@@ -83,6 +92,7 @@ const Modal: React.FC = () => {
             className="search"
             onChange={onChangeSearchValue}
             value={searchValue}
+            ref={inputRef}
           />
           <BiSearch className="search-i" />
         </form>

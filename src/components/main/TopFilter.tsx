@@ -2,7 +2,10 @@ import React, { useEffect } from "react";
 import * as S from "./main.style";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
-import { setProductCategory } from "../../store/slice/productCategoryStateSlice";
+import {
+  setProductCategory,
+  setProductlabel,
+} from "../../store/slice/productCategoryStateSlice";
 
 interface ProductCategory {
   id: string;
@@ -34,8 +37,9 @@ const TopFilter: React.FC = () => {
 
   const clickTopCategory = (e: React.MouseEvent<HTMLElement>) => {
     // console.log(e.currentTarget.id);
-
+    const label = e.currentTarget.querySelector("span")?.textContent;
     dispatch(setProductCategory(e.currentTarget.id));
+    dispatch(setProductlabel(label));
   };
 
   /**상품 카테고리의 list들 동물 카테고리의 id로 filter하는 함수 */

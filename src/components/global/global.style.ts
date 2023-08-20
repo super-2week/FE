@@ -70,9 +70,29 @@ export const NaviWrap = styled.ul`
       height: 20px;
     }
   }
+  .navi-list {
+    animation: moveNavigate 3s ease-out infinite;
+    border-radius: 0;
+    &:hover {
+      background-color: transparent;
+      border-bottom: 2px solid #fff;
+      color: #fff;
+    }
+  }
   .active {
     border: 2px solid #fff;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
+  }
+  @keyframes moveNavigate {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
   }
 `;
 
@@ -125,14 +145,14 @@ export const Modal = styled.div`
     left: 0;
     top: 0;
     background: rgba(0, 0, 0, 0.8);
-    z-index: 1;
+    z-index: 2;
   }
   .modal-container {
     position: fixed;
     top: 30px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 2;
+    z-index: 3;
     width: 100%;
     max-width: 900px;
     overflow: hidden;
@@ -146,7 +166,7 @@ export const Modal = styled.div`
         font-size: 34px;
         border: none;
         border-bottom: 3px solid #fff;
-        z-index: 2;
+        z-index: 3;
         background: none;
         box-sizing: border-box;
         outline: none;
@@ -175,7 +195,7 @@ export const Modal = styled.div`
     width: 40px;
     height: 40px;
     position: absolute;
-    z-index: 2;
+    z-index: 3;
     top: 20px;
     right: 20px;
     fill: #fff;

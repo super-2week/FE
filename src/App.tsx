@@ -26,7 +26,10 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
         {/* <Route path="/form" element={<PostItemPage />} /> */}
         <Route path="/product/:productId" element={<DetailPage />} />
-        <Route path="/list" element={<ListPage />} />
+        <Route
+          path="/list/product/:animalCategory/:productCategory/:sortBy"
+          element={<ListPage />}
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>

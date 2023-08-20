@@ -55,6 +55,7 @@ const animalCategorySlice = createSlice({
         });
       });
       state.productes = productCategories;
+      // console.log(state.productes);
     },
   },
 });

@@ -2,7 +2,10 @@ import React from "react";
 import { useAppDispatch } from "../../store/hook";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
-import { setProductCategory } from "../../store/slice/productCategoryStateSlice";
+import {
+  setProductCategory,
+  setProductlabel,
+} from "../../store/slice/productCategoryStateSlice";
 import food from "../../asset/food.png";
 import snack from "../../asset/snack.png";
 import clean from "../../asset/clean.png";
@@ -23,8 +26,11 @@ const CategoryItem: React.FC<CategoryItemProps> = ({ productCategory }) => {
   const dispatch = useAppDispatch();
 
   const choseProductClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    const value = e.currentTarget.querySelector("span")?.textContent;
+    // console.log(value);
     const label = e.currentTarget.id;
     dispatch(setProductCategory(label));
+    dispatch(setProductlabel(value));
   };
 
   const getProductCategotyIcon = (category: string) => {

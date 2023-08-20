@@ -7,8 +7,11 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { Product } from "./type";
 import TopFilter from "./TopFilter";
+import { useNavigate } from "react-router-dom";
+import { GetAnimalCategory } from "./../../apis/header/animalCategory.api";
 
 const TopItem = () => {
+  const navigate = useNavigate();
   /** 동물 카테고리 */
   const animalCategory = useSelector(
     (state: RootState) => state.animalCategory.category
@@ -38,6 +41,12 @@ const TopItem = () => {
     return topItem?.map((item) => <Item key={item.id} {...item} />);
   };
 
+  // const animalCategory = useSelector((state:RootState)=>state)
+
+  const clickMore = () => {
+    navigate(`/list/product/${animalCategory}/${productCategory}/price`);
+  };
+
   return (
     <S.TopItem>
       <TopFilter />
@@ -48,7 +57,7 @@ const TopItem = () => {
         </div>
 
         <div className="label-box-right">
-          <span>더보기</span>
+          <span onClick={clickMore}>더보기</span>
         </div>
       </div>
 

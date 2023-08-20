@@ -119,11 +119,26 @@ export const TopItem = styled.div`
           background-color: #ddd;
           margin: 15px 0;
         }
-        span {
+        .meta {
           display: flex;
-          justify-content: end;
-          font-size: 17px;
-          padding-bottom: 3px;
+          justify-content: space-between;
+          align-items: center;
+          .like {
+            svg {
+              width: 25px;
+              height: 25px;
+              cursor: pointer;
+            }
+            .full-heart {
+              fill: red;
+            }
+          }
+          span {
+            display: flex;
+            justify-content: end;
+            font-size: 17px;
+            padding-bottom: 3px;
+          }
         }
       }
       &:hover {

@@ -1,16 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import * as S from "./list.style";
 import img1 from "../../asset/item4.jpg";
 import img2 from "../../asset/item5.jpg";
 import img3 from "../../asset/item6.jpg";
 import img4 from "../../asset/item7.jpg";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ListWrap = () => {
+  const productCategory = useSelector(
+    (state: RootState) => state.productCategory
+  );
+  const animalCategory = useSelector(
+    (state: RootState) => state.animalCategory
+  );
+
+  //  const history = useHistory();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const newURL = `/list/product/${animalCategory.category}/${productCategory.category}/price`;
+    navigate(newURL);
+  }, [productCategory, navigate, animalCategory]);
+
   return (
     <S.ListLayout>
       <S.ListWrap>
         <div className="list-category">
-          <span>사료</span>
+          <span>{productCategory.label}</span>
         </div>
         <div className="list-content">
           <div className="list-content-top">

@@ -10,6 +10,7 @@ export interface Product {
   wishCount: number;
   purchaseCount: number;
   createdAt: string;
+  liked: boolean;
 }
 
 // 확장
