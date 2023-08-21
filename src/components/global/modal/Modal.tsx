@@ -1,13 +1,20 @@
 import React, { FormEvent, useEffect, useRef, useState } from "react";
-import * as S from "./global.style";
+import * as S from "../global.style";
 import { AiOutlineClose } from "react-icons/ai";
 import { BiSearch } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
-import { setModalOpen } from "../../store/slice/modalSlice";
-import { RootState } from "../../store/store";
-import { GetSearchData } from "../../apis/main/search.api";
+import { setModalOpen } from "../../../store/slice/modalSlice";
+import { RootState } from "../../../store/store";
+import { GetSearchData } from "../../../apis/main/search.api";
+import {
+  setFromSearch,
+  setSearchWord,
+} from "../../../store/slice/parameterSilce";
+import { useNavigate } from "react-router-dom";
+import { setDataList } from "../../../store/slice/listSlice";
 
 const Modal: React.FC = () => {
+  // 연관검색어
   const data: string[] = [
     "아메리카노",
     "사랑해",
@@ -22,6 +29,8 @@ const Modal: React.FC = () => {
     "롤은 질병게임",
     "병원",
   ];
+
+  const navigate = useNavigate();
 
   const [searchValue, setSearchValue] = useState<string>("");
 
@@ -43,28 +52,34 @@ const Modal: React.FC = () => {
 
   const onClickCloseModal = () => {
     dispatch(setModalOpen(false));
+    if (itemParameter.searchWord !== searchValue) {
+      dispatch(setFromSearch(true));
+    } else {
+      dispatch(setFromSearch(false));
+    }
   };
 
-  const animalCategory = useSelector(
-    (state: RootState) => state.animalCategory.category
-  );
+  const itemParameter = useSelector((state: RootState) => state.parameter);
 
-  const productCategory = useSelector(
-    (state: RootState) => state.productCategory.category
-  );
-  const sortBy = "price";
-  const pageNumber = 1;
+  useEffect(() => {
+    dispatch(setFromSearch(true));
+  }, [dispatch]);
 
   const fetchData = async () => {
     try {
       const res = await GetSearchData(
-        animalCategory,
-        productCategory,
-        sortBy,
+        itemParameter.animalCategory,
+        itemParameter.productCategory,
+        itemParameter.sortBy,
         searchValue,
-        pageNumber
+        itemParameter.pageNumber
       );
-      console.log(res);
+      dispatch(
+        setDataList({
+          products: res[0].products,
+          totalLength: res[0].totalLength,
+        })
+      );
     } catch (error) {
       console.log(error);
     }
@@ -72,8 +87,16 @@ const Modal: React.FC = () => {
 
   const onSubmitHandler = (e: FormEvent) => {
     e.preventDefault();
-    // console.log(inputRef.current!.value);
     fetchData();
+    dispatch(setSearchWord(searchValue));
+
+    const searchUrl = `/list/product/${itemParameter.animalCategory}/${itemParameter.productCategory}/${itemParameter.sortBy}?searchWord=${itemParameter.searchWord}&page=${itemParameter.pageNumber}`;
+
+    dispatch(setFromSearch(true));
+    if (itemParameter.fromSearch) {
+      dispatch(setModalOpen(false));
+      navigate(searchUrl);
+    }
   };
 
   useEffect(() => {

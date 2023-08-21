@@ -24,7 +24,7 @@ const productCategoryState = createSlice({
       state: ProductCategoryState,
       action: PayloadAction<string | null | undefined>
     ) => {
-      console.log(action.payload);
+      // console.log(action.payload);
       state.label = action.payload;
     },
   },

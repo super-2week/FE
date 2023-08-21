@@ -20,8 +20,6 @@ const NaviItem: React.FC<NaviItemProps> = ({
   activeState,
   onClickNavi,
 }) => {
-  // console.log(naviItem);
-  // console.log(activeState);
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
   const handleMouseEnter = () => {

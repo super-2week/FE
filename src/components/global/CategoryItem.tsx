@@ -1,7 +1,5 @@
 import React from "react";
 import { useAppDispatch } from "../../store/hook";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store/store";
 import {
   setProductCategory,
   setProductlabel,
@@ -13,6 +11,11 @@ import tableware from "../../asset/tableware.png";
 import house from "../../asset/house.png";
 import cloth from "../../asset/cloth.png";
 import equipment from "../../asset/equipment.png";
+import {
+  setFromSearch,
+  setItemProductCategory,
+  setSearchWord,
+} from "../../store/slice/parameterSilce";
 
 interface CategoryItemProps {
   productCategory: {
@@ -29,8 +32,12 @@ const CategoryItem: React.FC<CategoryItemProps> = ({ productCategory }) => {
     const value = e.currentTarget.querySelector("span")?.textContent;
     // console.log(value);
     const label = e.currentTarget.id;
+    // console.log(label);
     dispatch(setProductCategory(label));
     dispatch(setProductlabel(value));
+    dispatch(setItemProductCategory(label));
+    dispatch(setFromSearch(false));
+    dispatch(setSearchWord(""));
   };
 
   const getProductCategotyIcon = (category: string) => {

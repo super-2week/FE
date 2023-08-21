@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as S from "../global.style";
 import { BiUser, BiCart, BiSearch } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
-import Modal from "../Modal";
+import Modal from "../modal/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import { setModalOpen } from "../../../store/slice/modalSlice";

@@ -8,7 +8,6 @@ import { RootState } from "../../store/store";
 import { Product } from "./type";
 import TopFilter from "./TopFilter";
 import { useNavigate } from "react-router-dom";
-import { GetAnimalCategory } from "./../../apis/header/animalCategory.api";
 
 const TopItem = () => {
   const navigate = useNavigate();
@@ -21,6 +20,8 @@ const TopItem = () => {
   const productCategory = useSelector(
     (state: RootState) => state.productCategory.category
   );
+
+  const itemParameter = useSelector((state: RootState) => state.parameter);
 
   const [topItem, setTopItem] = useState<Product[]>();
 
@@ -40,8 +41,6 @@ const TopItem = () => {
   const getTopItem = () => {
     return topItem?.map((item) => <Item key={item.id} {...item} />);
   };
-
-  // const animalCategory = useSelector((state:RootState)=>state)
 
   const clickMore = () => {
     navigate(`/list/product/${animalCategory}/${productCategory}/price`);

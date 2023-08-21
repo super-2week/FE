@@ -24,7 +24,7 @@ const animalCategoryStateSlice = createSlice({
       state: AnimalCategoryState,
       action: PayloadAction<string>
     ) => {
-      console.log(action.payload);
+      // console.log(action.payload);
       state.label = action.payload;
     },
   },

@@ -44,6 +44,7 @@ const TopFilter: React.FC = () => {
 
   /**상품 카테고리의 list들 동물 카테고리의 id로 filter하는 함수 */
   const filterCategories = (filterArray: ProductCategory[]) => {
+    // console.log(filterArray);
     return filterArray.map((data, index) => (
       <li
         onClick={clickTopCategory}
@@ -57,6 +58,7 @@ const TopFilter: React.FC = () => {
   };
 
   // 다른 컴포넌트에서의 redux 구독 중복을 방지하기 위해
+  // const newProductCategories = [...productCategories];
   const filteredCategories = filterCategories(
     productCategories.filter((data) => animalCategory === data.id)
   );
@@ -67,6 +69,7 @@ const TopFilter: React.FC = () => {
     );
 
     const categoryLabel = filterArray.map((data) => data.label);
+    // dispatch(setProductCategory("food"));
 
     if (!categoryLabel.includes(productCategory)) {
       dispatch(setProductCategory("food"));

@@ -12,7 +12,12 @@ import {
   setAnimalLabel,
 } from "../../../store/slice/animalCategoryStateSlice";
 import NaviItem from "./NaviItem";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import {
+  setFromSearch,
+  setItemAnimalCategory,
+  setSearchWord,
+} from "../../../store/slice/parameterSilce";
 
 const Navi: React.FC = () => {
   const dispatch = useDispatch();
@@ -33,10 +38,22 @@ const Navi: React.FC = () => {
   const onClickNavi = (id: string, e: React.MouseEvent<HTMLElement>) => {
     setActiveState(id);
     dispatch(setAnimalCategory(id));
+    dispatch(setItemAnimalCategory(id)); // itemSlice
     dispatch(setAnimalLabel(e.currentTarget.innerText));
+    dispatch(setFromSearch(false));
+    dispatch(setSearchWord(""));
   };
 
+  const [nowLocation, setNowLocation] = useState<boolean>(false);
+
+  const location = useLocation();
+
   useEffect(() => {
+    if (location.pathname.includes("list")) {
+      setNowLocation(true);
+    } else {
+      setNowLocation(false);
+    }
     const fetchData = async () => {
       try {
         const res = await GetAnimalCategory();
@@ -49,7 +66,7 @@ const Navi: React.FC = () => {
     };
 
     fetchData();
-  }, [dispatch]);
+  }, [dispatch, location]);
 
   const getNaviItem = () => {
     return animalCategories.map((naviItem) => (
@@ -63,7 +80,6 @@ const Navi: React.FC = () => {
   };
 
   const navigateList = () => {
-    console.log("눌림");
     const newURL = `/list/product/${animalCategory}/${productCategory}/price`;
     navigate(newURL);
   };
@@ -71,9 +87,11 @@ const Navi: React.FC = () => {
   return (
     <S.NaviWrap>
       {getNaviItem()}
-      <li className="navi-list" onClick={navigateList}>
-        상품보러가기
-      </li>
+      {!nowLocation && (
+        <li className="navi-list" onClick={navigateList}>
+          상품보러가기
+        </li>
+      )}
     </S.NaviWrap>
   );
 };

@@ -68,6 +68,7 @@ export const ListWrap = styled.div`
       grid-template-columns: repeat(4, 1fr);
       row-gap: 27px;
       column-gap: 60px;
+      overflow: hidden;
       li {
         padding: 5px;
         box-shadow: var(--item-boxshadow);
