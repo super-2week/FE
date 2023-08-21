@@ -9,16 +9,21 @@ const ProductCount = () => {
     const [count, setCount] = useState<number>(1);
 
     const clickMinus = () => {
-        if(count > 1){
+        if (count > 1){
             setCount(count - 1);
             dispatch(setMinus(1));
         }
     }
     
     const clickPlus = () => {
-        if (count >= 1) {
+        const stock1 = 3;
+        if (count >= 1 && count < stock1) {
             setCount(count + 1);
             dispatch(setPlus(1));
+        }
+        else if (count >= stock1){
+            alert(`현재 고객님께서 최대 구매 가능하신 수량은 ${stock1}개 입니다.`);
+            return;
         }
     }
 
