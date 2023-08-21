@@ -25,12 +25,12 @@ export const HeaderWrap = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* background-color: skyblue; */
     .logo {
       width: 130px;
       height: 35px;
       border-radius: 15px;
       background-color: #ccc;
+      cursor: pointer;
     }
     .menu {
       display: flex;
@@ -43,10 +43,13 @@ export const HeaderWrap = styled.div`
         border: none;
         margin-right: 5px;
         background-color: beige;
+        padding: 0 10px;
+        box-sizing: border-box;
       }
       svg {
         width: 34px;
         height: 34px;
+        cursor: pointer;
       }
     }
   }
@@ -60,7 +63,7 @@ export const NaviWrap = styled.ul`
   justify-content: center;
   gap: 40px;
   background-color: var(--main-color);
-  color: var(--white-color);
+  color: var(--sub-font-color);
   font-size: 17px;
   li {
     display: flex;
