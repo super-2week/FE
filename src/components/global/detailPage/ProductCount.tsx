@@ -35,19 +35,22 @@ const ProductCount = ({ price, stock }: ProductCountProps) => {
     return (
         <div className="product_count_container">
             <div className="count_container">
-                <div className="count_min_wrapper">
-                    <span onClick={clickMinus}>−</span>
+                <div className="stock_wrapper">
+                    <span>재고수량 : {stock}개</span>
                 </div>
-                <div className="count_num_wrapper">
-                    <span>{count}</span>
-                </div>
-                <div className="count_plus_wrapper">
-                    <span onClick={clickPlus}>+</span>
+                <div className="count_btn_container">
+                    <div className="count_min_wrapper">
+                        <span onClick={clickMinus}>−</span>
+                    </div>
+                    <div className="count_num_wrapper">
+                        <span>{count}</span>
+                    </div>
+                    <div className="count_plus_wrapper">
+                        <span onClick={clickPlus}>+</span>
+                    </div>
                 </div>
             </div>
-            <div className="count_price_wrapper">
-                <span>재고수량 : {stock}개</span>
-            </div>
+            
             <div className="count_price_wrapper">
                 <span>{price}원</span>
             </div>

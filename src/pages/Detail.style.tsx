@@ -26,6 +26,11 @@ display: flex;
                 height: 560px;
                 
                 background-color: #D9D9D9;
+                img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
             }
             .right_container{
                 display: flex;
@@ -149,56 +154,71 @@ display: flex;
                                 display: flex;
                                 justify-content: center;
                                 align-items: center;
-                                width: 74px;
-                                height: 25px;
-                                border-radius: 5px;
-                                border: 1px solid #AAAAAA;
+                                flex-direction: column;
 
-                                .count_min_wrapper{
-                                    display: flex;
-                                    justify-content: center;
-                                    align-items: center;
-                                    width: 33.5%;
-                                    height: 100%;
-                                    cursor: pointer;
-
-                                    /* background-color: #3182F6; */
-
+                                .stock_wrapper{
+                                    margin-bottom: 5px;
                                     span{
-                                        font-size: 18px;
-                                        font-weight: 600;
-                                        color: #000000;
+                                        font-size: 12px;
+                                        font-weight: 500;
+                                        color: #818181;
                                     }
                                 }
-                                .count_num_wrapper{
+                                .count_btn_container{
                                     display: flex;
                                     justify-content: center;
                                     align-items: center;
-                                    width: 33.5%;
-                                    height: 100%;
+                                    width: 74px;
+                                    height: 25px;
+                                    border-radius: 5px;
+                                    border: 1px solid #AAAAAA;
+                                    .count_min_wrapper{
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+                                        width: 33.5%;
+                                        height: 100%;
+                                        cursor: pointer;
 
-                                    span{
-                                        font-size: 15px;
-                                        font-weight: 400;
-                                        color: #000000;
+                                        /* background-color: #3182F6; */
+
+                                        span{
+                                            font-size: 18px;
+                                            font-weight: 600;
+                                            color: #000000;
+                                        }
                                     }
-                                }
-                                .count_plus_wrapper{
-                                    display: flex;
-                                    justify-content: center;
-                                    align-items: center;
-                                    width: 33.5%;
-                                    height: 100%;
-                                    cursor: pointer;
+                                    .count_num_wrapper{
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+                                        width: 33.5%;
+                                        height: 100%;
 
-                                    span{
-                                        font-size: 18px;
-                                        font-weight: 600;
-                                        color: #000000;
+                                        span{
+                                            font-size: 15px;
+                                            font-weight: 400;
+                                            color: #000000;
+                                        }
+                                    }
+                                    .count_plus_wrapper{
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+                                        width: 33.5%;
+                                        height: 100%;
+                                        cursor: pointer;
+
+                                        span{
+                                            font-size: 18px;
+                                            font-weight: 600;
+                                            color: #000000;
+                                        }
                                     }
                                 }
                             }
                             .count_price_wrapper{
+                                margin-top: 25px;
                                 span{
                                     font-size: 15px;
                                     font-weight: 700;
