@@ -1,7 +1,13 @@
 import React from 'react';
 import ProductCount from './ProductCount';
 
-const ProductChoice = () => {
+type ProductChoiceProps = {
+    price: number,
+    productName: string,
+    stock: number,
+};
+
+const ProductChoice = ({ price, productName, stock }: ProductChoiceProps) => {
     return (
         <div className="product_choice_container">
             <div className="choice_title_wrapper">
@@ -9,9 +15,9 @@ const ProductChoice = () => {
             </div>
             <div className="choice_box_container">
                 <div className="product_name_wrapper">
-                    <span>주그 높이조절 쳇바퀴</span>
+                    <span>{productName}</span>
                 </div>
-                <ProductCount/>
+                <ProductCount price={price} stock={stock}/>
             </div>
         </div>
     )
