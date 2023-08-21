@@ -3,12 +3,16 @@ import BuyBtns from './BuyBtns';
 import { useAppSelector } from '../../../store/hook';
 import { RootState } from '../../../store/store';
 
-const ProductToTalPrice = () => {
+type ProductTotalPriceProps = {
+    price: number
+};
+
+const ProductToTalPrice = ({ price }: ProductTotalPriceProps) => {
 
     const totalCount = useAppSelector((state: RootState) => state.totalPrice.count);
 
-    const onePrice = 15000;
-    const [price, setPrice] = useState<number>(0);
+    const onePrice = price;
+    const [price1, setPrice] = useState<number>(0);
 
     useEffect(()=>{
         sumPrice(totalCount);
@@ -26,7 +30,7 @@ const ProductToTalPrice = () => {
                     <span>총 상품금액</span>
                 </div>
                 <div className="totalprice_wrapper">
-                    <span>{price}원</span>
+                    <span>{price1}원</span>
                 </div>
             </div>
             <BuyBtns />

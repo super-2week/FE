@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import { useAppDispatch } from '../../../store/hook';
 import { setPlus, setMinus } from '../../../store/slice/totalPriceSlice';
 
-const ProductCount = () => {
+type ProductCountProps = {
+    price: number,
+    stock: number,
+};
+
+const ProductCount = ({ price, stock }: ProductCountProps) => {
 
     const dispatch = useAppDispatch();
 
@@ -16,7 +21,7 @@ const ProductCount = () => {
     }
     
     const clickPlus = () => {
-        const stock1 = 3;
+        const stock1 = stock;
         if (count >= 1 && count < stock1) {
             setCount(count + 1);
             dispatch(setPlus(1));
@@ -41,7 +46,10 @@ const ProductCount = () => {
                 </div>
             </div>
             <div className="count_price_wrapper">
-                <span>15,000원</span>
+                <span>재고수량 : {stock}개</span>
+            </div>
+            <div className="count_price_wrapper">
+                <span>{price}원</span>
             </div>
         </div>
     )

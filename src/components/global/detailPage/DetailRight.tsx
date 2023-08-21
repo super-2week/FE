@@ -3,17 +3,21 @@ import ProductChoice from './ProductChoice';
 import ProductTitle from './ProductTitle';
 import ProductToTalPrice from './ProductToTalPrice';
 
-const DetailRight = () => {
+type DetailRightProps = {
+    animalCategory: string,
+    description: string,
+    price: number,
+    productName: string,
+    stock: number,
+};
 
-    const totalPriceHandle = () => {
-        
-    }
+const DetailRight = ({ animalCategory, description, price, productName, stock }: DetailRightProps ) => {
 
     return (
         <div className="right_container">
-            <ProductTitle/>
-            <ProductChoice/>
-            <ProductToTalPrice/>
+            <ProductTitle animalCategory={animalCategory} description={description} price={price} productName={productName}/>
+            <ProductChoice price={price} productName={productName} stock={stock} />
+            <ProductToTalPrice price={price}/>
         </div>
     )
 }
