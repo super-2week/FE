@@ -1,17 +1,15 @@
 import { styled } from "styled-components";
 
 export const BannerSwiper = styled.div`
-  background-color: pink;
+  /* background-color: pink; */
   border-bottom: 2px solid #eee;
   position: relative;
   .swiper-pagination {
     position: absolute;
-    /* top: 20px; */
     right: 0;
     display: flex;
     justify-content: center;
     transition: all 0.4s;
-    /* margin-bottom: 20px; */
     padding-bottom: 20px;
     .swiper-pagination-bullet {
       width: 35px;
@@ -54,6 +52,14 @@ export const Section = styled.div`
       font-size: 16px;
       font-weight: 500;
       word-break: keep-all;
+      .desc-box {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        p {
+          line-height: 23px;
+        }
+      }
     }
   }
   .item-list {
@@ -64,24 +70,43 @@ export const Section = styled.div`
     .item {
       max-width: 300px;
       width: 100%;
-      .img {
+      position: relative;
+      .img-box {
         width: 100%;
         height: 300px;
-        background-color: #ddd;
-        margin-bottom: 20px;
+        img {
+          width: 100%;
+          height: 100%;
+          background-color: #ddd;
+          margin-bottom: 20px;
+        }
       }
+
       .title {
+        padding-left: 5px;
+        box-sizing: border-box;
         font-size: 17px;
         font-weight: bold;
         margin-bottom: 10px;
       }
       .list-bottom {
+        padding: 0px 5px;
+        box-sizing: border-box;
         .price {
           font-size: 18px;
           font-weight: 600;
         }
-        .heart {
-        }
+      }
+      svg {
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        cursor: pointer;
+      }
+      .full-heart {
+        fill: red;
       }
     }
   }

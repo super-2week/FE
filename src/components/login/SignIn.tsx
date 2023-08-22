@@ -1,18 +1,22 @@
 import React, { useState } from "react";
 import * as S from "./signin.style";
 import kakaologo from "../../img/kakao.png";
+
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../store/slice/userSlice";
 import axios from "axios";
+
 
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -35,6 +39,7 @@ const SignIn: React.FC = () => {
       setPasswordError("비밀번호 형식이 올바르지 않습니다.");
       return;
     }
+
 
     try {
       const response = await axios.post(
@@ -61,6 +66,7 @@ const SignIn: React.FC = () => {
         }
       }
     }
+
   };
 
   const validateEmail = (email: string) => {
@@ -82,6 +88,7 @@ const SignIn: React.FC = () => {
       ? "0px 0px 2px #43C37D"
       : "none",
   });
+
 
   //소셜 로그인
   const { Kakao } = window;
@@ -128,8 +135,10 @@ const SignIn: React.FC = () => {
           {passwordError && <S.ErrorText>{passwordError}</S.ErrorText>}
         </S.InputContainer>
         <S.ButtonContainer>
+
           <S.SocialButtons onClick={loginWithKakao}>
             <img src={kakaologo} alt="login with kakao" />
+
           </S.SocialButtons>
           <S.StyledButton onClick={handleLogin}>로그인</S.StyledButton>
           <S.StyledInputWithCustomStyle>회원가입</S.StyledInputWithCustomStyle>

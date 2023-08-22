@@ -61,6 +61,7 @@ export const StyledInput = styled.input`
 
   &.error,
   .touched{
+
     border: 1px solid red ;
     box-shadow: 0px 0px 2px red;
   }
@@ -76,6 +77,7 @@ export const StyledInputWithCustomStyle = styled(StyledButton)`
     color: #4593FC;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
 `;
+
 
 export const ButtonCustomStyle = styled(StyledButton)`
     width: 20%;

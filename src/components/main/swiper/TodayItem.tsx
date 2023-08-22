@@ -2,47 +2,40 @@ import React from "react";
 import * as S from "../main.style";
 
 import ItemImg from "../ItemImg";
-
-interface Item {
-  id: number;
-  imgSrc: string;
-  state: string;
-  title: string;
-  desc: string;
-}
+import { TodayProduct } from "../type";
 
 interface TodayItemProps {
-  item: {
-    categori: string;
-    item: Item[];
-  };
+  item: TodayProduct;
 }
 
 const TodayItem: React.FC<TodayItemProps> = ({ item }) => {
+  // console.log(item);
+
   return (
     <S.TodayItem>
       <div className="item-grid">
+        {/* <h2>{item.category}</h2> */}
         <div className="item-grid-left">
-          <ItemImg imgInfo={item.item[0]} />
+          <ItemImg product={item.product[0]} state="main" />
         </div>
         <div className="item-grid-right">
           <div className="item-grid-right-top">
-            <ItemImg imgInfo={item.item[1]} />
+            <ItemImg product={item.product[1]} state="sub" />
             <div className="item-grid-right-top_desc">
               <div className="desc-content">
-                <div className="title">{item.item[1].title}</div>
-                <div className="desc">{item.item[1].desc}</div>
+                <div className="title">{item.product[1].productName}</div>
+                <div className="desc">{item.product[1].description}</div>
               </div>
             </div>
           </div>
           <div className="item-grid-right-bottom">
             <div className="item-grid-right-bottom_desc">
               <div className="desc-content">
-                <div className="title">{item.item[2].title}</div>
-                <div className="desc">{item.item[2].desc}</div>
+                <div className="title">{item.product[2].productName}</div>
+                <div className="desc">{item.product[2].description}</div>
               </div>
             </div>
-            <ItemImg imgInfo={item.item[2]} isRight />
+            <ItemImg product={item.product[2]} isRight state="sub" />
           </div>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import * as S from "./signup.style";
+
 import DaumPostcodeEmbed from "react-daum-postcode";
 import {
   Modal,
@@ -39,6 +40,7 @@ const SignUp: React.FC = () => {
     numberAddress: "",
   });
 
+
   const [formData, setFormData] = useState<FormData>({
     userName: "",
     phoneNumber: "",
@@ -46,7 +48,9 @@ const SignUp: React.FC = () => {
     password: "",
     checkPassword: "",
     address: "",
+
     detailAddress: "",
+
   });
 
   const [validationErrors, setValidationErrors] = useState({
@@ -102,6 +106,7 @@ const SignUp: React.FC = () => {
     closeModal(); // 모달을 닫음
   };
 
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
@@ -126,8 +131,19 @@ const SignUp: React.FC = () => {
     }
   };
 
-  const handleSubmit = async (event: React.FormEvent) => {
+  console.log(formData);
+
+  const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+
+    const newAddress = `${address.roadAddress} ${address.detailAddress}`;
+    // console.log(newAddress);
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      address: newAddress,
+    }));
+
 
     const newValidationErrors: Record<keyof FormData, string> = {
       userName: "",
@@ -137,6 +153,7 @@ const SignUp: React.FC = () => {
       checkPassword: "",
       address: "",
       detailAddress: "",
+
     };
 
     for (const fieldName of Object.keys(formData) as Array<keyof FormData>) {
@@ -150,11 +167,13 @@ const SignUp: React.FC = () => {
     const isFormValid = Object.values(newValidationErrors).every(
       (error) => !error
     );
+
     const isAnyFieldFilled = Object.values(formData).some(
       (value) => value.trim() !== ""
     );
 
     if (!!isFormValid && !!isAnyFieldFilled) {
+
       try {
         const userData = {
           userName: formData.userName,
@@ -195,6 +214,7 @@ const SignUp: React.FC = () => {
     }
     console.log(formData);
   };
+
 
   /**email중복검사 */
   const handleEmailDuplicateCheck = async (
@@ -269,6 +289,7 @@ const SignUp: React.FC = () => {
           error = "비밀번호가 일치하지 않습니다.";
         }
         break;
+
       case "detailAddress":
         if (!value.trim()) {
           error = "상세주소를 입력해주세요";
@@ -287,7 +308,9 @@ const SignUp: React.FC = () => {
   const isSubmitButtonEnabled = Object.values(validationErrors).every(
     (error) => !error
   );
+
   const isAnyFieldFilled = Object.values(formData).every(
+
     (value) => value.trim() !== ""
   );
 
@@ -384,6 +407,7 @@ const SignUp: React.FC = () => {
           )}
         </S.InputContainer>
         <S.InputContainer>
+
           <S.StyledLabel htmlFor="checkPassword">우편번호</S.StyledLabel>
           <S.StyledInput
             type="text"
@@ -439,6 +463,7 @@ const SignUp: React.FC = () => {
           </S.StyledInputWithCustomStyle>
         </S.ButtonContainer>
       </S.Form>
+
 
       {isModalOpen && (
         <Modal isOpen={isModalOpen} onClose={closeModal}>
