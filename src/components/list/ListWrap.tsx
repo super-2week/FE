@@ -142,6 +142,7 @@ const ListWrap = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log(hasMore);
       try {
         const res = await GetSearchData(
           itemParameter.animalCategory,
@@ -152,6 +153,8 @@ const ListWrap = () => {
             ? itemParameter.pageNumber + 1
             : (itemParameter.pageNumber = 0)
         );
+
+        console.log("more response : ", res);
 
         dispatch(
           setDataList({
@@ -168,7 +171,7 @@ const ListWrap = () => {
       }
     };
     fetchData();
-  }, [dispatch, itemParameter]);
+  }, [dispatch, itemParameter, hasMore]);
 
   return (
     <S.ListLayout>
