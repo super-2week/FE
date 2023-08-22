@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import LoginPage from "./pages/LoginPage";
 import MyPage from "./pages/MyPage";
+import KakaoRedirectHandler from "./components/login/kakao/KakaoRedirectHandler";
 import {
   CartPage,
   DetailPage,
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/login/oauth" element={<KakaoRedirectHandler />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/my" element={<MyPage />} />
         <Route path="/cart" element={<CartPage />} />

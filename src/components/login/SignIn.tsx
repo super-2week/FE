@@ -2,11 +2,21 @@ import React, { useState } from "react";
 import * as S from "./signin.style";
 import kakaologo from "../../img/kakao.png";
 
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../../store/slice/userSlice";
+import axios from "axios";
+
+
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -18,7 +28,9 @@ const SignIn: React.FC = () => {
     setPasswordError("");
   };
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
+    console.log("나눌림");
+    const loginUser = { email, password };
     if (!validateEmail(email)) {
       setEmailError("이메일 형식이 올바르지 않습니다.");
     }
@@ -27,6 +39,34 @@ const SignIn: React.FC = () => {
       setPasswordError("비밀번호 형식이 올바르지 않습니다.");
       return;
     }
+
+
+    try {
+      const response = await axios.post(
+        "https://pet-commerce.shop/v1/api/users/signin",
+        {
+          email,
+          password,
+        }
+      );
+      if (response.status === 200) {
+        console.log(response);
+        const token = response.data.token;
+        dispatch(login(loginUser));
+        localStorage.setItem("accesstoken", token);
+        navigate("/");
+      }
+    } catch (error: any) {
+      if (error.response) {
+        const errorCode = error.response.data.errorCode;
+        const errorMessage = error.response.data.errorMessage;
+
+        if (errorCode === "INVALID_LOGIN_INPUT") {
+          alert(errorMessage);
+        }
+      }
+    }
+
   };
 
   const validateEmail = (email: string) => {
@@ -48,6 +88,20 @@ const SignIn: React.FC = () => {
       ? "0px 0px 2px #43C37D"
       : "none",
   });
+
+
+  //소셜 로그인
+  const { Kakao } = window;
+  const loginWithKakao = () => {
+    console.log(
+      "Redirect URI:",
+      `${process.env.REACT_APP_FRONTEND_BASE_URL}/login/oauth`
+    );
+    Kakao.Auth.loginForm({
+      redirectUri: `${process.env.REACT_APP_FRONTEND_BASE_URL}/login/oauth`,
+      scope: "profile_nickname,profile_image,account_email",
+    });
+  };
 
   return (
     <S.CenteredContainer>
@@ -81,8 +135,10 @@ const SignIn: React.FC = () => {
           {passwordError && <S.ErrorText>{passwordError}</S.ErrorText>}
         </S.InputContainer>
         <S.ButtonContainer>
-          <S.SocialButtons>
-            <img src={kakaologo} alt="" />
+
+          <S.SocialButtons onClick={loginWithKakao}>
+            <img src={kakaologo} alt="login with kakao" />
+
           </S.SocialButtons>
           <S.StyledButton onClick={handleLogin}>로그인</S.StyledButton>
           <S.StyledInputWithCustomStyle>회원가입</S.StyledInputWithCustomStyle>

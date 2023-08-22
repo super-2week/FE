@@ -1,26 +1,45 @@
 import React, { useState } from "react";
 import * as S from "./signup.style";
-import AddressInput from "./forminput/AddressInput";
+
+import DaumPostcodeEmbed from "react-daum-postcode";
+import {
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+} from "@chakra-ui/react";
+import axios from "axios";
+import { successSignUp } from "../../store/slice/authSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+interface FormData {
+  userName: string;
+  phoneNumber: string;
+  email: string;
+  password: string;
+  checkPassword: string;
+  address: string;
+  detailAddress: string;
+}
+
+interface Address {
+  postcode: "";
+  roadAddress: "";
+  numberAddress: "";
+}
 
 const SignUp: React.FC = () => {
-  interface FormData {
-    userName: string;
-    phoneNumber: string;
-    email: string;
-    password: string;
-    checkPassword: string;
-    address: string;
-  }
-
-  const [address, setAddress] = useState({
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [address, setAddress] = useState<Address>({
     postcode: "",
     roadAddress: "",
     numberAddress: "",
-    detailAddress: "",
-    showModal: false,
   });
 
-  // console.log(address);
 
   const [formData, setFormData] = useState<FormData>({
     userName: "",
@@ -29,6 +48,9 @@ const SignUp: React.FC = () => {
     password: "",
     checkPassword: "",
     address: "",
+
+    detailAddress: "",
+
   });
 
   const [validationErrors, setValidationErrors] = useState({
@@ -38,7 +60,52 @@ const SignUp: React.FC = () => {
     password: "",
     checkPassword: "",
     address: "",
+    detailAddress: "",
   });
+
+  //주소 모달여닫기
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleComplete = (data: any) => {
+    const roadAddr = data.roadAddress;
+    let extraRoadAddr = "";
+
+    if (data.bname !== "" && /[동|로|가]$/g.test(data.bname)) {
+      extraRoadAddr += data.bname;
+    }
+
+    if (data.buildingName !== "" && data.apartment === "Y") {
+      extraRoadAddr +=
+        extraRoadAddr !== "" ? `, ${data.buildingName}` : data.buildingName;
+    }
+
+    if (extraRoadAddr !== "") {
+      extraRoadAddr = ` (${extraRoadAddr})`;
+    }
+    const fullAddress = `${data.roadAddress} ${data.zonecode} `;
+    // 주소 정보를 업데이트
+    setFormData({
+      ...formData,
+      address: fullAddress,
+    });
+
+    setAddress({
+      ...address,
+      postcode: data.zonecode,
+      roadAddress: roadAddr,
+    });
+
+    closeModal(); // 모달을 닫음
+  };
+
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -63,6 +130,7 @@ const SignUp: React.FC = () => {
       validateField(fieldName, value);
     }
   };
+
   console.log(formData);
 
   const handleSubmit = (event: React.FormEvent) => {
@@ -76,6 +144,7 @@ const SignUp: React.FC = () => {
       address: newAddress,
     }));
 
+
     const newValidationErrors: Record<keyof FormData, string> = {
       userName: "",
       phoneNumber: "",
@@ -83,6 +152,8 @@ const SignUp: React.FC = () => {
       password: "",
       checkPassword: "",
       address: "",
+      detailAddress: "",
+
     };
 
     for (const fieldName of Object.keys(formData) as Array<keyof FormData>) {
@@ -96,29 +167,76 @@ const SignUp: React.FC = () => {
     const isFormValid = Object.values(newValidationErrors).every(
       (error) => !error
     );
-    const isAnyFieldFilled = Object.values(formData).every(
+
+    const isAnyFieldFilled = Object.values(formData).some(
       (value) => value.trim() !== ""
     );
 
     if (!!isFormValid && !!isAnyFieldFilled) {
-      // setFormData({
-      //   userName: "",
-      //   phoneNumber: "",
-      //   email: "",
-      //   password: "",
-      //   checkPassword: "",
-      //   address: "",
-      // });
-    } else {
-      alert("모든 폼을 입력한 후 제출해주세요");
+
+      try {
+        const userData = {
+          userName: formData.userName,
+          phoneNumber: formData.phoneNumber,
+          email: formData.email,
+          password: formData.password,
+          checkPassword: formData.checkPassword, //이거 뺴기
+          address: formData.address,
+          detailAddress: formData.detailAddress,
+        };
+        const response = await axios.post(
+          "https://pet-commerce.shop/v1/api/users",
+          userData
+        );
+        console.log(response);
+        // const token = response.data.token;
+        dispatch(successSignUp({ ...userData }));
+        // localStorage.setItem("token", token);
+        navigate("/login");
+        setFormData({
+          userName: "",
+          phoneNumber: "",
+          email: "",
+          password: "",
+          checkPassword: "",
+          address: "",
+          detailAddress: "",
+        });
+        setAddress({
+          ...address,
+          postcode: "",
+          roadAddress: "",
+          numberAddress: "",
+        });
+      } catch (error) {
+        console.error("가입 요청 에러:", error);
+      }
     }
     console.log(formData);
   };
 
-  const handleEmailDuplicateCheck = (
+
+  /**email중복검사 */
+  const handleEmailDuplicateCheck = async (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     event.preventDefault();
+
+    try {
+      const response = await axios.post("http://localhost:8080/v1/api/users", {
+        email: formData.email,
+      });
+
+      if (response.status === 200) {
+        console.log("이메일 중복 검사 통과");
+      }
+    } catch (error: any) {
+      if (error.response && error.response.status === 404) {
+        console.log(`에러 메시지: ${error.response.data.errorMessage}`);
+      } else {
+        console.error("중복 확인 요청 에러:", error);
+      }
+    }
   };
 
   /**유효성 검사 함수 */
@@ -171,6 +289,12 @@ const SignUp: React.FC = () => {
           error = "비밀번호가 일치하지 않습니다.";
         }
         break;
+
+      case "detailAddress":
+        if (!value.trim()) {
+          error = "상세주소를 입력해주세요";
+        }
+        break;
       default:
         break;
     }
@@ -184,7 +308,9 @@ const SignUp: React.FC = () => {
   const isSubmitButtonEnabled = Object.values(validationErrors).every(
     (error) => !error
   );
-  const isAnyFieldFilled = Object.values(formData).some(
+
+  const isAnyFieldFilled = Object.values(formData).every(
+
     (value) => value.trim() !== ""
   );
 
@@ -281,8 +407,51 @@ const SignUp: React.FC = () => {
           )}
         </S.InputContainer>
         <S.InputContainer>
-          <AddressInput address={address} setAddress={setAddress} />
+
+          <S.StyledLabel htmlFor="checkPassword">우편번호</S.StyledLabel>
+          <S.StyledInput
+            type="text"
+            name="postcode"
+            value={address.postcode}
+            onChange={handleChange}
+            placeholder="우편번호"
+          />
         </S.InputContainer>
+        <S.ButtonContainer>
+          <S.DuplicateCheckButton
+            type="button"
+            onClick={openModal} // 모달 열기 버튼
+          >
+            주소 검색
+          </S.DuplicateCheckButton>
+        </S.ButtonContainer>
+        <S.InputContainer>
+          <S.StyledLabel htmlFor="checkPassword">도로명주소</S.StyledLabel>
+          <S.StyledInput
+            type="text"
+            name="roadAddress"
+            value={address.roadAddress}
+            onChange={handleChange}
+            placeholder="도로명주소"
+          />
+        </S.InputContainer>
+        <S.InputContainer>
+          <S.StyledLabel htmlFor="checkPassword">상세주소</S.StyledLabel>
+          <S.StyledInput
+            type="text"
+            name="detailAddress"
+            value={formData.detailAddress}
+            onChange={handleChange}
+            onBlur={() => handleBlur("detailAddress")}
+            className={validationErrors.detailAddress ? "error" : ""}
+            placeholder="상세주소를 입력해주세요."
+          />
+        </S.InputContainer>
+        {validationErrors.detailAddress && (
+          <S.StyledSpan className="error-message">
+            {validationErrors.detailAddress}
+          </S.StyledSpan>
+        )}
 
         <S.ButtonContainer>
           <S.StyledInputWithCustomStyle
@@ -294,6 +463,20 @@ const SignUp: React.FC = () => {
           </S.StyledInputWithCustomStyle>
         </S.ButtonContainer>
       </S.Form>
+
+
+      {isModalOpen && (
+        <Modal isOpen={isModalOpen} onClose={closeModal}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>주소 검색</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <DaumPostcodeEmbed onComplete={handleComplete} />
+            </ModalBody>
+          </ModalContent>
+        </Modal>
+      )}
     </S.CenteredContainer>
   );
 };

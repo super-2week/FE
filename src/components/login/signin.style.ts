@@ -35,6 +35,7 @@ padding:15px 0;
 
 export const ButtonContainer = styled.div`
   display: flex;
+  justify-content: space-between;
   margin-bottom: 50px;
   margin-top:20px;
   gap: 20px;
@@ -46,7 +47,7 @@ export const StyledButton = styled.button`
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  width: 120px;
+  width: 130px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
 `;
 
