@@ -10,6 +10,7 @@ import {
   SignupPage,
 } from "./pages";
 import GlobalStyle from "./components/global/GlobalStyle";
+import ComparisonPage from "./pages/ComparisonPage";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/form" element={<PostItemPage />} />
         <Route path="/product/:productId" element={<DetailPage />} />
         <Route path="*" element={<NotFoundPage />} />
+        <Route path="/product/comparison" element={<ComparisonPage />} />
       </Routes>
     </Router>
   );
