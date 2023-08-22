@@ -263,9 +263,8 @@ export const LastSeePhotoBox = styled.div`
 
     img {
       width: 100%;
-      height: auto !important;
+      height: 200px;
       object-fit: cover;
-      object-position: bottom;
       vertical-align: middle;
     }
   }
@@ -320,26 +319,7 @@ export const LastSeeContentBox = styled.div`
     & > span {
       font-size: 18px;
       padding-right: 15px;
-      text-decoration: line-through;
-    }
-
-    & > strong {
-      display: block;
-      font-size: 1rem;
-      font-weight: 300;
-      color: #3d3a35;
-      letter-spacing: -.32px;
-
-      & > strong {
-        font-weight: bold;
-        font-size: 18px;
-
-        & > em {
-          margin-left: 17px;
-          color: #b60217;
-          font-weight: bold;
-        }
-      }
+      font-weight: 700;
     }
   }
 `;

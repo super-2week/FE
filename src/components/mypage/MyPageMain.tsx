@@ -1,8 +1,27 @@
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import * as S from './MyPage.style';
-import { HandleViewProps } from './type';
+import { LikeData, Props } from './type';
+import instance from '../../api/axios';
 
-const MyPageMain = ({ handleClick }: HandleViewProps) => {
+const MyPageMain = ({ handleClick }: Props) => {
+  const [pay, setPay] = useState();
+  const [like, setLike] = useState<LikeData[]>([]);
+
+  // 페이머니 호출, 관심 상품 갯수를 위한 호출
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await instance.get('/payment');
+        const likeRes = await instance.get('/product/wish');
+        setPay(res.data.coin);
+        setLike(likeRes.data);
+      } catch(err) {
+        console.error(err);
+      }
+    };
+
+    fetchData();
+  }, [])
   return (
     <S.ContentsBox>
       <S.MainBox>
@@ -26,7 +45,7 @@ const MyPageMain = ({ handleClick }: HandleViewProps) => {
               <span>
                 <em>PAY</em>
                 <p onClick={() => handleClick('Pay')}>
-                  <strong>0</strong>
+                  <strong>{pay}</strong>
                 </p>
               </span>
             </div>
@@ -35,7 +54,7 @@ const MyPageMain = ({ handleClick }: HandleViewProps) => {
               <span>
                 <em>관심 상품</em>
                 <p onClick={() => handleClick('Like')}>
-                  <strong>1</strong>
+                  <strong>{like.length}</strong>
                 </p>
               </span>
             </div>

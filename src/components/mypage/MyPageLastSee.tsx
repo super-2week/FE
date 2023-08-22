@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import * as S from './MyPage.style';
-import { HandleViewProps } from './type';
+import { Props } from './type';
 
-const MyPageLastSee = ({ handleClick }: HandleViewProps) => {
+const MyPageLastSee = ({ handleClick }: Props) => {
+
   return (
     <S.OrderBox>
       <S.TitleBox>
@@ -44,7 +45,6 @@ const MyPageLastSee = ({ handleClick }: HandleViewProps) => {
                   <strong>
                     <strong>
                       일십만원
-                      <em>99%</em>
                     </strong>
                   </strong>
                 </div>

@@ -1,8 +1,25 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './MyPage.style';
-import { HandleViewProps } from './type';
+import { LikeData, Props } from './type';
+import instance from '../../api/axios';
 
-const MyPageLike = ({ handleClick }: HandleViewProps) => {
+const MyPageLike = ({ handleClick }: Props) => {
+  const [like, setLike] = useState<LikeData[]>([]);
+
+  // 관심 상품 호출
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await instance.get('/product/wish');
+        setLike(res.data.slice(0, 3));
+      } catch(err) {
+        console.error(err);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <S.OrderBox>
       <S.TitleBox>
@@ -12,46 +29,44 @@ const MyPageLike = ({ handleClick }: HandleViewProps) => {
 
       <S.LastSeeList>
         {/* 최근 본 상품이 없을 때 */}
-        {/* <div>
-          <S.LastSeeNoData>
-            <strong>최근 본 상품이 존재하지 않습니다.</strong>
-          </S.LastSeeNoData>
-        </div> */}
+        {like.length === 0 && (
+          <div>
+            <S.LastSeeNoData>
+              <strong>최근 본 상품이 존재하지 않습니다.</strong>
+            </S.LastSeeNoData>
+          </div>
+        )}
 
-        <ul>
-          <li>
-            <S.LastSeeListItem>
-              <S.LastSeePhotoBox>
-                <Link to='/'>
-                  <img src='/' alt='관심 상품' />
-                </Link>
-              </S.LastSeePhotoBox>
 
-              <S.LastSeeContentBox>
-                <div className='title_box'>
-                  <span>브랜드</span>
+        {like?.length && (
+          <div>
+            {like.map((item) => (
+              <li key={item.productId}>
+                <S.LastSeeListItem>
+                  <S.LastSeePhotoBox>
+                    <Link to={`/product/${item.productId}`}>
+                      <img src={item.imageUrl} alt='최근 본 상품' />
+                    </Link>
+                  </S.LastSeePhotoBox>
 
-                  <Link to='/'>
-                    <strong>
-                      <span>판매 중인 상품</span>
-                    </strong>
-                  </Link>
-                </div>
+                  <S.LastSeeContentBox>
+                    <div className='title_box'>
+                      <Link to={`/product/${item.productId}`}>
+                        <strong>
+                          <span>{item.productName}</span>
+                        </strong>
+                      </Link>
+                    </div>
 
-                <div className='price_box'>
-                  <span>일천만원</span>
-
-                  <strong>
-                    <strong>
-                      일십만원
-                      <em>99%</em>
-                    </strong>
-                  </strong>
-                </div>
-              </S.LastSeeContentBox>
-            </S.LastSeeListItem>
-          </li>
-        </ul>
+                    <div className='price_box'>
+                      <span>{item.price}원</span>
+                    </div>
+                  </S.LastSeeContentBox>
+                </S.LastSeeListItem>
+              </li>
+            ))}
+          </div>
+        )}
       </S.LastSeeList>
     </S.OrderBox>
   );
