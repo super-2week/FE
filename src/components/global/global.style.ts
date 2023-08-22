@@ -15,8 +15,10 @@ export const HeaderWrap = styled.div`
       width: 130px;
       height: 35px;
       border-radius: 15px;
-      background-color: #ccc;
       cursor: pointer;
+      img {
+        width: 100%;
+      }
     }
     .menu {
       display: flex;

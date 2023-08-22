@@ -6,6 +6,7 @@ import Modal from "../modal/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import { setModalOpen } from "../../../store/slice/modalSlice";
+import logoImg from "../../../asset/logo.svg";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -22,7 +23,9 @@ const Header = () => {
   return (
     <S.HeaderWrap>
       <div className="layout">
-        <div className="logo" onClick={() => navigate("/")}></div>
+        <div className="logo" onClick={() => navigate("/")}>
+          <img src={logoImg} alt="" />
+        </div>
         <div className="menu">
           <BiSearch className="menu-search" onClick={openSearchModal} />
           <BiUser className="menu-user" onClick={() => navigate("/my")} />
