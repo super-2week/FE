@@ -3,7 +3,6 @@ import * as S from './MyPage.style';
 import { Props } from './type';
 
 const MyPageLastSee = ({ handleClick }: Props) => {
-
   return (
     <S.OrderBox>
       <S.TitleBox>

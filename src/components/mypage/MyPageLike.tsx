@@ -1,25 +1,11 @@
-import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import * as S from './MyPage.style';
-import { LikeData, Props } from './type';
-import instance from '../../api/axios';
+import { Props } from './type';
+import { GetWishList } from './api/getApi';
 
 const MyPageLike = ({ handleClick }: Props) => {
-  const [like, setLike] = useState<LikeData[]>([]);
+  const wishList = GetWishList();
 
-  // 관심 상품 호출
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await instance.get('/product/wish');
-        setLike(res.data.slice(0, 3));
-      } catch(err) {
-        console.error(err);
-      }
-    };
-
-    fetchData();
-  }, []);
   return (
     <S.OrderBox>
       <S.TitleBox>
@@ -29,7 +15,7 @@ const MyPageLike = ({ handleClick }: Props) => {
 
       <S.LastSeeList>
         {/* 최근 본 상품이 없을 때 */}
-        {like.length === 0 && (
+        {wishList.length === 0 && (
           <div>
             <S.LastSeeNoData>
               <strong>최근 본 상품이 존재하지 않습니다.</strong>
@@ -38,9 +24,9 @@ const MyPageLike = ({ handleClick }: Props) => {
         )}
 
 
-        {like?.length && (
+        {wishList?.length && (
           <div>
-            {like.map((item) => (
+            {wishList.map((item) => (
               <li key={item.productId}>
                 <S.LastSeeListItem>
                   <S.LastSeePhotoBox>

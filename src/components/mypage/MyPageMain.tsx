@@ -1,27 +1,10 @@
-import { useState, useEffect } from 'react';
 import * as S from './MyPage.style';
-import { LikeData, Props } from './type';
-import instance from '../../api/axios';
+import { Props } from './type';
+import { GetMainList } from './api/getApi';
 
 const MyPageMain = ({ handleClick }: Props) => {
-  const [pay, setPay] = useState();
-  const [like, setLike] = useState<LikeData[]>([]);
+  const { pay, wishList } = GetMainList();
 
-  // 페이머니 호출, 관심 상품 갯수를 위한 호출
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await instance.get('/payment');
-        const likeRes = await instance.get('/product/wish');
-        setPay(res.data.coin);
-        setLike(likeRes.data);
-      } catch(err) {
-        console.error(err);
-      }
-    };
-
-    fetchData();
-  }, [])
   return (
     <S.ContentsBox>
       <S.MainBox>
@@ -54,7 +37,7 @@ const MyPageMain = ({ handleClick }: Props) => {
               <span>
                 <em>관심 상품</em>
                 <p onClick={() => handleClick('Like')}>
-                  <strong>{like.length}</strong>
+                  <strong>{wishList.length}</strong>
                 </p>
               </span>
             </div>
@@ -63,7 +46,7 @@ const MyPageMain = ({ handleClick }: Props) => {
               <span>
                 <em>최근 본 상품</em>
                 <p onClick={() => handleClick('LastSee')}>
-                  <strong>2</strong>
+                  <strong>0</strong>
                 </p>
               </span>
             </div>

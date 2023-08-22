@@ -1,4 +1,4 @@
-export interface LikeData {
+export interface WishListData {
   animalCategory: string;
   createdAt: string;
   description: string;
@@ -15,5 +15,5 @@ export interface LikeData {
 
 export interface Props {
   handleClick: (tabName: string) => void;
-  like?: LikeData[] | undefined;
+  wishList?: WishListData[] | undefined;
 };
