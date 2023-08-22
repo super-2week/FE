@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 import { useAppDispatch } from "../store/hook";
 import { cartProductId } from "../store/slice/sendCartSlice";
 
-type DetailObject = [
+type DetailObject = 
   {
     animalCategory:string,
     createdAt:string,
@@ -26,7 +26,7 @@ type DetailObject = [
     storeName?:string,
     wishCount?: number,
   }
-];
+;
 
 const DetailPage = () => {
   const dispatch = useAppDispatch();
@@ -62,13 +62,13 @@ const DetailPage = () => {
     <StDetail>
       <div className="detail_container">
         <div className="top_container">
-          <DetailLeft img={detail[0]?.imageUrl}/>
+          <DetailLeft img={detail?.imageUrl}/>
           <DetailRight
-            animalCategory={detail[0]?.animalCategory}
-            description={detail[0]?.description}
-            price={detail[0]?.price}
-            productName={detail[0]?.productName}
-            stock={detail[0]?.stock}
+            animalCategory={detail?.animalCategory}
+            description={detail?.description}
+            price={detail?.price}
+            productName={detail?.productName}
+            stock={detail?.stock}
           />
         </div>
         <div className="bottom_container">
