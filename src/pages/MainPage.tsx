@@ -6,12 +6,12 @@ const MainPage = () => {
   const user = useSelector((state: RootState) => state.loginuser);
   const signupuser = useSelector((state: RootState) => state.signupuser);
 
-  const { username, profileImage } = user;
+  const { userName, profileImage } = user;
   const { email, detailAddress } = signupuser;
 
   return (
     <div>
-      <h1>Welcome, {username}</h1>
+      <h1>Welcome, {userName}</h1>
       <p>Email: {email || "No email available"}</p>
       <p>Detail Address: {detailAddress || "No detail address available"}</p>
       {profileImage && <img src={profileImage} alt="Profile" />}

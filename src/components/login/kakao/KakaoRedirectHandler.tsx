@@ -37,16 +37,25 @@ const KakaoRedirectHandler = () => {
             console.log(response.kakao_account.email);
             const userData = {
               email: response.kakao_account.email,
-              username: response.properties.nickname,
+              userName: response.properties.nickname,
               profileImage: response.properties.profile_image,
               thumbnailImage: response.properties.thumbnail_image,
             };
-            api
-              .post("", {
+            axios
+              .post("https://pet-commerce.shop/v1/api/kakao", {
                 email: response.kakao_account.email,
+                userName: response.properties.nickname,
               })
               .then((res: any) => {
-                console.log(res);
+                console.log("백엔드데이터", res);
+                if (res.status === 200) {
+                  console.log("나 토큰임", res.headers.authorization);
+                  const token = res.data.token;
+                  localStorage.setItem("accesstoken", token);
+                  navigate("/");
+                } else if (res.status === 202) {
+                  console.log("뭘봐");
+                }
               })
               .catch((error: any) => {
                 console.error("Kakao Auth Error:", error);
@@ -66,3 +75,17 @@ const KakaoRedirectHandler = () => {
 };
 
 export default KakaoRedirectHandler;
+
+// ((res: any) => {
+//   console.log(res);
+//   const { access_token } = res.data;
+//   axios.post(
+//       `https://kapi.kakao.com/v2/user/me`,
+//       {},
+//       {
+//           headers: {
+//               Authorization: `Bearer ${access_token}`,
+//               "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
+//           }
+//       }
+//   )

@@ -8,6 +8,7 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
+  Center,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { successSignUp } from "../../store/slice/authSlice";
@@ -201,18 +202,32 @@ const SignUp: React.FC = () => {
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     event.preventDefault();
+    const formDataToSend = new FormData();
+    formDataToSend.append("email", formData.email);
 
     try {
-      const response = await axios.post("http://localhost:8080/v1/api/users", {
-        email: formData.email,
-      });
-
+      const response = await axios.post(
+        "https://pet-commerce.shop/v1/api/users/emailConfirm",
+        formDataToSend,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(response);
       if (response.status === 200) {
-        console.log("이메일 중복 검사 통과");
+        alert("이메일 중복 검사 통과");
       }
     } catch (error: any) {
-      if (error.response && error.response.status === 404) {
-        console.log(`에러 메시지: ${error.response.data.errorMessage}`);
+      console.error("에러 발생:", error);
+      if (error.response) {
+        const errorCode = error.response.data.errorCode;
+        const errorMessage = error.response.data.errorMessage;
+
+        if (errorCode === "INVALID_LOGIN_INPUT") {
+          alert(errorMessage);
+        }
       } else {
         console.error("중복 확인 요청 에러:", error);
       }
@@ -392,15 +407,15 @@ const SignUp: React.FC = () => {
             onChange={handleChange}
             placeholder="우편번호"
           />
+          <S.ButtonContainer>
+            <S.DuplicateCheckButton
+              type="button"
+              onClick={openModal} // 모달 열기 버튼
+            >
+              주소 검색
+            </S.DuplicateCheckButton>
+          </S.ButtonContainer>
         </S.InputContainer>
-        <S.ButtonContainer>
-          <S.DuplicateCheckButton
-            type="button"
-            onClick={openModal} // 모달 열기 버튼
-          >
-            주소 검색
-          </S.DuplicateCheckButton>
-        </S.ButtonContainer>
         <S.InputContainer>
           <S.StyledLabel htmlFor="checkPassword">도로명주소</S.StyledLabel>
           <S.StyledInput
@@ -443,10 +458,15 @@ const SignUp: React.FC = () => {
       {isModalOpen && (
         <Modal isOpen={isModalOpen} onClose={closeModal}>
           <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>주소 검색</ModalHeader>
+          <ModalContent
+            borderRadius="8px"
+            boxShadow="0 4px 6px rgba(0, 0, 0, 0.1)"
+            bgColor="white"
+            width="500px"
+          >
+            <ModalHeader fontSize="24px">주소 검색</ModalHeader>
             <ModalCloseButton />
-            <ModalBody>
+            <ModalBody width="100%">
               <DaumPostcodeEmbed onComplete={handleComplete} />
             </ModalBody>
           </ModalContent>

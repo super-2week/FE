@@ -87,7 +87,7 @@ const SignIn: React.FC = () => {
   const { Kakao } = window;
   const loginWithKakao = () => {
     console.log(
-      "Redirect URI:",
+      "아!!!리다이랙트 유알아이임:",
       `${process.env.REACT_APP_FRONTEND_BASE_URL}/login/oauth`
     );
     Kakao.Auth.loginForm({
