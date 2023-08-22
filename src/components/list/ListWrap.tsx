@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { useNavigate } from "react-router-dom";
 import { setFromSearch, setsortBy } from "../../store/slice/parameterSilce";
-import { GetSearchData } from "../../apis/main/search.api";
+import { GetSearchData } from "../../apis/list/search.api";
 import { setDataList } from "../../store/slice/listSlice";
-import { Product } from "../main/type";
+import { Product, params } from "../main/type";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 const ListWrap = () => {
@@ -18,49 +18,50 @@ const ListWrap = () => {
   const productCategory = useSelector(
     (state: RootState) => state.productCategory
   );
-  const animalCategory = useSelector(
-    (state: RootState) => state.animalCategory
-  );
+  // const animalCategory = useSelector(
+  //   (state: RootState) => state.animalCategory
+  // );
 
   const itemParameter = useSelector((state: RootState) => state.parameter);
 
   const itemList = useSelector((state: RootState) => state.listData);
 
-  const fetchMoreData = useCallback(async () => {
-    // useCallback으로 감싸줌
-    try {
-      const res = await GetSearchData(
-        itemParameter.animalCategory,
-        itemParameter.productCategory,
-        itemParameter.sortBy,
-        itemParameter.searchWord,
-        itemParameter.pageNumber + 1 // 다음 페이지 요청
-      );
+  // const fetchMoreData = useCallback(async () => {
+  //   console.log("fetchData");
+  //   // useCallback으로 감싸줌
+  //   try {
+  //     const res = await GetSearchData(
+  //       itemParameter.animalCategory,
+  //       itemParameter.productCategory,
+  //       itemParameter.sortBy,
+  //       itemParameter.searchWord,
+  //       itemParameter.pageNumber + 1 // 다음 페이지 요청
+  //     );
 
-      // 데이터가 없을 때 무한 스크롤 중단
-      if (res[0].products.length === 0) {
-        setHasMore(false);
-      } else {
-        // 새로운 데이터를 기존 데이터에 추가
-        dispatch(
-          setDataList({
-            products: [...itemList.products, ...res[0].products],
-            totalLength: res[0].totalLength,
-          })
-        );
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }, [
-    itemParameter.sortBy,
-    dispatch,
-    itemParameter.animalCategory,
-    itemParameter.pageNumber,
-    itemParameter.productCategory,
-    itemParameter.searchWord,
-    itemList.products,
-  ]);
+  //     // 데이터가 없을 때 무한 스크롤 중단
+  //     if (res[0].products.length === 0) {
+  //       setHasMore(false);
+  //     } else {
+  //       // 새로운 데이터를 기존 데이터에 추가
+  //       dispatch(
+  //         setDataList({
+  //           products: [...itemList.products, ...res[0].products],
+  //           totalLength: res[0].totalLength,
+  //         })
+  //       );
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, [
+  //   itemParameter.sortBy,
+  //   dispatch,
+  //   itemParameter.animalCategory,
+  //   itemParameter.pageNumber,
+  //   itemParameter.productCategory,
+  //   itemParameter.searchWord,
+  //   itemList.products,
+  // ]);
 
   useEffect(() => {
     const newURL = `/list/product/${itemParameter.animalCategory}/${itemParameter.productCategory}/price`;
@@ -98,9 +99,9 @@ const ListWrap = () => {
     if (itemList.products.length === 0) {
       return <div>검색결과가 없습니다.</div>;
     } else {
-      console.log(itemList.products);
-      return itemList.products.map((item) => (
-        <li key={item.id}>
+      // console.log(itemList.products);
+      return itemList.products.map((item, index) => (
+        <li key={index}>
           <img src={item.imageUrl} alt={item.imageUrl} />
           <div className="item-meta">
             <div className="title">{item.productName}</div>
@@ -140,38 +141,44 @@ const ListWrap = () => {
     ));
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      console.log(hasMore);
-      try {
-        const res = await GetSearchData(
-          itemParameter.animalCategory,
-          itemParameter.productCategory,
-          itemParameter.sortBy,
-          itemParameter.searchWord,
-          itemParameter.pageNumber !== 0
-            ? itemParameter.pageNumber + 1
-            : (itemParameter.pageNumber = 0)
-        );
+  const fetchData = async () => {
+    // console.log(hasMore); ---------필요
+    try {
+      const res = await GetSearchData(
+        itemParameter.animalCategory,
+        itemParameter.productCategory,
+        itemParameter.sortBy,
+        itemParameter.searchWord,
+        itemParameter.pageNumber !== 0
+          ? itemParameter.pageNumber + 1
+          : (itemParameter.pageNumber = 0)
+      );
 
-        console.log("more response : ", res);
+      // console.log("res : ", res); ------- 필요
 
-        dispatch(
-          setDataList({
-            products: res[0].products,
-            totalLength: res[0].totalLength,
-          })
-        );
+      dispatch(
+        setDataList({
+          products: res[0].products,
+          totalLength: res[0].totalLength,
+        })
+      );
 
-        if (res[0].products.length === 0) {
-          setHasMore(false);
-        }
-      } catch (error) {
-        console.log(error);
+      if (res[0].products.length === 0) {
+        setHasMore(false);
       }
-    };
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // console.log(itemList); -------- 필요
+
+  useEffect(() => {
+    // fetchData();
+    // console.log("함수 돌려"); ----------필요
     fetchData();
   }, [dispatch, itemParameter, hasMore]);
+  // console.log(itemParameter, setHasMore, dispatch);
 
   return (
     <S.ListLayout>
@@ -190,7 +197,7 @@ const ListWrap = () => {
 
           <InfiniteScroll
             dataLength={12}
-            next={fetchMoreData}
+            next={fetchData}
             hasMore={hasMore}
             loader={<h4>Loading...</h4>}
             style={{ overflow: "hidden" }}

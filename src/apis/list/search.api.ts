@@ -18,3 +18,27 @@ export const GetSearchData = async (
     console.error("error!! :", error);
   }
 };
+
+export const GetRelatedSearchData = async (searchWord: string) => {
+  try {
+    console.log("연관검색어");
+    const res = await axios.get(
+      `https://pet-commerce.shop/v1/api/search?searchWord=${searchWord}`
+    );
+    return res.data;
+  } catch (error) {
+    console.error("error!! :", error);
+  }
+};
+
+export const GetTotalSearchData = async (searchWord: string) => {
+  try {
+    console.log("전체검색");
+    const res = await axios.get(
+      `https://pet-commerce.shop/v1/api/total?searchWord=${searchWord}`
+    );
+    return res.data;
+  } catch (error) {
+    console.error("error !! :", error);
+  }
+};

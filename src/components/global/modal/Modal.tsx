@@ -5,7 +5,10 @@ import { BiSearch } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { setModalOpen } from "../../../store/slice/modalSlice";
 import { RootState } from "../../../store/store";
-import { GetSearchData } from "../../../apis/main/search.api";
+import {
+  GetRelatedSearchData,
+  GetSearchData,
+} from "../../../apis/list/search.api";
 import {
   setFromSearch,
   setSearchWord,
@@ -14,25 +17,12 @@ import { useNavigate } from "react-router-dom";
 import { setDataList } from "../../../store/slice/listSlice";
 
 const Modal: React.FC = () => {
-  // 연관검색어
-  const data: string[] = [
-    "아메리카노",
-    "사랑해",
-    "라떼는 말이야",
-    "아빠",
-    "엄마",
-    "아재 개그",
-    "istp",
-    "알고리즘",
-    "article",
-    "배그 망겜",
-    "롤은 질병게임",
-    "병원",
-  ];
-
   const navigate = useNavigate();
 
   const [searchValue, setSearchValue] = useState<string>("");
+
+  const [relatedData, setRelatedData] = useState<[][]>([]);
+  // console.log(relatedData);
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -42,13 +32,40 @@ const Modal: React.FC = () => {
     setSearchValue(e.target.value);
   };
 
+  const clickRelatedData = (e: React.MouseEvent) => {
+    // console.log(e.currentTarget.innerHTML);
+    dispatch(setSearchWord(e.currentTarget.innerHTML));
+
+    const searchUrl = `/list/product/${itemParameter.animalCategory}/${itemParameter.productCategory}/${itemParameter.sortBy}?searchWord=${itemParameter.searchWord}&page=${itemParameter.pageNumber}`;
+
+    dispatch(setFromSearch(true));
+    if (itemParameter.fromSearch) {
+      dispatch(setModalOpen(false));
+      navigate(searchUrl);
+    }
+    // dispatch(setModalOpen(false));
+  };
+
   const filterRelatedSearch = () => {
     if (searchValue === "") {
       return;
     }
-    const filterData = data.filter((el) => el.includes(searchValue));
-    return filterData.map((item, index) => <li key={index}>{item}</li>);
+
+    // 이중 배열을 배열 하나로 바꾸기
+    // console.log(relatedData);
+    if (relatedData.length !== 0) {
+      return relatedData.flat().map((item, index) => (
+        <li key={index} onClick={clickRelatedData}>
+          {item}
+        </li>
+      ));
+    } else if (relatedData.length === 0) {
+      return <li>해당 검색어와 연관된 상품이 없습니다.</li>;
+    } else {
+      return;
+    }
   };
+  // filterRelatedSearch();
 
   const onClickCloseModal = () => {
     dispatch(setModalOpen(false));
@@ -104,6 +121,26 @@ const Modal: React.FC = () => {
       inputRef.current.focus();
     }
   }, [inputRef]);
+
+  useEffect(() => {
+    // console.log(searchValue.length);
+    if (searchValue.length >= 2) {
+      const fetchRelatedData = async () => {
+        // console.log("연관검색어 컴포넌트에서 가져온다");
+        try {
+          const res = await GetRelatedSearchData(searchValue);
+          // console.log(res);
+          setRelatedData(res);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      fetchRelatedData();
+    }
+    if (searchValue.length < 2) {
+      setRelatedData([]);
+    }
+  }, [searchValue]);
 
   return (
     <S.Modal>

@@ -28,3 +28,12 @@ export interface TodayProduct {
   category: string;
   product: TodayProductItem[];
 }
+
+export interface params {
+  animalCategory: string;
+  productCategory: string;
+  sortBy: string;
+  searchWord: string;
+  pageNumber: number;
+  fromSearch?: boolean;
+}
