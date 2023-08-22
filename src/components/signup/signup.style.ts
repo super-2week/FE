@@ -61,6 +61,7 @@ export const StyledInput = styled.input`
 
   &.error,
   .touched{
+
     border: 1px solid red ;
     box-shadow: 0px 0px 2px red;
   }
@@ -83,6 +84,7 @@ export const StyledInputWithCustomStyle = styled(StyledButton)`
   cursor: pointer;
   transition: background-color 0.3s ease;
 `;
+
 
 export const ButtonCustomStyle = styled(StyledButton)`
     width: 20%;
