@@ -1,3 +1,7 @@
+
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
+
 import React from "react";
 import Header from "../components/global/Header";
 import Navi from "../components/global/Navi";
@@ -8,8 +12,17 @@ import TodayItem from "../components/main/swiper/TodayItem";
 import BannerSwiper from "../components/main/swiper/BannerSwiper";
 import TodaySwiper from "../components/main/swiper/TodaySwiper";
 
+
 const MainPage = () => {
+  // useSelector에서 RootState를 사용하여 스토어의 상태를 추출합니다.
+  const user = useSelector((state: RootState) => state.loginuser);
+  const signupuser = useSelector((state: RootState) => state.signupuser);
+
+  const { username, profileImage } = user;
+  const { email, detailAddress } = signupuser;
+
   return (
+
     <>
       <Header />
       <Navi />
@@ -21,6 +34,7 @@ const MainPage = () => {
         {/* <TodayItem /> */}
       </S.MainLayout>
     </>
+
   );
 };
 
