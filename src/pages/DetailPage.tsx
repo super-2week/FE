@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { StDetail } from "./Detail.style";
-import DetailLeft from "../components/global/detailPage/DetailLeft";
-import DetailRight from "../components/global/detailPage/DetailRight";
-import Review from "../components/global/detailPage/Review";
+import DetailLeft from "../components/detailPage/DetailLeft";
+import DetailRight from "../components/detailPage/DetailRight";
+import Review from "../components/detailPage/Review";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import { useAppDispatch } from "../store/hook";
