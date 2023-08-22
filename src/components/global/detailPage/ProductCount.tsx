@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAppDispatch } from '../../../store/hook';
 import { setPlus, setMinus } from '../../../store/slice/totalPriceSlice';
+import { cartQuantity } from '../../../store/slice/sendCartSlice';
 
 type ProductCountProps = {
     price: number,
@@ -31,6 +32,10 @@ const ProductCount = ({ price, stock }: ProductCountProps) => {
             return;
         }
     }
+
+    useEffect(()=>{
+        dispatch(cartQuantity(count));
+    }, [count])
 
     return (
         <div className="product_count_container">

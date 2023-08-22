@@ -5,6 +5,8 @@ import DetailRight from "../components/global/detailPage/DetailRight";
 import Review from "../components/global/detailPage/Review";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import { useAppDispatch } from "../store/hook";
+import { cartProductId } from "../store/slice/sendCartSlice";
 
 type DetailObject = [
   {
@@ -27,17 +29,19 @@ type DetailObject = [
 ];
 
 const DetailPage = () => {
+  const dispatch = useAppDispatch();
 
   const { pathname } = useLocation();
   const productId = pathname.slice(9);
 
   const [detail, setDetail] = useState<DetailObject | undefined>(undefined);
 
-  const loadDetail = () => {
-    axios.get(`https://pet-commerce.shop/v1/api/product/detail/${productId}`)
+  const loadDetail = async() => {
+    await axios.get(`https://pet-commerce.shop/v1/api/product/detail/${productId}`)
       .then(function (res) {
         const data = res.data;
         setDetail(data);
+        dispatch(cartProductId(parseInt(productId)))
       })
       .catch(function (err) {
         console.log(err);
