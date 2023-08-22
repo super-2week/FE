@@ -1,5 +1,17 @@
+
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
+
+import React from "react";
+import Header from "../components/global/Header";
+import Navi from "../components/global/Navi";
+import * as S from "../components/main/main.style";
+import TopItem from "../components/main/TopItem";
+import TopFilter from "../components/main/TopFilter";
+import TodayItem from "../components/main/swiper/TodayItem";
+import BannerSwiper from "../components/main/swiper/BannerSwiper";
+import TodaySwiper from "../components/main/swiper/TodaySwiper";
+
 
 const MainPage = () => {
   // useSelector에서 RootState를 사용하여 스토어의 상태를 추출합니다.
@@ -10,12 +22,19 @@ const MainPage = () => {
   const { email, detailAddress } = signupuser;
 
   return (
-    <div>
-      <h1>Welcome, {username}</h1>
-      <p>Email: {email || "No email available"}</p>
-      <p>Detail Address: {detailAddress || "No detail address available"}</p>
-      {profileImage && <img src={profileImage} alt="Profile" />}
-    </div>
+
+    <>
+      <Header />
+      <Navi />
+      <BannerSwiper />
+      <S.MainLayout>
+        <TopFilter />
+        <TopItem />
+        <TodaySwiper />
+        {/* <TodayItem /> */}
+      </S.MainLayout>
+    </>
+
   );
 };
 

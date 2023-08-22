@@ -23,7 +23,7 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/my" element={<MyPage />} />
         <Route path="/form" element={<PostItemPage />} />
-        <Route path="product/:productId" element={<DetailPage />} />
+        <Route path="/product/:productId" element={<DetailPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
