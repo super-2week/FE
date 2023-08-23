@@ -1,17 +1,29 @@
 import React from 'react';
 import CartDeleteBtn from './CartDeleteBtn';
 
-const CartProductBox = () => {
+type CartProductBoxProps = {
+    item:{
+        cartId: number,
+        imageUrl: string,
+        price: number,
+        productId: number,
+        productName: string,
+        quantity: number,
+        total: number,
+    }
+}
+
+const CartProductBox = ( {item} : CartProductBoxProps) => {
   return (
       <div className="product_box_container">
           <div className="product_img_wrapper">
-              <img src="" alt="" />
+              <img src={item.imageUrl} alt="상품이미지" />
           </div>
           <div className="product_title_wrapper">
-              <span>쳇바퀴</span>
+              <span>{item.productName}</span>
           </div>
           <div className="product_price_wrapper">
-              <span>15,000원</span>
+              <span>{item.price}</span>
           </div>
           <div className="product_count_wrapper">
               <div className="count_btn_container">
@@ -19,7 +31,7 @@ const CartProductBox = () => {
                       <span>−</span>
                   </div>
                   <div className="count_num_wrapper">
-                      <span>1</span>
+                      <span>{item.quantity}</span>
                   </div>
                   <div className="count_plus_wrapper">
                       <span>+</span>
@@ -27,9 +39,9 @@ const CartProductBox = () => {
               </div>
           </div>
           <div className="product_totalprice_wrapper">
-              <span>15,000원</span>
+              <span>{item.total}</span>
           </div>
-          <CartDeleteBtn/>
+          <CartDeleteBtn cartId={item.cartId}/>
       </div>
   )
 }
