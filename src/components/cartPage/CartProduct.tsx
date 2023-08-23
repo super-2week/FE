@@ -2,12 +2,30 @@ import React from 'react';
 import CartProductTitle from './CartProductTitle';
 import CartProductBox from './CartProductBox';
 
-const CartProduct = () => {
+type CartProductBoxProps = {
+    cartId: number,
+    imageUrl: string,
+    price: number,
+    productId: number,
+    productName: string,
+    quantity: number,
+    total: number,
+}
+
+type listProps = {
+    list: CartProductBoxProps[] | undefined;
+}
+
+const CartProduct = ({list}: listProps) => {
 
     return (
         <div className="cart_product_container">
             <CartProductTitle/>
-            <CartProductBox/>
+            {list?.map((item: CartProductBoxProps, idx: number) => {
+                return (
+                    <CartProductBox key={idx} item={item}/>
+                )
+            })}
         </div>
     )
 }

@@ -1,6 +1,10 @@
 import React from 'react';
 
-const CartDeleteBtn = () => {
+type DeleteProps = {
+    cartId: number
+}
+
+const CartDeleteBtn = ({ cartId }: DeleteProps) => {
     return (
         <div className="product_delete_wrapper">
             <button>x</button>
