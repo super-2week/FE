@@ -11,9 +11,10 @@ type CartProductBoxProps = {
         quantity: number,
         total: number,
     }
+    onDeleteCart: (cartId: number) => void;
 }
 
-const CartProductBox = ( {item} : CartProductBoxProps) => {
+const CartProductBox = ({ item, onDeleteCart } : CartProductBoxProps) => {
   return (
       <div className="product_box_container">
           <div className="product_img_wrapper">
@@ -41,7 +42,7 @@ const CartProductBox = ( {item} : CartProductBoxProps) => {
           <div className="product_totalprice_wrapper">
               <span>{item.total}</span>
           </div>
-          <CartDeleteBtn cartId={item.cartId}/>
+          <CartDeleteBtn cartId={item.cartId} onDeleteCart={onDeleteCart} />
       </div>
   )
 }

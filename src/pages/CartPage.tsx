@@ -4,7 +4,7 @@ import CartProduct from "../components/cartPage/CartProduct";
 import CartTotalPrice from "../components/cartPage/CartTotalPrice";
 import { Loadcart } from "../apis/cart/getcart.api";
 
-type CartList = [{
+type CartList = {
   cartId : number,
   imageUrl : string,
   price: number,
@@ -12,22 +12,25 @@ type CartList = [{
   productName : string,
   quantity: number,
   total: number,
-}]
+}
 
 const CartPage = () => {
 
-  const [list,setList] = useState<CartList>();
+  const [list,setList] = useState<CartList[]>([]);
 
   const getList = () => {
     const token = localStorage.getItem("accesstoken");
-    Loadcart(1, 4, token, setList);
+    Loadcart(0, 4, token, setList);
   }
-
-  console.log('list',list)
 
   useEffect(() => {
     getList();
   }, [])
+
+  const handleDeleteCart = (cartId: number) => {
+    const updatedList = list.filter(item => item.cartId !== cartId);
+    setList(updatedList);
+  }
 
   return (
     <StCart>
@@ -35,7 +38,7 @@ const CartPage = () => {
         <div className="cart_title_wrapper">
           <h1>장바구니</h1>
         </div>
-        <CartProduct list={list}/>
+        <CartProduct list={list} onDeleteCart={handleDeleteCart} />
         <CartTotalPrice />
       </div>
     </StCart>

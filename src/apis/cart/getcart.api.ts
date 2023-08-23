@@ -1,5 +1,6 @@
 import axios from "axios";
-type CartList = [
+
+type CartList = 
   {
     cartId: number;
     imageUrl: string;
@@ -9,12 +10,12 @@ type CartList = [
     quantity: number;
     total: number;
   }
-];
+;
 export const Loadcart = async (
   cursor: number,
   pagesize: number,
   token: string | null,
-  setList: (value: React.SetStateAction<CartList | undefined>) => void
+  setList: (value: React.SetStateAction<CartList[]>) => void
 ) => {
   try {
     console.log(token);
@@ -23,7 +24,9 @@ export const Loadcart = async (
       { headers: { Authorization: `Bearer ${token}` } }
     );
     const data = res.data.content;
+    console.log("data", data);
     setList(data);
+    
   } catch (error) {
     console.error("error!! :", error);
     throw error;

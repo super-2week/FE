@@ -13,17 +13,18 @@ type CartProductBoxProps = {
 }
 
 type listProps = {
-    list: CartProductBoxProps[] | undefined;
+    list: CartProductBoxProps[];
+    onDeleteCart: (cartId: number) => void;
 }
 
-const CartProduct = ({list}: listProps) => {
+const CartProduct = ({ list, onDeleteCart }: listProps) => {
 
     return (
         <div className="cart_product_container">
             <CartProductTitle/>
             {list?.map((item: CartProductBoxProps, idx: number) => {
                 return (
-                    <CartProductBox key={idx} item={item}/>
+                    <CartProductBox key={idx} item={item} onDeleteCart={onDeleteCart} />
                 )
             })}
         </div>
