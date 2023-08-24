@@ -8,6 +8,9 @@ type ProductTitleProps = {
 };
 
 const ProductTitle = ({ animalCategory, description, price, productName }: ProductTitleProps) => {
+
+    console.log(animalCategory, description, price, productName);
+    
     return (
         <div className="product_title_container">
             <div className="category_wrapper">
