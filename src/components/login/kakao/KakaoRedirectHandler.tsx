@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import axios from "axios";
-import api from "../../../api/axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { successSocialLogin } from "../../../store/slice/userSlice";
@@ -42,19 +41,26 @@ const KakaoRedirectHandler = () => {
               thumbnailImage: response.properties.thumbnail_image,
             };
             axios
-              .post("https://pet-commerce.shop/v1/api/kakao", {
-                email: response.kakao_account.email,
-                userName: response.properties.nickname,
-              })
+              .post(
+                "https://pet-commerce.shop/v1/api/kakao",
+                {
+                  email: response.kakao_account.email,
+                  userName: response.properties.nickname,
+                },
+                {
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                }
+              )
               .then((res: any) => {
-                console.log("백엔드데이터", res);
+                console.log(res.data.token);
                 if (res.status === 200) {
-                  console.log("나 토큰임", res.headers.authorization);
+                  console.log(res);
                   const token = res.data.token;
                   localStorage.setItem("accesstoken", token);
-                  navigate("/");
                 } else if (res.status === 202) {
-                  console.log("뭘봐");
+                  console.log(res);
                 }
               })
               .catch((error: any) => {
@@ -71,21 +77,7 @@ const KakaoRedirectHandler = () => {
       });
   }, []);
 
-  return <div>로그인이 성공적으로 완료되었습니다.</div>;
+  return <></>;
 };
 
 export default KakaoRedirectHandler;
-
-// ((res: any) => {
-//   console.log(res);
-//   const { access_token } = res.data;
-//   axios.post(
-//       `https://kapi.kakao.com/v2/user/me`,
-//       {},
-//       {
-//           headers: {
-//               Authorization: `Bearer ${access_token}`,
-//               "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
-//           }
-//       }
-//   )

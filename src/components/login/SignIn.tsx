@@ -7,7 +7,6 @@ import { useDispatch } from "react-redux";
 import { login } from "../../store/slice/userSlice";
 import axios from "axios";
 
-
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,7 +15,6 @@ const SignIn: React.FC = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
 
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -39,7 +37,6 @@ const SignIn: React.FC = () => {
       setPasswordError("비밀번호 형식이 올바르지 않습니다.");
       return;
     }
-
 
     try {
       const response = await axios.post(
@@ -66,7 +63,6 @@ const SignIn: React.FC = () => {
         }
       }
     }
-
   };
 
   const validateEmail = (email: string) => {
@@ -89,7 +85,6 @@ const SignIn: React.FC = () => {
       : "none",
   });
 
-
   //소셜 로그인
   const { Kakao } = window;
   const loginWithKakao = () => {
@@ -102,7 +97,9 @@ const SignIn: React.FC = () => {
       scope: "profile_nickname,profile_image,account_email",
     });
   };
-
+  const handleSignUp = () => {
+    navigate("/signup");
+  };
   return (
     <S.CenteredContainer>
       <S.Form>
@@ -130,18 +127,18 @@ const SignIn: React.FC = () => {
             value={password}
             onChange={handlePasswordChange}
             autoComplete="off"
-            style={getInputStyles(!!passwordError, validatePassword(password))} //passwordError앞에 !! 붙혀줘서 불리언값으로전달 문자열 전달x
+            style={getInputStyles(!!passwordError, validatePassword(password))}
           />
           {passwordError && <S.ErrorText>{passwordError}</S.ErrorText>}
         </S.InputContainer>
         <S.ButtonContainer>
-
           <S.SocialButtons onClick={loginWithKakao}>
             <img src={kakaologo} alt="login with kakao" />
-
           </S.SocialButtons>
           <S.StyledButton onClick={handleLogin}>로그인</S.StyledButton>
-          <S.StyledInputWithCustomStyle>회원가입</S.StyledInputWithCustomStyle>
+          <S.StyledInputWithCustomStyle onClick={handleSignUp}>
+            회원가입
+          </S.StyledInputWithCustomStyle>
         </S.ButtonContainer>
       </S.Form>
     </S.CenteredContainer>

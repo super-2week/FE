@@ -8,7 +8,6 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
-  Center,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { successSignUp } from "../../store/slice/authSlice";
@@ -59,7 +58,7 @@ const SignUp: React.FC = () => {
     address: "",
     detailAddress: "",
   });
-
+  const [isButtonEnabled, setButtonEnabled] = useState(false);
   //주소 모달여닫기
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -162,7 +161,6 @@ const SignUp: React.FC = () => {
           phoneNumber: formData.phoneNumber,
           email: formData.email,
           password: formData.password,
-          checkPassword: formData.checkPassword, //이거 뺴기
           address: formData.address,
           detailAddress: formData.detailAddress,
         };
@@ -202,35 +200,32 @@ const SignUp: React.FC = () => {
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     event.preventDefault();
-    const formDataToSend = new FormData();
-    formDataToSend.append("email", formData.email);
 
+    if (!formData.email.trim()) {
+      alert("이메일을 입력해주세요!");
+      return;
+    }
+    const requestData = {
+      email: formData.email,
+    };
     try {
       const response = await axios.post(
         "https://pet-commerce.shop/v1/api/users/emailConfirm",
-        formDataToSend,
+        requestData,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
+            "Content-Type": "application/json",
           },
         }
       );
       console.log(response);
       if (response.status === 200) {
-        alert("이메일 중복 검사 통과");
+        setButtonEnabled(true);
+        alert("사용 가능한 이메일입니다.");
       }
     } catch (error: any) {
-      console.error("에러 발생:", error);
-      if (error.response) {
-        const errorCode = error.response.data.errorCode;
-        const errorMessage = error.response.data.errorMessage;
-
-        if (errorCode === "INVALID_LOGIN_INPUT") {
-          alert(errorMessage);
-        }
-      } else {
-        console.error("중복 확인 요청 에러:", error);
-      }
+      alert("이메일 중복");
+      console.error("에러:", error);
     }
   };
 
@@ -258,7 +253,7 @@ const SignUp: React.FC = () => {
         if (!value) {
           error = "";
         } else if (
-          !/^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/.test(
+          !/^[A-Za-z0-9]([-_.]?[A-Za-z0-9_])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*.[A-Za-z]{2,3}$/.test(
             value
           )
         ) {
@@ -448,7 +443,9 @@ const SignUp: React.FC = () => {
           <S.StyledInputWithCustomStyle
             type="submit"
             onClick={handleSubmit}
-            disabled={!isSubmitButtonEnabled || !isAnyFieldFilled}
+            disabled={
+              !isSubmitButtonEnabled || !isAnyFieldFilled || !isButtonEnabled
+            }
           >
             회원가입
           </S.StyledInputWithCustomStyle>
@@ -457,15 +454,25 @@ const SignUp: React.FC = () => {
 
       {isModalOpen && (
         <Modal isOpen={isModalOpen} onClose={closeModal}>
-          <ModalOverlay />
+          <ModalOverlay backgroundColor="rgba(0, 0, 0, 0.5)" />
           <ModalContent
-            borderRadius="8px"
-            boxShadow="0 4px 6px rgba(0, 0, 0, 0.1)"
+            padding="40px"
             bgColor="white"
             width="500px"
+            position="fixed"
+            top="33%"
+            left="40%"
           >
             <ModalHeader fontSize="24px">주소 검색</ModalHeader>
-            <ModalCloseButton />
+            <ModalCloseButton
+              width="20%"
+              color="#007bff"
+              border="2px solid #007bff"
+              bgColor="white"
+              borderRadius="10px"
+              padding="10px"
+              margin="10px 0"
+            />
             <ModalBody width="100%">
               <DaumPostcodeEmbed onComplete={handleComplete} />
             </ModalBody>
