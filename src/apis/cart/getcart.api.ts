@@ -1,16 +1,14 @@
 import axios from "axios";
 
-type CartList = 
-  {
-    cartId: number;
-    imageUrl: string;
-    price: number;
-    productId: number;
-    productName: string;
-    quantity: number;
-    total: number;
-  }
-;
+type CartList = {
+  cartId: number;
+  imageUrl: string;
+  price: number;
+  productId: number;
+  productName: string;
+  quantity: number;
+  total: number;
+};
 export const Loadcart = async (
   cursor: number,
   pagesize: number,
@@ -26,7 +24,6 @@ export const Loadcart = async (
     const data = res.data.content;
     console.log("data", data);
     setList(data);
-    
   } catch (error) {
     console.error("error!! :", error);
     throw error;
