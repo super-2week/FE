@@ -14,6 +14,7 @@ import userReducer from "../store/slice/userSlice";
 import authSlice from "../store/slice/authSlice";
 
 import sendCardReducer from "./slice/sendCartSlice";
+import accessTokenSlice from "./slice/accessTokenSlice";
 
 const store = configureStore({
   reducer: {
@@ -28,6 +29,7 @@ const store = configureStore({
     parameter: parameterSlice,
     listData: listSlice,
     sendCart: sendCardReducer,
+    accessToken: accessTokenSlice,
   },
 });
 

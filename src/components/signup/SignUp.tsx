@@ -440,6 +440,9 @@ const SignUp: React.FC = () => {
         )}
 
         <S.ButtonContainer>
+          <div className="direct-login" onClick={() => navigate("/login")}>
+            로그인하러 가기
+          </div>
           <S.StyledInputWithCustomStyle
             type="submit"
             onClick={handleSubmit}
