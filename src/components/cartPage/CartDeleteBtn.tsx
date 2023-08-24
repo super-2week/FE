@@ -9,7 +9,6 @@ type DeleteProps = {
 const CartDeleteBtn = ({ cartId, onDeleteCart }: DeleteProps) => {
 
     const token = localStorage.getItem("accesstoken");
-    console.log('test1', token)
 
     const deleteCarts = () => {
         Deletecart(cartId, token);
