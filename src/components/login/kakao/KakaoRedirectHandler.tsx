@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import axios from "axios";
-import api from "../../../api/axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { successSocialLogin } from "../../../store/slice/userSlice";
@@ -37,16 +36,32 @@ const KakaoRedirectHandler = () => {
             console.log(response.kakao_account.email);
             const userData = {
               email: response.kakao_account.email,
-              username: response.properties.nickname,
+              userName: response.properties.nickname,
               profileImage: response.properties.profile_image,
               thumbnailImage: response.properties.thumbnail_image,
             };
-            api
-              .post("", {
-                email: response.kakao_account.email,
-              })
+            axios
+              .post(
+                "https://pet-commerce.shop/v1/api/kakao",
+                {
+                  email: response.kakao_account.email,
+                  userName: response.properties.nickname,
+                },
+                {
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                }
+              )
               .then((res: any) => {
-                console.log(res);
+                console.log(res.data.token);
+                if (res.status === 200) {
+                  console.log(res);
+                  const token = res.data.token;
+                  localStorage.setItem("accesstoken", token);
+                } else if (res.status === 202) {
+                  console.log(res);
+                }
               })
               .catch((error: any) => {
                 console.error("Kakao Auth Error:", error);
@@ -62,7 +77,7 @@ const KakaoRedirectHandler = () => {
       });
   }, []);
 
-  return <div>로그인이 성공적으로 완료되었습니다.</div>;
+  return <></>;
 };
 
 export default KakaoRedirectHandler;
