@@ -190,6 +190,7 @@ export const Modal = styled.div`
         height: 40px;
         color: #fff;
         font-size: 18px;
+        cursor: pointer;
       }
     }
   }

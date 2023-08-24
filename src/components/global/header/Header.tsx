@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 import { setModalOpen } from "../../../store/slice/modalSlice";
 import logoImg from "../../../asset/logo.svg";
+import { setSearchWord } from "../../../store/slice/parameterSilce";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -16,8 +17,16 @@ const Header = () => {
 
   const dispatch = useDispatch();
 
+  const searchWord = useSelector(
+    (state: RootState) => state.parameter.searchWord
+  );
+  // console.log(searchWord);
+
   const openSearchModal = () => {
     dispatch(setModalOpen(true));
+    if (searchWord !== "") {
+      dispatch(setSearchWord(searchWord));
+    }
   };
 
   return (

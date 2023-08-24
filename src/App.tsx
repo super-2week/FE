@@ -32,6 +32,7 @@ function App() {
           path="/list/product/:animalCategory/:productCategory/:sortBy"
           element={<ListPage />}
         />
+        <Route path="/list/product/total/:searchWord" element={<ListPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
