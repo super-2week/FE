@@ -39,6 +39,11 @@ export const TopFilter = styled.div`
         transform: scale(1.05);
       }
     }
+    .active {
+      background-color: #fff;
+      border: 1px solid var(--main-color);
+      color: var(--main-color);
+    }
   }
 `;
 
@@ -114,11 +119,26 @@ export const TopItem = styled.div`
           background-color: #ddd;
           margin: 15px 0;
         }
-        span {
+        .meta {
           display: flex;
-          justify-content: end;
-          font-size: 17px;
-          padding-bottom: 3px;
+          justify-content: space-between;
+          align-items: center;
+          .like {
+            svg {
+              width: 25px;
+              height: 25px;
+              cursor: pointer;
+            }
+            .full-heart {
+              fill: red;
+            }
+          }
+          span {
+            display: flex;
+            justify-content: end;
+            font-size: 17px;
+            padding-bottom: 3px;
+          }
         }
       }
       &:hover {
@@ -269,6 +289,7 @@ export const GridItemImg = styled.div<{ isRight?: boolean }>`
       width: 80%;
       line-height: 25px;
       margin-bottom: 100px;
+      text-align: center;
     }
     button {
       color: #fff;
