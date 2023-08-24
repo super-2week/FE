@@ -58,7 +58,7 @@ const SignUp: React.FC = () => {
     address: "",
     detailAddress: "",
   });
-
+  const [isButtonEnabled, setButtonEnabled] = useState(false);
   //주소 모달여닫기
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -161,7 +161,6 @@ const SignUp: React.FC = () => {
           phoneNumber: formData.phoneNumber,
           email: formData.email,
           password: formData.password,
-          checkPassword: formData.checkPassword, //이거 뺴기
           address: formData.address,
           detailAddress: formData.detailAddress,
         };
@@ -202,23 +201,31 @@ const SignUp: React.FC = () => {
   ) => {
     event.preventDefault();
 
+    if (!formData.email.trim()) {
+      alert("이메일을 입력해주세요!");
+      return;
+    }
+    const requestData = {
+      email: formData.email,
+    };
     try {
       const response = await axios.post(
-        "https://pet-commerce.shop/v1/api/users",
+        "https://pet-commerce.shop/v1/api/users/emailConfirm",
+        requestData,
         {
-          email: formData.email,
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
       );
-
+      console.log(response);
       if (response.status === 200) {
-        console.log("이메일 중복 검사 통과");
+        setButtonEnabled(true);
+        alert("사용 가능한 이메일입니다.");
       }
     } catch (error: any) {
-      if (error.response && error.response.status === 404) {
-        console.log(`에러 메시지: ${error.response.data.errorMessage}`);
-      } else {
-        console.error("중복 확인 요청 에러:", error);
-      }
+      alert("이메일 중복");
+      console.error("에러:", error);
     }
   };
 
@@ -246,7 +253,7 @@ const SignUp: React.FC = () => {
         if (!value) {
           error = "";
         } else if (
-          !/^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/.test(
+          !/^[A-Za-z0-9]([-_.]?[A-Za-z0-9_])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*.[A-Za-z]{2,3}$/.test(
             value
           )
         ) {
@@ -395,15 +402,15 @@ const SignUp: React.FC = () => {
             onChange={handleChange}
             placeholder="우편번호"
           />
+          <S.ButtonContainer>
+            <S.DuplicateCheckButton
+              type="button"
+              onClick={openModal} // 모달 열기 버튼
+            >
+              주소 검색
+            </S.DuplicateCheckButton>
+          </S.ButtonContainer>
         </S.InputContainer>
-        <S.ButtonContainer>
-          <S.DuplicateCheckButton
-            type="button"
-            onClick={openModal} // 모달 열기 버튼
-          >
-            주소 검색
-          </S.DuplicateCheckButton>
-        </S.ButtonContainer>
         <S.InputContainer>
           <S.StyledLabel htmlFor="checkPassword">도로명주소</S.StyledLabel>
           <S.StyledInput
@@ -436,7 +443,9 @@ const SignUp: React.FC = () => {
           <S.StyledInputWithCustomStyle
             type="submit"
             onClick={handleSubmit}
-            disabled={!isSubmitButtonEnabled || !isAnyFieldFilled}
+            disabled={
+              !isSubmitButtonEnabled || !isAnyFieldFilled || !isButtonEnabled
+            }
           >
             회원가입
           </S.StyledInputWithCustomStyle>
@@ -445,11 +454,26 @@ const SignUp: React.FC = () => {
 
       {isModalOpen && (
         <Modal isOpen={isModalOpen} onClose={closeModal}>
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>주소 검색</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>
+          <ModalOverlay backgroundColor="rgba(0, 0, 0, 0.5)" />
+          <ModalContent
+            padding="40px"
+            bgColor="white"
+            width="500px"
+            position="fixed"
+            top="33%"
+            left="40%"
+          >
+            <ModalHeader fontSize="24px">주소 검색</ModalHeader>
+            <ModalCloseButton
+              width="20%"
+              color="#007bff"
+              border="2px solid #007bff"
+              bgColor="white"
+              borderRadius="10px"
+              padding="10px"
+              margin="10px 0"
+            />
+            <ModalBody width="100%">
               <DaumPostcodeEmbed onComplete={handleComplete} />
             </ModalBody>
           </ModalContent>

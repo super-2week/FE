@@ -1,14 +1,13 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
-import { useAppSelector } from '../../../store/hook';
+import { useAppSelector } from '../../store/hook';
 
 const BuyBtns = () => {
 
+    const token = localStorage.getItem("accesstoken");
+
     const selectCard = useAppSelector((state) => state.sendCart);
     console.log(selectCard);
-
-    const token = localStorage.getItem("accesstoken");
-    // console.log('token', token)
 
     const cardBtnHandle = async() => {
         await axios.post('https://pet-commerce.shop/v1/api/carts',{

@@ -2,9 +2,9 @@ import { Link } from 'react-router-dom';
 
 import * as S from './MyPage.style';
 import { useState } from 'react';
-import { HandleViewProps } from './type';
+import { Props } from './type';
 
-const MyPageEditUser = ({ handleClick }: HandleViewProps) => {
+const MyPageEditUser = ({ handleClick }: Props) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleShow = () => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useAppDispatch } from '../../../store/hook';
-import { setPlus, setMinus } from '../../../store/slice/totalPriceSlice';
-import { cartQuantity } from '../../../store/slice/sendCartSlice';
+import { useAppDispatch } from '../../store/hook';
+import { setPlus, setMinus } from '../../store/slice/totalPriceSlice';
+import { cartQuantity } from '../../store/slice/sendCartSlice';
 
 type ProductCountProps = {
     price: number,

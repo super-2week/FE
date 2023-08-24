@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom';
-
 import * as S from './MyPage.style';
+import { GetOrderList } from './api/getApi';
 
 const MyPageOrderDetail = () => {
+  const order = GetOrderList();
+  
   return (
     <S.OrderBox>
       <S.TitleBox>
@@ -12,7 +13,7 @@ const MyPageOrderDetail = () => {
       <S.LastSeeList>
         <div>
           <S.OrderListNum>
-            거래목록 <strong>0</strong> 건
+            거래목록 <strong>{order.length}</strong> 건
           </S.OrderListNum>
 
           <S.OrderTable>
@@ -38,25 +39,27 @@ const MyPageOrderDetail = () => {
               <tbody>
                 <tr>
                   {/* 거래 내역이 없을 때 */}
-                  {/* <td colSpan={6}>
-                    <p className='no_data'>거래내역이 없습니다.</p>
-                  </td> */}
-
-                  {/* 거래 내역이 있을 때 */}
-                  <th>2023.08.17/20011111</th>
-                  <th>상품입니다.</th>
-                  <th>20,000,000원</th>
-                  <th>2</th>
-                  <th>결제 확인</th>
+                  {order.length === 0 && (
+                    <td colSpan={6}>
+                      <p className='no_data'>거래내역이 없습니다.</p>
+                    </td>
+                  )}
                 </tr>
 
-                <tr>
-                <th>2023.08.17/20011111</th>
-                  <th>상품입니다.</th>
-                  <th>20,000,000원</th>
-                  <th>2</th>
-                  <th>결제 확인</th>
-                </tr>
+                {/* 거래 내역이 있을 때 */}
+                {order?.length && (
+                  <tr>
+                    {order.map((item) => (
+                      <>
+                        <th>2023.08.17/20011111</th>
+                        <th>상품입니다.</th>
+                        <th>20,000,000원</th>
+                        <th>2</th>
+                        <th>결제 확인</th>
+                      </>
+                    ))}
+                  </tr>
+                )}
               </tbody>
             </table>
           </S.OrderTable>
