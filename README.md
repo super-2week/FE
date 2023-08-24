@@ -133,7 +133,7 @@
 
 - 주석은 /\*\* \*/ 사용(마우스 커서만 대도 알 수 있게)
 - .env, api, key는 무조건 대문자로만
-- 함수명은 camelCase
+- 함수명은 camelCase.
 - 컴포넌트, 생성자 함수, Class는 PascalCase
 
 #### 커밋 컨벤션
