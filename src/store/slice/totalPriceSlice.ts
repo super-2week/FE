@@ -7,10 +7,11 @@ interface totalPriceType {
 
 const initialState: totalPriceType = {
   count: 1,
+
 };
 
 const totalPriceSlice = createSlice({
-  name: "myPage",
+  name: "totalPrice",
   initialState: initialState,
   reducers: {
     setPlus: (state: totalPriceType, action: PayloadAction<number>) => {

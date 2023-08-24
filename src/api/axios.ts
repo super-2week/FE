@@ -1,9 +1,11 @@
-import axios from 'axios';
+import axios from "axios";
 
-const BASE_URL = process.env.REACT_APP_BASE_URL;
-
-const instance = axios.create({
-  baseURL: BASE_URL
+const api = axios.create({
+  baseURL: process.env.REACT_APP_SIGNUP_BACKEND_BASE_URL,
+  withCredentials: true,
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
+export default api;
 
-export default instance;

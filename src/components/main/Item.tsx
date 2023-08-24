@@ -1,16 +1,25 @@
 import React from "react";
-import itemImg from "../../asset/item5.jpg";
+import { Product } from "./type";
+import { AiFillHeart } from "react-icons/ai";
 
-const Item = () => {
+const Item: React.FC<Product> = (item) => {
+  const checkIsLiked = (item: Product) => {
+    return item.liked ? (
+      <AiFillHeart className="full-heart" />
+    ) : (
+      <AiFillHeart className="heart" />
+    );
+  };
   return (
     <li>
-      <img src={itemImg} alt="" />
+      <img src={item.imageUrl} alt="" />
       <div className="item-meta">
-        <div className="title">
-          쁘띠 댕댕이 반려동물 매트 고양이 개매트 반려동물
-        </div>
+        <div className="title">{item.productName}</div>
         <div className="division"></div>
-        <span>32,400원</span>
+        <div className="meta">
+          <div className="like">{checkIsLiked(item)}</div>
+          <span>{item.price}원</span>
+        </div>
       </div>
     </li>
   );
