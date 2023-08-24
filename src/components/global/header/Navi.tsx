@@ -29,13 +29,15 @@ const Navi: React.FC = () => {
   const animalCategory = useSelector(
     (state: RootState) => state.animalCategory.category
   );
+  // console.log("동물 카테고리 :", animalCategory);
   const productCategory = useSelector(
     (state: RootState) => state.productCategory.category
   );
 
-  const [activeState, setActiveState] = useState<string>("");
+  const [activeState, setActiveState] = useState<string>("dog");
 
   const onClickNavi = (id: string, e: React.MouseEvent<HTMLElement>) => {
+    console.log(id);
     setActiveState(id);
     dispatch(setAnimalCategory(id));
     dispatch(setItemAnimalCategory(id)); // itemSlice
@@ -43,6 +45,7 @@ const Navi: React.FC = () => {
     dispatch(setFromSearch(false));
     dispatch(setSearchWord(""));
   };
+  // console.log(animalCategory, activeState);
 
   const [nowLocation, setNowLocation] = useState<boolean>(false);
 
@@ -58,7 +61,7 @@ const Navi: React.FC = () => {
       try {
         const res = await GetAnimalCategory();
         dispatch(setAnimalCategories(res));
-        setActiveState(res[0]?.id);
+        // setActiveState(res[0]?.id);
         dispatch(setProductes(res));
       } catch (error) {
         console.error(error);
@@ -75,6 +78,7 @@ const Navi: React.FC = () => {
         naviItem={naviItem}
         activeState={activeState}
         onClickNavi={onClickNavi}
+        category={animalCategory}
       />
     ));
   };

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import BuyBtns from './BuyBtns';
 import { useAppSelector } from '../../store/hook';
 import { RootState } from '../../store/store';
+import BuyBtns from './BuyBtns';
 
 type ProductTotalPriceProps = {
     price: number

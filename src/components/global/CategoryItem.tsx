@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAppDispatch } from "../../store/hook";
 import {
   setProductCategory,
@@ -16,6 +16,10 @@ import {
   setItemProductCategory,
   setSearchWord,
 } from "../../store/slice/parameterSilce";
+import { GetSearchData } from "../../apis/list/search.api";
+import { setDataList } from "../../store/slice/listSlice";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 interface CategoryItemProps {
   productCategory: {
@@ -28,17 +32,50 @@ interface CategoryItemProps {
 const CategoryItem: React.FC<CategoryItemProps> = ({ productCategory }) => {
   const dispatch = useAppDispatch();
 
+  const itemParameter = useSelector((state: RootState) => state.parameter);
+
   const choseProductClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     const value = e.currentTarget.querySelector("span")?.textContent;
-    // console.log(value);
     const label = e.currentTarget.id;
-    // console.log(label);
     dispatch(setProductCategory(label));
     dispatch(setProductlabel(value));
     dispatch(setItemProductCategory(label));
     dispatch(setFromSearch(false));
     dispatch(setSearchWord(""));
   };
+
+  const fetchData = async () => {
+    try {
+      const res = await GetSearchData(
+        itemParameter.animalCategory,
+        itemParameter.productCategory,
+        itemParameter.sortBy,
+        itemParameter.searchWord,
+        itemParameter.pageNumber
+      );
+      // console.log("category눌럿을때 :", res);
+      dispatch(
+        setDataList({
+          products: res[0].products,
+          totalLength: res[0].totalLength,
+        })
+      );
+      // console.log(res[0].totalLength);
+      if (res[0].totalLength <= 32) {
+        // console.log("적어요");
+      } else {
+        // console.log("많아요");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (itemParameter.fromSearch === false) {
+      fetchData();
+    }
+  }, [itemParameter]);
 
   const getProductCategotyIcon = (category: string) => {
     // console.log(category);

@@ -11,6 +11,7 @@ interface NaviItemProps {
     id: string;
     label: string;
   };
+  category: string;
   activeState: string;
   onClickNavi: (id: string, e: React.MouseEvent<HTMLElement>) => void;
 }
@@ -19,7 +20,11 @@ const NaviItem: React.FC<NaviItemProps> = ({
   naviItem,
   activeState,
   onClickNavi,
+  category,
 }) => {
+  // console.log(category);
+  // console.log(activeState);
+  // console.log("naviItem :", naviItem);
   const [isHovered, setIsHovered] = useState<boolean>(false);
 
   const handleMouseEnter = () => {
@@ -31,6 +36,7 @@ const NaviItem: React.FC<NaviItemProps> = ({
   };
 
   const checkCategory = (category: string) => {
+    // console.log(category);
     switch (category) {
       case "dog":
         return isHovered ? bdog : wdog;

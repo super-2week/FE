@@ -1,6 +1,6 @@
-import axios from 'axios';
-import React, { useEffect } from 'react';
-import { useAppSelector } from '../../store/hook';
+import axios from "axios";
+import { useAppSelector } from "../../store/hook";
+import React from "react";
 
 const BuyBtns = () => {
 
@@ -9,9 +9,12 @@ const BuyBtns = () => {
     const selectCard = useAppSelector((state) => state.sendCart);
     console.log(selectCard);
 
-    const cardBtnHandle = async() => {
-        await axios.post('https://pet-commerce.shop/v1/api/carts',{
-            ...selectCard
+  const cardBtnHandle = async () => {
+    await axios
+      .post(
+        "https://pet-commerce.shop/v1/api/carts",
+        {
+          ...selectCard,
         },
         {
             headers: { Authorization: `Bearer ${token}` },
@@ -24,12 +27,14 @@ const BuyBtns = () => {
         })
     }
 
-    return (
-        <div className="buybtn_container">
-            <button className="card_btn" onClick={cardBtnHandle}>장바구니 담기</button>
-            <button className="buy_btn">바로 구매하기</button>
-        </div>
-    )
-}
+  return (
+    <div className="buybtn_container">
+      <button className="card_btn" onClick={cardBtnHandle}>
+        장바구니 담기
+      </button>
+      <button className="buy_btn">바로 구매하기</button>
+    </div>
+  );
+};
 
 export default BuyBtns;

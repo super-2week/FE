@@ -1,46 +1,59 @@
-import { styled } from 'styled-components';
+import { styled } from "styled-components";
 
- export const CenteredContainer = styled.div`
+export const CenteredContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
 `;
 
- export const Form = styled.form`
+export const Form = styled.form`
   box-shadow: 1px 2px 30px 5px #e8f3ffde;
   padding: 20px 80px;
   border-radius: 20px;
 `;
 
- export const Title = styled.h2`
-padding-top: 40px;
-padding-bottom: 20px;
-font-size:36px;
-font-weight:bold;
-color:#4593FC;
+export const Title = styled.h2`
+  padding-top: 40px;
+  padding-bottom: 20px;
+  font-size: 36px;
+  font-weight: bold;
+  color: #4593fc;
 `;
 
- export const Sub = styled.p`
-font-size:14px;
-padding-bottom: 20px;
-color:rgba(0,0,0,0.7);
+export const Sub = styled.p`
+  font-size: 14px;
+  padding-bottom: 20px;
+  color: rgba(0, 0, 0, 0.7);
 `;
 
 export const InputContainer = styled.div`
-display: flex;
-flex-direction: column;
-padding:15px 0;
+  display: flex;
+  flex-direction: column;
+  padding: 15px 0;
 `;
 
 export const ButtonContainer = styled.div`
   display: flex;
   gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  .direct-login {
+    width: 50%;
+    /* margin: 0 auto; */
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 8px;
+  }
 `;
 
 export const StyledButton = styled.button`
-  background-color: #4593FC;
-  color:white;
+  background-color: #4593fc;
+  color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -49,26 +62,25 @@ export const StyledButton = styled.button`
 `;
 
 export const StyledInput = styled.input`
-  width: 554px; 
+  width: 554px;
   padding: 20px 20px;
-  font-size: 16px; 
+  font-size: 16px;
   border: 1px solid #e8f3ff;
   border-radius: 5px;
 
   &::placeholder {
-    color: #9EC8FF;
+    color: #9ec8ff;
   }
 
   &.error,
-  .touched{
-
-    border: 1px solid red ;
+  .touched {
+    border: 1px solid red;
     box-shadow: 0px 0px 2px red;
   }
 `;
 
 export const StyledInputWithCustomStyle = styled(StyledButton)`
-    /* width: 50%;
+  /* width: 50%;
     margin: 0 auto;
     padding: 15px;
     background-color: #fff;
@@ -85,31 +97,27 @@ export const StyledInputWithCustomStyle = styled(StyledButton)`
   transition: background-color 0.3s ease;
 `;
 
-
 export const ButtonCustomStyle = styled(StyledButton)`
-    width: 20%;
-    padding: 10px;
-    background-color: #fff;
-    border: 1px solid #4593FC;
-    color: #4593FC;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
+  width: 20%;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #4593fc;
+  color: #4593fc;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
 `;
 
-export const SocialButtons = styled.div`
-
-`;
+export const SocialButtons = styled.div``;
 
 export const ErrorText = styled.p`
   margin-top: 10px;
-  color: #E72D4A;
+  color: #e72d4a;
   font-size: 12px;
 `;
-
 
 export const StyledLabel = styled.label`
   font-weight: bold;
   padding-bottom: 10px;
-  color: rgba(0,0,0,0.7);
+  color: rgba(0, 0, 0, 0.7);
 `;
 
 export const StyledSpan = styled.span`
@@ -119,18 +127,17 @@ export const StyledSpan = styled.span`
 `;
 
 export const DuplicateCheckButton = styled.button`
-    width: 20%;
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-    margin-top: 10px;
+  width: 20%;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
 
   &:hover {
     background-color: #0056b3;
   }
 `;
-

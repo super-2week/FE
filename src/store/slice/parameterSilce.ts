@@ -1,13 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-
-interface params {
-  animalCategory: string;
-  productCategory: string;
-  sortBy: string;
-  searchWord: string;
-  pageNumber: number;
-  fromSearch?: boolean;
-}
+import { params } from "../../components/main/type";
 
 const initialState: params = {
   animalCategory: "dog",
