@@ -1,8 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { setsortBy } from "../../store/slice/parameterSilce";
-import { GetTotalSearchData } from "../../apis/list/search.api";
-import { setDataList } from "../../store/slice/listSlice";
 
 interface ListFilterItemProps {
   item: { id: string; label: string };

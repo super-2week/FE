@@ -1,16 +1,11 @@
-import React, { useEffect, useState, useCallback } from "react"; // useCallback 추가
+import React, { useEffect, useState } from "react"; // useCallback 추가
 import * as S from "./list.style";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
-import { useLocation, useNavigate } from "react-router-dom";
-import {
-  setFromSearch,
-  setpageNumber,
-  setsortBy,
-} from "../../store/slice/parameterSilce";
-import { GetSearchData, GetTotalSearchData } from "../../apis/list/search.api";
+import { useNavigate } from "react-router-dom";
+
+import { GetTotalSearchData } from "../../apis/list/search.api";
 import { setDataList } from "../../store/slice/listSlice";
-import { Product, params } from "../main/type";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ListFilterItem from "./ListFilterItem";
 import { setProductlabel } from "../../store/slice/productCategoryStateSlice";

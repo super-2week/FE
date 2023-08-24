@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import * as S from "../global.style";
 import { BiUser, BiCart, BiSearch } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";

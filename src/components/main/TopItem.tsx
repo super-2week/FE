@@ -21,7 +21,7 @@ const TopItem = () => {
     (state: RootState) => state.productCategory.category
   );
 
-  const itemParameter = useSelector((state: RootState) => state.parameter);
+  // const itemParameter = useSelector((state: RootState) => state.parameter);
 
   const [topItem, setTopItem] = useState<Product[]>();
 

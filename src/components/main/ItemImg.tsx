@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { ProductImage, TodayProductItem } from "./type";
+import { TodayProductItem } from "./type";
 import * as S from "./main.style";
 import { useNavigate } from "react-router-dom";
 

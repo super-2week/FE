@@ -29,7 +29,6 @@ const Item: React.FC<Product> = (item) => {
         };
         const response = await axios.post(
           `https://pet-commerce.shop/v1/api/product/wish/${item.id}`,
-          {},
           { headers }
         );
         setLiked(true);

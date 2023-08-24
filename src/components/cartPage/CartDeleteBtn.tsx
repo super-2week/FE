@@ -1,25 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { Deletecart } from '../../apis/cart/deleteCart.api';
+import { Deletecart } from "../../apis/cart/deleteCart.api";
 
 type DeleteProps = {
-    cartId: number
-    onDeleteCart: (cartId: number) => void;
-}
+  cartId: number;
+  onDeleteCart: (cartId: number) => void;
+};
 
 const CartDeleteBtn = ({ cartId, onDeleteCart }: DeleteProps) => {
+  const token = localStorage.getItem("accesstoken");
 
-    const token = localStorage.getItem("accesstoken");
+  const deleteCarts = () => {
+    Deletecart(cartId, token);
+    onDeleteCart(cartId);
+  };
 
-    const deleteCarts = () => {
-        Deletecart(cartId, token);
-        onDeleteCart(cartId);
-    }
-
-    return (
-        <div className="product_delete_wrapper">
-            <button onClick={deleteCarts}>x</button>
-        </div>
-    )
-}
+  return (
+    <div className="product_delete_wrapper">
+      <button onClick={deleteCarts}>x</button>
+    </div>
+  );
+};
 
 export default CartDeleteBtn;
