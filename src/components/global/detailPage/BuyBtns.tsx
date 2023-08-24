@@ -7,12 +7,15 @@ const BuyBtns = () => {
     const selectCard = useAppSelector((state) => state.sendCart);
     console.log(selectCard);
 
+    const token = localStorage.getItem("accesstoken");
+    // console.log('token', token)
+
     const cardBtnHandle = async() => {
         await axios.post('https://pet-commerce.shop/v1/api/carts',{
             ...selectCard
         },
         {
-            headers: { Authorization: '' },
+            headers: { Authorization: `Bearer ${token}` },
         })
         .then((res)=>{
             console.log(res);

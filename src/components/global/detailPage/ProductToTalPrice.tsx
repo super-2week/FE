@@ -12,15 +12,18 @@ const ProductToTalPrice = ({ price }: ProductTotalPriceProps) => {
     const totalCount = useAppSelector((state: RootState) => state.totalPrice.count);
 
     const onePrice = price;
-    const [price1, setPrice] = useState<number>(0);
+    const [price1, setPrice] = useState<number|string>(0);
 
     useEffect(()=>{
         sumPrice(totalCount);
     }, [totalCount])
 
     const sumPrice = (count:number) => {
-        const sum = onePrice*count;
-        setPrice(sum)
+        const price1 = "" + onePrice;
+        const price = Number(price1.replace(/,/g, ""));
+        const sum = price *count;
+        const stringTotal = sum.toLocaleString();
+        setPrice(stringTotal)
     }
 
     return (
