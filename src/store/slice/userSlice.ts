@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 interface UserState {
   email:string | null;
   password:string | null;
-  username: string | null;
+  userName: string | null;
   profileImage: string | null;
   thumbnailImage: string | null;
 }
@@ -11,7 +11,7 @@ interface UserState {
 const initialState: UserState = {
   email: null,
   password:null,
-  username: null,
+  userName: null,
   profileImage: null,
   thumbnailImage: null,
 };
@@ -25,10 +25,10 @@ const userSlice = createSlice({
       state.email = email;
       state.password = password;
     },
-    successSocialLogin: (state, action: PayloadAction<{ email: string; username:string; profileImage: string;thumbnailImage: string;}>) => {
-      const {email,username,profileImage,thumbnailImage} = action.payload;
+    successSocialLogin: (state, action: PayloadAction<{ email: string; userName:string; profileImage: string;thumbnailImage: string;}>) => {
+      const {email,userName,profileImage,thumbnailImage} = action.payload;
       state.email = email;
-      state.username = username;
+      state.userName = userName;
       state.profileImage = profileImage;
       state.thumbnailImage = thumbnailImage;
     },

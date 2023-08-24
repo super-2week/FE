@@ -65,17 +65,24 @@ export const StyledInput = styled.input`
     border: 1px solid red ;
     box-shadow: 0px 0px 2px red;
   }
-  
 `;
 
 export const StyledInputWithCustomStyle = styled(StyledButton)`
-    width: 50%;
+    /* width: 50%;
     margin: 0 auto;
     padding: 15px;
     background-color: #fff;
     border: 1px solid #4593FC;
     color: #4593FC;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05); */
+  width: 50%;
+  margin: 0 auto;
+  background-color: ${(props) => (props.disabled ? "gray" : "#007bff")};
+  color: white;
+  border: none;
+  padding: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 `;
 
 
@@ -126,3 +133,4 @@ export const DuplicateCheckButton = styled.button`
     background-color: #0056b3;
   }
 `;
+
