@@ -1,8 +1,10 @@
-import { Link } from 'react-router-dom';
 import * as S from './MyPage.style';
-import { HandleViewProps } from './type';
+import { Props } from './type';
+import { GetMainList } from './api/getApi';
 
-const MyPageMain = ({ handleClick }: HandleViewProps) => {
+const MyPageMain = ({ handleClick }: Props) => {
+  const { pay, wishList } = GetMainList();
+
   return (
     <S.ContentsBox>
       <S.MainBox>
@@ -26,7 +28,7 @@ const MyPageMain = ({ handleClick }: HandleViewProps) => {
               <span>
                 <em>PAY</em>
                 <p onClick={() => handleClick('Pay')}>
-                  <strong>0</strong>
+                  <strong>{pay}</strong>
                 </p>
               </span>
             </div>
@@ -35,7 +37,7 @@ const MyPageMain = ({ handleClick }: HandleViewProps) => {
               <span>
                 <em>관심 상품</em>
                 <p onClick={() => handleClick('Like')}>
-                  <strong>1</strong>
+                  <strong>{wishList.length}</strong>
                 </p>
               </span>
             </div>
@@ -44,7 +46,7 @@ const MyPageMain = ({ handleClick }: HandleViewProps) => {
               <span>
                 <em>최근 본 상품</em>
                 <p onClick={() => handleClick('LastSee')}>
-                  <strong>2</strong>
+                  <strong>0</strong>
                 </p>
               </span>
             </div>

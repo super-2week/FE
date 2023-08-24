@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAppDispatch } from '../../store/hook';
 import { setActiveTab } from '../../store/slice/myPageSlice';
 
 import * as S from './MyPage.style';
+import instance from '../../api/axios';
 
 import MyPageMain from './MyPageMain';
 import MyPageLastSee from './MyPageLastSee';
@@ -16,7 +17,7 @@ import MyPageEditUser from './MyPageEditUser';
 
 const MyPageBody = () => {
   const [isActiveTab, isSetActiveTab] = useState('userInfo');
-
+  
   const dispatch = useAppDispatch();
 
   const handleTabClick = (tabName: string) => {
