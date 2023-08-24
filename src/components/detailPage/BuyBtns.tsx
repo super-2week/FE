@@ -1,10 +1,13 @@
 import axios from "axios";
-
 import { useAppSelector } from "../../store/hook";
+import React from "react";
 
 const BuyBtns = () => {
-  const selectCard = useAppSelector((state) => state.sendCart);
-  console.log(selectCard);
+
+    const token = localStorage.getItem("accesstoken");
+
+    const selectCard = useAppSelector((state) => state.sendCart);
+    console.log(selectCard);
 
   const cardBtnHandle = async () => {
     await axios
@@ -14,16 +17,15 @@ const BuyBtns = () => {
           ...selectCard,
         },
         {
-          headers: { Authorization: "" },
-        }
-      )
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+            headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res)=>{
+            console.log(res);
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+    }
 
   return (
     <div className="buybtn_container">

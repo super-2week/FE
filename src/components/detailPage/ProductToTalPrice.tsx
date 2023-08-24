@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import BuyBtns from './BuyBtns';
 import { useAppSelector } from '../../store/hook';
 import { RootState } from '../../store/store';
+import BuyBtns from './BuyBtns';
 
 type ProductTotalPriceProps = {
     price: number
@@ -11,16 +11,18 @@ const ProductToTalPrice = ({ price }: ProductTotalPriceProps) => {
 
     const totalCount = useAppSelector((state: RootState) => state.totalPrice.count);
 
-    const onePrice = price;
-    const [price1, setPrice] = useState<number>(0);
+    const [price1, setPrice] = useState<number|string>(0);
 
     useEffect(()=>{
         sumPrice(totalCount);
     }, [totalCount])
 
     const sumPrice = (count:number) => {
-        const sum = onePrice*count;
-        setPrice(sum)
+        const a = "" + price;
+        const b = Number(a.replace(/,/g, ""));
+        const sum = b *count;
+        const stringTotal = sum.toLocaleString();
+        setPrice(stringTotal)
     }
 
     return (

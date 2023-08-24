@@ -34,7 +34,10 @@ const DetailPage = () => {
   const { pathname } = useLocation();
   const productId = pathname.slice(9);
 
+  const token = localStorage.getItem('accesstoken');
+
   const [detail, setDetail] = useState<DetailObject | undefined>(undefined);
+  const [review, setReview] = useState<DetailObject | undefined>(undefined);
 
   const loadDetail = async() => {
     await axios.get(`https://pet-commerce.shop/v1/api/product/detail/${productId}`)
@@ -47,9 +50,26 @@ const DetailPage = () => {
         console.log(err);
       })
   }
+  
+  const loadReview = async() => {
+    const cursor = 0;
+    const pageSize = 10;
+    await axios.get(`https://pet-commerce.shop/v1/api/reviews/${productId}?cursor=${cursor}&pageSize=${pageSize}`,
+      { headers: { Authorization: `Bearer ${token}` } }
+    )
+      .then(function (res) {
+        const data = res.data;
+        setReview(data);
+        // dispatch(cartProductId(parseInt(productId)))
+      })
+      .catch(function (err) {
+        console.log(err);
+      })
+  }
 
   useEffect(() => {
     loadDetail();
+    loadReview();
   }, [])
 
   if (!detail) {
@@ -57,6 +77,7 @@ const DetailPage = () => {
   }
 
   console.log('detail', detail);
+  console.log('review', review);
 
   return (
     <StDetail>
